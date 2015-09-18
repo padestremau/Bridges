@@ -1,0 +1,54 @@
+<!-- Button on side -->
+
+{% set route = app.request.attributes.get( '_route' ) %}
+
+<div class="
+	{% if (route == 'bridges_main_homepage') %}
+		hidden-xs
+	{% else %}
+		hidden-lg hidden-md hidden-sm hidden-xs
+	{% endif %}
+	"  id="side_buttons"> 
+	<a href="#home" class="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_0">
+			<div class="pop_hover_side" style="opacity:0;">
+				home <!-- {{ 'sideButtons.titles.accueil'|trans }} -->
+			</div>
+		</button>
+	</a>
+	<a href="#aboutUs" class="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_1">
+			<div class="pop_hover_side" style="opacity:0;">
+				aboutUs <!-- {{ 'sideButtons.titles.assoc'|trans }} -->
+			</div>
+		</button>
+	</a>
+	<a href="#stories" class="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_2">
+			<div class="pop_hover_side" style="opacity:0;">
+				stories <!-- {{ 'sideButtons.titles.ecoliers'|trans }} -->
+			</div>
+		</button>
+	</a>
+	<a href="#work" class="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_3">
+			<div class="pop_hover_side" style="opacity:0;">
+				work <!-- {{ 'sideButtons.titles.etudiants'|trans }} -->
+			</div>
+		</button>
+	</a>
+	<a href="#participate" class="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_4">
+			<div class="pop_hover_side" style="opacity:0;">
+				participate <!-- {{ 'sideButtons.titles.jeunesPro'|trans }} -->
+			</div>
+		</button>
+	</a>
+	<a href="#footer" class="no_style_a">
+		<button class="btn-side btn-side-invert" id="btn_side_5">
+			<div class="pop_hover_side" style="opacity:0;">
+				footer <!-- {{ 'sideButtons.titles.footer'|trans }} -->
+			</div>
+		</button>
+	</a>
+</div>

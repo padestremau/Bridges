@@ -1,0 +1,95 @@
+{# src/Bridges/MainBundle/Resources/Main/indexMain.html.twig #}
+
+{% extends "BridgesMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block Bridges_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+
+			<!-- Accueil -->
+			<div class="section" id="home">
+
+				<h1>
+					<strong>
+						Bridges
+					</strong>
+					<br/>
+					<span>
+						Love hopes and endures all things
+					</span>
+				</h1>
+
+			</div>
+
+
+			<div class="section" id="aboutUs" >
+
+				<script>
+					var articlesContent;
+				</script>
+
+
+				<div class="row actu">
+					<div class="row">
+						<h2>
+							Actu
+						</h2>
+					</div>
+					<div class="row">
+		    			
+	    			</div>
+
+				</div>
+
+			</div>
+			
+
+			<div class="section" id="stories" >
+				<h2>
+					Ecoliers
+				</h2>
+
+				
+
+			</div>
+
+
+			<div class="section" id="work" >
+
+				<h2>
+					Etudiants
+				</h2>
+
+
+			</div>
+
+
+			<div class="section" id="participate" >
+
+				<h2>
+					Jeunes pro
+				</h2>
+
+				
+			</div>
+
+			<!-- BEGIN FOOTER -->
+	          {% include 'includes/footer.html.twig' %}
+	        <!-- END FOOTER -->
+
+		</div>
+
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_Main_body %}

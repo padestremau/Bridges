@@ -1,0 +1,19 @@
+# Bootstrap
+app/bootstrap*
+
+# Symfony directories
+vendor/*
+bin/*
+*/logs/*
+*/cache/*
+web/uploads/*
+
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+# Composer
+composer.phar
+
+# UserFiles (No need to exchange those files. Keep them local.)
+

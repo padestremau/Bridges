@@ -1,0 +1,4 @@
+bridges_main:
+    resource: "@BridgesMainBundle/Resources/config/routing.yml"
+    prefix:   /
+

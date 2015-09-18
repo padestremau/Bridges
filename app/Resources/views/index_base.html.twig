@@ -1,0 +1,125 @@
+{# app/Resources/views/index_base.html.twig #}
+
+{# For clearer view #}
+{% set route = app.request.attributes.get( '_route' ) %}
+
+<!DOCTYPE html>
+
+<!-- BEGIN HEAD -->
+<head id="website_head">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+      {% block title %}
+        Bridges
+      {% endblock %}
+    </title>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <meta name="msvalidate.01" content="CC1F6862C60F3FE59348108B42D19AC7" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="Pierre-Arnaud Destremau" name="author"/>
+    <meta content="info@bridgestoday.com" name="email"/>
+    <meta content="Bridges" name="title"/>
+    <meta content="Bridges. Reconciling society with charity." name="description"/>
+    <meta content="http://www.bridgestoday.com{{ asset('img/system/logo/logo-300x300.png') }}" name="image"/>
+    <meta content="D-21, Calle los Sauces" name="streetAddress"/>
+    <meta content="Cusco" name="addressLocality"/>
+    <meta content="Cuzco" name="addressRegion"/>
+    <meta content="Peru" name="addressCountry"/>
+    <meta name="keywords" content=" ??? "/>   <!-- A COMPLETER !! -->
+
+    <!-- Facebook -->
+    <meta property="og:title" content="Bridges"/>
+    <meta property="og:email" content="info@bridgestoday.com"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://www.bridgestoday.com{{ asset('img/system/logo/logo-300x300.png') }}"/>
+    <meta property="og:url" content="http://www.bridgestoday.com/"/>
+    <meta property="og:description" content="Bridges. Reconciling society with charity."/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    {% stylesheets
+
+      'css/font.css'
+      'css/main_style.css'
+
+      filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
+    {% endstylesheets %}
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    {% javascripts 
+      'js/jssor.js'
+      'js/jssor.slider.js'
+      %}
+      <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <!-- END JAVASCRIPTS -->
+
+    {% if route == 'lbf_admin_new_page'
+        or route == 'lbf_admin_edit_page' %}
+    {% stylesheets
+      'redactor/redactor.css'
+      'bundles/lbfredactor/css/sonata.css'
+      filter='cssrewrite' %}
+      <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen"/>
+    {% endstylesheets %}
+    {% javascripts 
+      'redactor/redactor.js'
+      'redactor/fullscreen.js'
+      'redactor/fr.js'
+      'bundles/bridgesredactor/js/script.js'
+      %}
+      <script type="text/javascript" src="{{ asset_url }}"> </script>
+      {% endjavascripts %}
+    {% endif %}
+
+</head>
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+  <body onLoad="onLoadData()">
+
+        <!-- BEGIN header -->
+          {% include 'includes/header.html.twig' %}
+        <!-- END header -->
+
+        <!-- BEGIN button to top -->
+          {% include 'includes/button_to_top.html.twig' %}
+        <!-- END button to top -->
+
+        <!-- BEGIN button to top -->
+          {% include 'includes/button_on_side.html.twig' %}
+        <!-- END button to top -->
+        
+        <!-- BEGIN CONTAINER -->
+        <div id="page_container_gen" class="page-container row margin0">
+            {% block body %}
+            {% endblock body %}  
+        </div>
+        <!-- END CONTAINER -->
+
+
+        <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+        {% javascripts 
+          'js/javascripts_bridges.js'
+          'js/ajax_load.js'
+          %}
+          <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <!-- END JAVASCRIPTS -->
+  </body>
+  <!-- END BODY -->
+</html>

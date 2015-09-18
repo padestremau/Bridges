@@ -1,0 +1,3 @@
+bridges_main_homepage:
+    path:     /
+    defaults: { _controller: BridgesMainBundle:Main:indexMain }
