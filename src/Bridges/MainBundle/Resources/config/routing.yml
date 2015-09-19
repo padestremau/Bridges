@@ -1,3 +1,11 @@
 bridges_main_homepage:
     path:     /
     defaults: { _controller: BridgesMainBundle:Main:indexMain }
+
+bridges_main_footer_contact:
+    path:     /footer/contact/
+    defaults: { _controller: BridgesMainBundle:Main:footerContact }
+
+bridges_main_volunteer:
+    path:     /volunteer/contact/
+    defaults: { _controller: BridgesMainBundle:Main:volunteerContact }

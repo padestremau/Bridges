@@ -3,48 +3,75 @@
 
 
 <div id="header" class="header row hidden-xs" >
-	<ul class="nav nav-tabs uppercase" id="menu">
-		<li class="div_logo_welcome" id="btn_header0">
+	<ul class="uppercase" id="menu">
+		<li class="header_li" id="btn_header0">
 			<a href="#home" id="btn_section0">
-				<img src="{{ asset('img/system/logo/logo.jpg') }}" alt="Logo" id="logo_welcome"/>
+				<div class="glyphicon_header">
+					<span class="glyphicon glyphicon-home"></span> 
+				</div>
+				<div class="text_header">
+					Home
+				</div>
 			</a>
 		</li>
-		<li  class="" id="btn_header1">
+		<li class="header_li" id="btn_header1">
 			<a href="#aboutUs" id="btn_section1">
-				About us
+				<div class="glyphicon_header">
+					<span class="glyphicon glyphicon-info-sign"></span> 
+				</div>
+				<div class="text_header">
+					About us
+				</div>
 			</a>
 		</li>
-		<li  class="" id="btn_header2">
+		<li class="header_li" id="btn_header2">
 			<a href="#stories" id="btn_section2">
-				Stories
+				<div class="glyphicon_header">
+					<span class="glyphicon glyphicon-send"></span> 
+				</div>
+				<div class="text_header">
+					Stories
+				</div>
 			</a>
 		</li>
-		<li  class="" id="btn_header3">
+		<li class="header_li" id="btn_header3">
 			<a href="#work" id="btn_section3">
-				The Work
+				<div class="glyphicon_header">
+					<span class="glyphicon glyphicon-stats"></span> 
+				</div>
+				<div class="text_header">
+					The Work
+				</div>
 			</a>
 		</li>
-		<li class="dropdown " id="btn_header4">
-		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-		      Participate <span class="caret"></span>
-		    </a>
-		    <ul class="dropdown-menu" role="menu">
-	          	<li>
-	          		<a href="#participate"  id="btn_section4">
-	          			Volunteer
-	          		</a>
-	          	</li>
-	          	<hr/>
-	          	<li>
-	          		<a href="#participate">
-	          			Donate
-	          		</a>
-	          	</li>
-		    </ul>
+		<li class="header_li" id="btn_header4">
+			<a href="#volunteer" id="btn_section4">
+				<div class="glyphicon_header">
+					<span class="glyphicon glyphicon-knight"></span> 
+				</div>
+				<div class="text_header">
+					Volunteer
+				</div>
+			</a>
 		</li>
-		<li  class="" id="btn_header5">
-			<a href="#footer" id="btn_section5">
-				Contact
+		<li class="header_li" id="btn_header5">
+			<a href="#donate" id="btn_section5">
+				<div class="glyphicon_header">
+					<span class="glyphicon glyphicon-gift"></span> 
+				</div>
+				<div class="text_header">
+					Donate
+				</div>
+			</a>
+		</li>
+		<li class="header_li" id="btn_header6">
+			<a href="#footer" id="btn_section6">
+				<div class="glyphicon_header">
+					<span class="glyphicon glyphicon-envelope"></span> 
+				</div>
+				<div class="text_header">
+					Contact
+				</div>
 			</a>
 		</li>
 	</ul>
@@ -75,40 +102,32 @@
     <div class="collapse navbar-collapse" id="top_menu_dropdown">
       <ul class="nav navbar-nav">
       	<li  class="li_mobile border_bottom_white" id="btn_header1">
-			<a href="#actu" id="btn_section1" class="link_in_dropdown">
+			<a href="#aboutus" id="btn_section1" class="link_in_dropdown">
 				About us
 			</a>
 		</li>
 		<li  class="li_mobile border_bottom_white" id="btn_header2">
-			<a href="#actu" id="btn_section2" class="link_in_dropdown">
+			<a href="#stories" id="btn_section2" class="link_in_dropdown">
 				Stories
 			</a>
 		</li>
 		<li  class="li_mobile border_bottom_white" id="btn_header3">
-			<a href="#actu" id="btn_section3" class="link_in_dropdown">
+			<a href="#work" id="btn_section3" class="link_in_dropdown">
 				The Work
 			</a>
 		</li>
-		<li class="dropdown li_mobile border_bottom_white" id="btn_header4">
-		    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
-		      Participate <span class="caret"></span>
-		    </a>
-		    <ul class="dropdown-menu" role="menu">
-		    	<li>
-	          		<a href="#assoc"  id="btn_section4" class="link_in_dropdown">
-	          			Volunteer
-	          		</a>
-	          	</li>
-	          	<hr/>
-	          	<li>
-	          		<a href="#assoc" class="link_in_dropdown">
-	          			Donate
-	          		</a>
-	          	</li>
-		    </ul>
+		<li  class="li_mobile border_bottom_white" id="btn_header4">
+			<a href="#volunteer" id="btn_section4" class="link_in_dropdown">
+				Volunteer
+			</a>
 		</li>
-		<li  class="li_mobile" id="btn_header5">
-			<a href="#footer" id="btn_section5" class="link_in_dropdown">
+		<li  class="li_mobile border_bottom_white" id="btn_header5">
+			<a href="#donate" id="btn_section5" class="link_in_dropdown">
+				Donate
+			</a>
+		</li>
+		<li  class="li_mobile" id="btn_header6">
+			<a href="#footer" id="btn_section6" class="link_in_dropdown">
 				Contact
 			</a>
 		</li>
@@ -116,3 +135,59 @@
       </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
+
+
+
+<!-- Social section  -->
+<div id="social_media" class="hidden-xs">
+    <ul class="social_list">
+      <li class="social_item">
+        <a href="https://www.facebook.com/" target="_blank">
+          <div class="social_icon social_fb"></div>
+        </a>
+      </li>
+      <li class="social_item">
+        <a href="https://twitter.com/" target="_blank">
+          <div class="social_icon social_gg"></div>
+        </a>
+      </li>
+    </ul>
+</div>
+
+
+
+<!-- BEGIN LANGUAGE SELECTION DROPDOWN -->
+<div class="language_box">
+	{% set current_language = '' %}
+	{% if (app.request.get('_route_params')) != null %}
+	  {% if (app.request.get('_route_params')._locale == 'fr') %}
+	    {% set current_language = 'fr' %}
+	  {% elseif (app.request.get('_route_params')._locale == 'en') %}
+	    {% set current_language = 'en' %}
+	  {% else %}
+	    {% set current_language = 'es' %}
+	  {% endif %}
+	{% endif %}
+	<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection no_style_a
+	{% if current_language == 'en' %}
+	  language_active
+	{% endif %}
+	">
+	  <img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+	</a>
+	<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection no_style_a
+	{% if current_language == 'es' %}
+	  language_active
+	{% endif %}
+	">
+	  <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+	</a>
+	<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR" alt="FR" class="language_selection no_style_a
+	{% if current_language == 'fr' %}
+	  language_active
+	{% endif %}
+	">
+	  <img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag"/>
+	</a>
+</div>
+<!-- END LANGUAGE SELECTION DROPDOWN -->

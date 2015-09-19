@@ -59,9 +59,9 @@
   //  BEGIN SMOOTH SCROLLING
 
   // Anchors
-  var myAnchors = ['#home', '#aboutUs', '#stories', '#work', '#participate', '#footer'];
-  var myAnchorsLinksId = ['#btn_section0', '#btn_section1', '#btn_section2', '#btn_section3', '#btn_section4', '#btn_section5'];
-  var side_buttons = ['btn_side_0', 'btn_side_1', 'btn_side_2', 'btn_side_3', 'btn_side_4', 'btn_side_5'];
+  var myAnchors = ['#home', '#aboutUs', '#stories', '#work', '#volunteer', '#donate', '#footer'];
+  var myAnchorsLinksId = ['#btn_section0', '#btn_section1', '#btn_section2', '#btn_section3', '#btn_section4', '#btn_section5', '#btn_section6'];
+  var header_buttons = ['btn_header0', 'btn_header1', 'btn_header2', 'btn_header3', 'btn_header4', 'btn_header5', 'btn_header6'];
   var currentAnchor = 0;
   if (document.location.hash) {
     var the_hash = document.location.hash;
@@ -74,7 +74,7 @@
     }
   }
   changeActiveAnchor(currentAnchor);
-  changeSideButton(currentAnchor);
+  changeActiveHeader(currentAnchor);
   var currentPosition = $(window).scrollTop();
 
   // For mobile
@@ -108,7 +108,7 @@
 
     // Change Anchor active
     changeActiveAnchor(currentAnchor);
-    changeSideButton(currentAnchor);
+    changeActiveHeader(currentAnchor);
   });
 
   /**
@@ -150,7 +150,7 @@
     }
 
     changeActiveAnchor(currentAnchor);
-    changeSideButton(currentAnchor);
+    changeActiveHeader(currentAnchor);
 
   });
 
@@ -166,41 +166,37 @@
     if (window_width > (window_height * 1.2)) {
       // Full page customized
       $('.section').css({'min-height':window_height+'px'});
+      $('.inner-section').css({'height':window_height+'px'});
+
     }
 
-    // Modal height and scroll
-    var window_height_modal = Math.round(window.innerHeight * 0.72);
-    $(".modal-body").css({'max-height':window_height_modal+'px'});
+    // Position the header middle-left
+    var header_height = $("#header").height();
+    var new_position_header = ( window_height - header_height) * 0.45;
+    $("#header").css({'top':new_position_header+'px'});
 
-    // alert(window_height+' and '+window_height_modal+' and '+$('.modal-body').css('max-height'));
-
-    // Round images
-    var widthImg = $('.product_img').width();
-    $('.product_img').css({'height':widthImg+'px'});
-    changeCSSsheet('.product_img', 'height', widthImg+'px');
-    $(window).resize(function() {
-            var widthImg = $('.product_img').width();
-            $('.product_img').css({'height':widthImg+'px'});
-            changeCSSsheet('.product_img', 'height', widthImg+'px');
-              });
-    var widthRecipe = $('.recipe_img').width() * 0.7;
-    $('.recipe_img').css({'height':widthRecipe+'px'});
-    changeCSSsheet('.recipe_img', 'height', widthRecipe+'px');
-    $(window).resize(function() {
-        var widthRecipe = $('.recipe_img').width() * 0.7;
-        $('.recipe_img').css({'height':widthRecipe+'px'});
-        changeCSSsheet('.recipe_img', 'height', widthRecipe+'px');
-          });
-
-    var coverPhoto_height_lg = $('.coverPhoto_img_admin').width() / 3.030303;
-    $('.coverPhoto_img_admin').css({'height':coverPhoto_height_lg+'px'});
-    changeCSSsheet('.coverPhoto_img_admin', 'height', coverPhoto_height_lg+'px');
-    $(window).resize(function() {
-          var coverPhoto_height_lg = $('.coverPhoto_img_admin').width() / 3.030303;
-          $('.coverPhoto_img_admin').css({'height':coverPhoto_height_lg+'px'});
-          changeCSSsheet('.coverPhoto_img_admin', 'height', coverPhoto_height_lg+'px');
+    $('.header_li').hover(function(){
+      $('.text_header').css({'right':'0px'});
+      $(this).find('.text_header').css({'right':'-10px'});
+      }, function(){
+      $('.text_header').css({'right':'160px'});
     });
 
+    
+    var widthImg = $('.project_case').width();
+    $('.project_case').css({'height':widthImg+'px'});
+    changeCSSsheet('.project_case', 'height', widthImg+'px');
+    var widthImg = $('.project_case_inner').width();
+    $('.project_case_inner').css({'height':widthImg+'px'});
+    changeCSSsheet('.project_case_inner', 'height', widthImg+'px');
+    $(window).resize(function() {
+      var widthImg = $('.project_case').width();
+      $('.project_case').css({'height':widthImg+'px'});
+      changeCSSsheet('.project_case', 'height', widthImg+'px');
+      var widthImg = $('.project_case_inner').width();
+      $('.project_case_inner').css({'height':widthImg+'px'});
+      changeCSSsheet('.project_case_inner', 'height', widthImg+'px');
+    });
 
     (function($) {
       $.fn.juizScrollTo = function( speed ) { 
@@ -245,7 +241,7 @@
                 }
                 currentPosition = $(window).scrollTop();
                 changeActiveAnchor(currentAnchor);
-                changeSideButton(currentAnchor);
+                changeActiveHeader(currentAnchor);
 
                 return false;  
               }  
@@ -299,22 +295,13 @@
   /**
    * Side buttons
    */
-  function changeSideButton(current) {
-    for (var i = 0; i < side_buttons.length; i++) {
+  function changeActiveHeader(current) {
+    for (var i = 0; i < header_buttons.length; i++) {
       if (i == current) {
-        document.getElementById(side_buttons[i]).className = "btn-side btn-side-active";
+        document.getElementById(header_buttons[i]).className = "header_li header_active";
       }
       else {
-        document.getElementById(side_buttons[i]).className = "btn-side";
-      }
-    }
-    // In footer
-    if (current == (side_buttons.length - 1)) {
-      for (var i = 0; i < side_buttons.length; i++) {
-        document.getElementById(side_buttons[i]).className += " btn-side-footer";
-        if (i == current) {
-          document.getElementById(side_buttons[i]).className += " btn-side-footer-active";
-        }
+        document.getElementById(header_buttons[i]).className = "header_li ";
       }
     }
   }

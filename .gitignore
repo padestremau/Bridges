@@ -16,4 +16,5 @@ app/config/parameters.yml
 composer.phar
 
 # UserFiles (No need to exchange those files. Keep them local.)
-
+web/img/bg/*
+web/img/projects/*

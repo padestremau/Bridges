@@ -1,10 +1,75 @@
 <!-- BEGIN FOOTER -->
-<div id="footer" class="section center">
+<div id="footer" class="section center" style="background-image: url('{{ asset("img/bg/7.jpg") }}'); background-size: cover; background-position: 50%;">
 
-	<div class="row">
+	<div class="section inner-section-footer">
+
+		<div class="bg_frame_footer">
+			<h1>
+				Contact
+			</h1>
+
+			<div class="row">
+				<form id="contact_form" method="post" action="{{ path('bridges_main_footer_contact') }}">
+			        <div id="" class="row">
+
+			        	<div class="form-group row">
+							<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<input type="text" name="senderContact" id="senderContact" placeholder="Name" class="form-control placeholder-no-fix"/>
+					        </div>
+							<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+								<input type="text" name="emailContact" id="emailContact" placeholder="Email" class="form-control placeholder-no-fix"/>
+					        </div>
+						</div>
+						<br/>
+			            <div class="form-group row">
+			            	<div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				                <select name="sujetMail" id="objet" class="form-control placeholder-no-fix" onchange="showOrderNumber()">
+				                    <option value="" selected>
+				                    	{{ 'footer.contact.selectObject' | trans }}
+				                    </option>
+				                    <option value="OBJ1 1">
+				                    	 object1
+				                    </option>
+									<option value="OBJ2:  object2">
+										 object2
+									</option>
+									<option value="OBJ3:  object3">
+										 object3
+									</option>
+									<option value="OBJ4:  object4">
+										 object4
+									</option>
+									<option value="OBJ5:  object5">
+										 object5
+									</option>
+									<option value="OBJ6:  object6">
+										 object6
+									</option>
+									<option value="OBJ7:  object7">
+										 object7
+									</option>
+								</select>
+			            	</div>
+			          	</div> 	
+						<br/>
+			            <div class="form-group row">
+			                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'footer.contact.message' | trans }}"></textarea>
+			                </div>
+			            </div>
+			        </div>
+			        <br/>
+			        <input type="submit" value="Send" class="btn btn-footer uppercase">
+			    </form>
+			</div>
+			
+		</div>
+
+		<div class="footer_copyright">
+			Bridges is a non-profit organization © All rights reserved 2015
+		</div>
 
 	</div>
-
 
 </div>
 <!-- END FOOTER -->
