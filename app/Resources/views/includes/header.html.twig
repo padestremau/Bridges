@@ -1,8 +1,35 @@
 {# For clearer view #}
 {% set route = app.request.attributes.get( '_route' ) %}
 
-
 <div id="header" class="header row hidden-xs" >
+	<ul id="language_menu">
+		<!-- BEGIN LANGUAGE SELECTION DROPDOWN -->
+		<li class="language_box">
+			{% set current_language = '' %}
+			{% if (app.request.get('_route_params')) != null %}
+			  {% if (app.request.get('_route_params')._locale == 'es') %}
+			    {% set current_language = 'es' %}
+			  {% else %}
+			    {% set current_language = 'en' %}
+			  {% endif %}
+			{% endif %}
+			<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection no_style_a
+			{% if current_language == 'en' %}
+			  language_active
+			{% endif %}
+			">
+			  <img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+			</a>
+			<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection no_style_a
+			{% if current_language == 'es' %}
+			  language_active
+			{% endif %}
+			">
+			  <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+			</a>
+		</li>
+		<!-- END LANGUAGE SELECTION DROPDOWN -->
+	</ul>
 	<ul class="uppercase" id="menu">
 		<li class="header_li" id="btn_header0">
 			<a href="#home" id="btn_section0">
@@ -10,7 +37,7 @@
 					<span class="glyphicon glyphicon-home"></span> 
 				</div>
 				<div class="text_header">
-					Home
+					{{ 'header.titles.home' | trans }}
 				</div>
 			</a>
 		</li>
@@ -20,7 +47,7 @@
 					<span class="glyphicon glyphicon-info-sign"></span> 
 				</div>
 				<div class="text_header">
-					About us
+					{{ 'header.titles.aboutUs' | trans }}
 				</div>
 			</a>
 		</li>
@@ -30,7 +57,7 @@
 					<span class="glyphicon glyphicon-send"></span> 
 				</div>
 				<div class="text_header">
-					Stories
+					{{ 'header.titles.stories' | trans }}
 				</div>
 			</a>
 		</li>
@@ -40,7 +67,7 @@
 					<span class="glyphicon glyphicon-stats"></span> 
 				</div>
 				<div class="text_header">
-					The Work
+					{{ 'header.titles.work' | trans }}
 				</div>
 			</a>
 		</li>
@@ -50,7 +77,7 @@
 					<span class="glyphicon glyphicon-knight"></span> 
 				</div>
 				<div class="text_header">
-					Volunteer
+					{{ 'header.titles.volunteer' | trans }}
 				</div>
 			</a>
 		</li>
@@ -60,7 +87,7 @@
 					<span class="glyphicon glyphicon-gift"></span> 
 				</div>
 				<div class="text_header">
-					Donate
+					{{ 'header.titles.donate' | trans }}
 				</div>
 			</a>
 		</li>
@@ -70,7 +97,7 @@
 					<span class="glyphicon glyphicon-envelope"></span> 
 				</div>
 				<div class="text_header">
-					Contact
+					{{ 'header.titles.contact' | trans }}
 				</div>
 			</a>
 		</li>
@@ -82,7 +109,7 @@
 
 <!-- FOR MOBILE -->
 
-<nav id="header" class="header row hidden-lg hidden-md hidden-sm navbar navbar-default">
+<nav id="header" class="header_mobile row hidden-lg hidden-md hidden-sm navbar navbar-default">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button id="toggle_menu_button" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top_menu_dropdown">
@@ -91,45 +118,75 @@
         <span class="icon-bar white"></span>
         <span class="icon-bar white"></span>
       </button>
-      <a class="navbar-brand hidden-lg hidden-md hidden-sm" href="#accueil" id="btn_section0">
+      <a class="navbar-brand hidden-lg hidden-md hidden-sm" href="#home" id="btn_section0">
       	<div id="div_logo_welcome_xs">
 			<img src="{{ asset('img/system/logo/logo.jpg') }}" alt="Logo" id="logo_welcome_xs"/>
 		</div>
       </a>
+      <div class="language_box_mobile center">
+			{% set current_language = '' %}
+			{% if (app.request.get('_route_params')) != null %}
+			  {% if (app.request.get('_route_params')._locale == 'es') %}
+			    {% set current_language = 'es' %}
+			  {% else %}
+			    {% set current_language = 'en' %}
+			  {% endif %}
+			{% endif %}
+			<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection no_style_a
+			{% if current_language == 'en' %}
+			  language_active
+			{% endif %}
+			">
+			  <img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+			</a>
+			<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection no_style_a
+			{% if current_language == 'es' %}
+			  language_active
+			{% endif %}
+			">
+			  <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+			</a>
+		</div>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="top_menu_dropdown">
       <ul class="nav navbar-nav">
       	<li  class="li_mobile border_bottom_white" id="btn_header1">
-			<a href="#aboutus" id="btn_section1" class="link_in_dropdown">
-				About us
+			<a href="#aboutUs" id="btn_section1" class="link_in_dropdown">
+				{{ 'header.titles.aboutUs' | trans }}
 			</a>
 		</li>
 		<li  class="li_mobile border_bottom_white" id="btn_header2">
 			<a href="#stories" id="btn_section2" class="link_in_dropdown">
-				Stories
+				{{ 'header.titles.stories' | trans }}
 			</a>
 		</li>
 		<li  class="li_mobile border_bottom_white" id="btn_header3">
 			<a href="#work" id="btn_section3" class="link_in_dropdown">
-				The Work
+				{{ 'header.titles.work' | trans }}
 			</a>
 		</li>
 		<li  class="li_mobile border_bottom_white" id="btn_header4">
 			<a href="#volunteer" id="btn_section4" class="link_in_dropdown">
-				Volunteer
+				{{ 'header.titles.volunteer' | trans }}
 			</a>
 		</li>
 		<li  class="li_mobile border_bottom_white" id="btn_header5">
 			<a href="#donate" id="btn_section5" class="link_in_dropdown">
-				Donate
+				{{ 'header.titles.donate' | trans }}
 			</a>
 		</li>
-		<li  class="li_mobile" id="btn_header6">
+		<li  class="li_mobile border_bottom_white" id="btn_header6">
 			<a href="#footer" id="btn_section6" class="link_in_dropdown">
-				Contact
+				{{ 'header.titles.contact' | trans }}
 			</a>
+		</li>
+		<li class="li_mobile center">
+			<div class="fb-page" data-href="https://www.facebook.com/Bridges-140667802651315" 
+			data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" 
+			data-show-facepile="false" data-show-posts="false">
+			</div>
 		</li>
 
       </ul>
@@ -137,57 +194,26 @@
 </nav>
 
 
-
 <!-- Social section  -->
-<div id="social_media" class="hidden-xs">
-    <ul class="social_list">
-      <li class="social_item">
-        <a href="https://www.facebook.com/" target="_blank">
-          <div class="social_icon social_fb"></div>
-        </a>
-      </li>
-      <li class="social_item">
-        <a href="https://twitter.com/" target="_blank">
-          <div class="social_icon social_gg"></div>
-        </a>
-      </li>
-    </ul>
+<div class="hidden-xs" id="social_media">
+	<div class="hidden-lg hidden-md">
+		<button type="button" class="close close_fb_button float-right" onClick="close_fb_page()"><span aria-hidden="true">&times;</span></button>
+		<div class="fb-page" data-href="https://www.facebook.com/Bridges-140667802651315" 
+		data-small-header="true" data-adapt-container-width="false" data-hide-cover="true" 
+		data-show-facepile="false" data-show-posts="false">
+		</div>
+	</div>
+	<div class="hidden-lg hidden-sm">
+		<div class="fb-page" data-href="https://www.facebook.com/Bridges-140667802651315" 
+		data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" 
+		data-show-facepile="true" data-show-posts="false">
+		</div>
+	</div>
+	<div class="hidden-md hidden-sm">
+		<div class="fb-page" data-href="https://www.facebook.com/Bridges-140667802651315" 
+		data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" 
+		data-show-facepile="true" data-show-posts="false">
+		</div>
+	</div>
 </div>
 
-
-
-<!-- BEGIN LANGUAGE SELECTION DROPDOWN -->
-<div class="language_box">
-	{% set current_language = '' %}
-	{% if (app.request.get('_route_params')) != null %}
-	  {% if (app.request.get('_route_params')._locale == 'fr') %}
-	    {% set current_language = 'fr' %}
-	  {% elseif (app.request.get('_route_params')._locale == 'en') %}
-	    {% set current_language = 'en' %}
-	  {% else %}
-	    {% set current_language = 'es' %}
-	  {% endif %}
-	{% endif %}
-	<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection no_style_a
-	{% if current_language == 'en' %}
-	  language_active
-	{% endif %}
-	">
-	  <img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
-	</a>
-	<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection no_style_a
-	{% if current_language == 'es' %}
-	  language_active
-	{% endif %}
-	">
-	  <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
-	</a>
-	<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}" title="FR" alt="FR" class="language_selection no_style_a
-	{% if current_language == 'fr' %}
-	  language_active
-	{% endif %}
-	">
-	  <img src="{{ asset('img/system/language_flags/fr.png') }}" alt="FR" class="language_flag"/>
-	</a>
-</div>
-<!-- END LANGUAGE SELECTION DROPDOWN -->

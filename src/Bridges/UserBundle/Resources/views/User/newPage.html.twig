@@ -1,0 +1,178 @@
+{# src/MA/UserBundle/Resources/User/contentNew.html.twig #}
+
+{% extends "BridgesUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Modificar una pagina
+{% endblock %}
+
+{% block Bridges_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			
+			<div class="section" id="user">
+				<div class="inner-section">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row left">
+				  		<div class="row">
+				  			<a class="btn btn-perso" href="javascript:loadContentAdmin('{{ path('bridges_user_page') }}')">
+				  				<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+		    					Atras
+		    				</a>
+				  		</div>
+				  		<br/>
+						<div class="row">
+			    			<form method="post" {{ form_enctype(formNewPage) }}>
+				        		{% if form_errors(formNewPage) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewPage) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+									<div class="form-group">
+								        {{ form_label(formNewPage.name, "Nombre para la administracion", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPage.name) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPage.name) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_name = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Nombre de la pagina", 'id':'_name', 
+								        		'name':'_name'}} %}
+								        	{{ form_widget(formNewPage.name, opt_name) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewPage.header, 'Titulo', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPage.header) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPage.header) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_header = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Titulo visible de la pagina", 'id':'_header', 
+								        		'name':'_header'}} %}
+								        	{{ form_widget(formNewPage.header, opt_header) }}
+								        </div>
+									</div>
+									<div class="form-group">
+								        {{ form_label(formNewPage.content, 'Contenido', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPage.content) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPage.content) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_content = {'attr': { 'class': 'redactor',
+								        		'placeholder':"Contenido de la pagina", 'id':'_content', 
+								        		'name':'_content'}} %}
+								        	{{ form_widget(formNewPage.content, opt_content) }}
+								        </div>
+
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewPage.dataBaseName, 'Nombre en la base de datos', 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPage.dataBaseName) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPage.dataBaseName) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_dataBaseName = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Nombre en la base de datos (ex: Pagina_Principale)", 'id':'_dataBaseName', 
+								        		'name':'_dataBaseName'}} %}
+								        	{{ form_widget(formNewPage.dataBaseName, opt_dataBaseName) }}
+								        </div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewPage) }}
+									<div class="center">
+										<input type="submit" class="btn btn-perso" value="Guardar"/>
+									</div>
+								</div>
+							</form>
+		    			</div>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_bridges.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div class='center'>
+	        			<br/><br/><br/><br/><br/>
+	        			You're not allowed on this part of the website ...
+	        		</div>
+	        	{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_User_body %}

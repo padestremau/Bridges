@@ -1,0 +1,178 @@
+{# src/Bridges/UserBundle/Resources/User/stories.html.twig #}
+
+{% extends "BridgesUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Historias
+{% endblock %}
+
+{% block Bridges_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+
+			<div class="section" id="user">
+				<div class="inner-section">
+				
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row">
+				    		<div class="row left">
+				    			<a href="{{ path('bridges_user_stories_new') }}" class="btn btn-perso float-left">
+				    				Nueva historia
+				    			</a>
+				    		</div>
+				    		{% if stories|length > 0 %}
+								<div class="table-responsive">
+			                      <table class="table">
+			                        <thead>
+			                          <tr>
+			                            <th class="center">
+			                              	Orden
+			                            </th>
+			                            <th class="center">
+			                              	Imagen
+			                            </th>
+			                            <th class="center">
+			                              	Titulo
+			                            </th>
+			                            <th class="center">
+			                              	Contenido
+			                            </th>
+			                            <th class="center">
+			                              	Créada el
+			                            </th>
+			                            <th class="center">
+			                              	Modificada el
+			                            </th>
+			                            <th class="center">
+			                              	Statuo
+			                            </th>
+			                            <th class="center">
+			                            	Acción
+			                            </th>
+			                          </tr>
+			                        </thead>
+			                        <tbody>
+			                          {% for story in stories %}
+			                            <tr>
+				                            <td class="center">
+				                              	{% if story.orderList|length > 0 %}
+				                              		{{ story.orderList }}
+				                              	{% else %}
+				                              		-
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if story.alt|length > 0 and story.url|length > 0 %}
+													<div class="story_img_admin" style="background-image: url('{{ asset(story.webPath) }}'); background-size: cover; background-position: 50%; min-height:20px;">
+													</div>
+												{% else %}
+													<div class="story_img_admin" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%; min-height:20px;" alt="Default" >
+													</div>
+												{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if story.title|length > 0 %}
+				                              		{{ story.title | truncate(20, false, '...')  }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if story.content|length > 0 %}
+				                              		{{ story.content | truncate(50, false, '...')  }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if story.createdAt|length > 0 %}
+				                              		{{ story.createdAt|date("d/M/Y") }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if story.updatedAt|length > 0 %}
+				                              		{{ story.updatedAt|date("d/M/Y") }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <th class="center hover_popup">
+				                            	{% if story.status %}
+				                              		{% if story.status == "active" %}
+				                              			Activa
+				                              		{% elseif story.status == "inactive" %}
+				                              			Inactiva
+				                              		{% else %}
+				                              			Error
+				                              			<span class="italic">
+				                              				Selecciona una seccion entre las disponibles por favor
+					                              		</span>
+				                              		{% endif %}
+				                              	{% else %}
+				                              		Erreur
+				                              		<span class="italic">
+														Selecciona una seccion entre las disponibles por favor
+				                              		</span>
+				                              	{% endif %}
+				                            </th>
+				                            <td class="center">
+				                            	<a href="javascript:loadContentAdmin('{{ path('bridges_user_stories_edit', {'storyId':story.id}) }}')" class="btn btn-action-admin-icon">
+					                            	<span class="glyphicon glyphicon-pencil"></span>
+				                            	</a>
+				                            	<a href="javascript:areYouSureDeleteStory('{{ path('bridges_user_stories_delete', {'storyId':story.id}) }}')" class="btn btn-action-admin-icon">
+					                            	<span class="glyphicon glyphicon-trash"></span>
+				                            	</a>
+				                            </td>
+			                            </tr>
+			                          {% endfor %}
+			                        </tbody>
+			                      </table>
+			                    </div>
+							{% else %}
+								<div class="center col-md-9">
+									Disculpa, ningun historia ...
+								</div>
+								<div class="col-md-3"></div>
+							{% endif %}
+				    	</div>
+
+		    			<br/><br/><br/>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_bridges.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div class='center'>
+	        			<br/><br/><br/><br/><br/>
+	        			You're not allowed on this part of the website ...
+	        		</div>
+	        	{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_User_body %}

@@ -1,0 +1,198 @@
+{# src/Bridges/UserBundle/Resources/User/newStory.html.twig #}
+
+{% extends "BridgesUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Nueva historia
+{% endblock %}
+
+{% block Bridges_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			
+			<div class="section" id="user">
+				<div class="inner-section">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row92">
+							<div class="row">
+			    				<a class="btn btn-perso float-left" href="javascript:loadContentAdmin('{{ path('bridges_user_stories') }}')">
+			    					<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+			    					Atras
+			    				</a>
+			    			</div>
+
+			    			<div class="row left">
+			    				<form method="post" {{ form_enctype(formNewStory) }}>
+				        		{% if form_errors(formNewStory) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewStory) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+									<div class="form-group">
+								        {{ form_label(formNewStory.orderList, "Orden de aparición", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewStory.orderList) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewStory.orderList) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_orderList = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Ex: 4 ", 'id':'_orderList', 
+								        		'name':'_orderList'}} %}
+								        	{{ form_widget(formNewStory.orderList, opt_orderList) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewStory.title, "Titulo de la historia", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewStory.title) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewStory.title) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_title = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'text', 'placeholder':"Titulo de la historia", 'id':'_title', 
+								        		'name':'_title'}} %}
+								        	{{ form_widget(formNewStory.title, opt_title) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+								        {{ form_label(formNewStory.content, "Contenido de la historia", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewStory.content) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewStory.content) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_content = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'type':'textarea', 'placeholder':"Contenido de la historia", 'id':'_content', 'name':'_content'}} %}
+								        	{{ form_widget(formNewStory.content, opt_content) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewStory.file, "Imagen de la historia", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewStory.file) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewStory.file) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_file = {'attr': {'type':'file', 'id':'file', 'name':'_file'}} %}
+								        	{{ form_widget(formNewStory.file, opt_file) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewStory.status, "Statuo", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewStory.status) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewStory.status) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_status = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'id':'status', 'name':'_status' }} %}
+								        	{{ form_widget(formNewStory.status, opt_status) }}
+								        </div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewStory) }}
+									<div class="center">
+										<input type="submit" class="btn btn-perso" value="Guardar"/>
+									</div>
+								</div>
+							</form>
+			    			</div>
+		    			</div>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_bridges.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div class='center'>
+	        			<br/><br/><br/><br/><br/>
+	        			You're not allowed on this part of the website ...
+	        		</div>
+	        	{% endif %}
+				
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_User_body %}

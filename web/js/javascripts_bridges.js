@@ -6,6 +6,13 @@
     document.getElementById("button_to_top").className = "opacity0";
   }
 
+  function onLoadDataSpecial() {
+    // Top button
+    document.getElementById("button_to_top").className = "opacity0";
+    $("#header").css({'display':'none'});
+    $("#social_media").css({'display':'none'});
+  }
+
   // To reload page on browser size change !!
   $(window).resize(function() {
     if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)) {}
@@ -162,17 +169,17 @@
 
 
     var window_height = window.innerHeight;
-    var window_width = window.innerWidth;
-    if (window_width > (window_height * 1.2)) {
-      // Full page customized
-      $('.section').css({'min-height':window_height+'px'});
-      $('.inner-section').css({'height':window_height+'px'});
+    // Full page customized
+    $('.section').css({'min-height':window_height+'px'});
+    $('.inner-section').css({'min-height':window_height+'px'});
 
-    }
+    // Set photos div to correct height
+    $('#section_photos').css({'height':window_height+'px'});
+    $('.section_photos').css({'height':window_height+'px'});
 
     // Position the header middle-left
     var header_height = $("#header").height();
-    var new_position_header = ( window_height - header_height) * 0.45;
+    var new_position_header = ( window_height - header_height) * 0.2;
     $("#header").css({'top':new_position_header+'px'});
 
     $('.header_li').hover(function(){
@@ -180,6 +187,15 @@
       $(this).find('.text_header').css({'right':'-10px'});
       }, function(){
       $('.text_header').css({'right':'160px'});
+    });
+
+    $('.li_mobile a').on('click', function(){
+      $('.btn-navbar').click(); //bootstrap 2.x
+      $('.navbar-toggle').click() //bootstrap 3.x by Richard
+    });
+    $('.navbar-brand').on('click', function(){
+      $('.btn-navbar').click(); //bootstrap 2.x
+      $('.navbar-toggle').click() //bootstrap 3.x by Richard
     });
 
     
@@ -315,6 +331,36 @@ function areYouSureDeleteOrder(path) {
   if (confirm('Etes-vous certain de vouloir supprimer cette commande terminée ?')) {
     window.location = path;   
   }
+}
+
+// Show and hide frames to see bg photos
+function showFrame(toDo) {
+  if (toDo == true) {
+    $(".bg_frame").css({'left':'0px'});
+    $(".bg_frame_footer").css({'left':'0px'});
+    $(".inner-section-footer").css({'background-color':'rgba(9,85,143,0.88)'});
+    $(".div_logo_welcome").css({'left':'40%'});
+    $(".footer_copyright").fadeIn();
+    $(".unshow_photo_bg").css({'opacity':'0'});
+    $("#header").fadeIn('slow');
+    $("#social_media").fadeIn('slow');
+  }
+  else {
+    var window_width = window.innerWidth;
+    $(".bg_frame").css({'position':'relative', 'left':window_width+'px'});
+    $(".bg_frame_footer").css({'position':'relative', 'left':window_width+'px'});
+    $(".inner-section-footer").css({'background-color':'transparent'});
+    $(".div_logo_welcome").css({'left':'100%'});
+    $(".footer_copyright").fadeOut();
+    $(".unshow_photo_bg").css({'opacity':'1'});
+    $("#header").fadeOut('slow');
+    $("#social_media").fadeOut('slow');
+  }
+}
+
+// Close Facebook frame
+function close_fb_page() {
+  $("#social_media").fadeOut();
 }
 
 /**

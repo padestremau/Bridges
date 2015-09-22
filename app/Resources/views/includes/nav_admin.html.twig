@@ -1,0 +1,59 @@
+<div class="row">
+	<h1>
+        Administracion del sitio web
+    </h1>
+</div>
+
+<div id="nav_admin" class="row">
+
+	{# For clearer view #}
+	{% set route = app.request.attributes.get( '_route' ) %}
+
+  	<!-- Nav tabs Admin -->
+  	<div class="row">
+	  <ul class="nav_tabs_user list_no_style_li" role="tablist">
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'bridges_user_page')
+	    		or (route == 'bridges_user_page_spe')
+		        or (route == 'bridges_user_page_new')
+		        or (route == 'bridges_user_page_edit') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="javascript:loadContentAdmin('{{ path('bridges_user_page') }}')" class="no_style_a">
+		    	Paginas
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'bridges_user_photos') 
+	    		or (route == 'bridges_user_photos_new')
+		        or (route == 'bridges_user_photos_edit') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="javascript:loadContentAdmin('{{ path('bridges_user_photos') }}')" class="no_style_a">
+		    	Fotos
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin
+	    	{% if (route == 'bridges_user_stories') 
+	    		or (route == 'bridges_user_stories_spe')
+		        or (route == 'bridges_user_stories_new')
+		        or (route == 'bridges_user_stories_edit') %}
+	    		active
+	    	{% endif %}
+	    	">
+	    	<a href="javascript:loadContentAdmin('{{ path('bridges_user_stories') }}')" class="no_style_a">
+		    	Historias
+	    	</a>
+	    </li>
+	    <li role="user_tabs" class="btn btn-choice-admin logout-btn-admin">
+	    	<a href="{{ path('fos_user_security_logout') }}" class="no_style_a">
+	    		Salir
+	    	</a>
+	    </li>
+	  </ul>
+  	</div>
+
+
+</div>

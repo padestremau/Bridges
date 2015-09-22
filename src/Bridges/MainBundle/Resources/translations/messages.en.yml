@@ -1,0 +1,60 @@
+# Main
+main:
+    actions:
+        hide:                   Hide
+        show:                   Show
+
+
+# Header - Menu
+header:
+    titles:
+        home:                   Home
+        aboutUs:                About us
+        stories:                Stories
+        work:                   The work
+        volunteer:              Volunteer
+        donate:                 Donate
+        contact:                Contact
+
+
+# Footer
+
+footer:
+    titles:
+        receiveOurNewsletter:   Receive our newsletter
+        testimonies:            Testimonies
+        clientService:          Client service
+        aboutUs:                Abous us
+        needHelp:               Need help?
+        blog:                   Blog
+    content:
+        receiveOurNewsletter:   Stay tuned to all our offers and recipes!
+        testimonies:            They already tried our products.
+        clientService:          At your service from 9am to 7pm!
+        whoWeAre:               Who we are
+        shops:                  Our shops
+        sellingConditions:      Terms of reference
+        legalMentions:          Legal mentions
+        delivery:               Delivery
+        ourProducts:            Our products
+        ourWork:                Our work
+        questions:              Your questions
+    contact:
+        senderName:             Name
+        senderEmail:            Email
+        selectObject:           "Select the subject of your demand"
+        object1:                "I wish to help with other means"
+        object2:                "I wish to get meet one of the assocation's leaders"
+        object3:                "I wish to extend the association's current field of application"
+        object4:                "I wish to participate in the next event"
+        object5:                "I wish to report a website problem"
+        object6:                "Other"
+        message:                "Message"
+    actions: 
+        send:                   Send
+    newsletter:
+        user:                   Private
+        company:                Company
+    bottom: 
+        definition:             "Bridges is a non-profit organization"
+        allRightsReserved:      "All rights reserved"

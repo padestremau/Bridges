@@ -1,10 +1,11 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -33,7 +34,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        ['BridgesMainBundle', 'BridgesUserBundle']
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -67,3 +68,13 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# FOS User
+fos_user:
+    db_driver:     orm                        # Le type de BDD à utiliser, nous utilisons l'ORM Doctrine depuis le début
+    firewall_name: main                       # Le nom du firewall derrière lequel on utilisera ces utilisateurs
+    user_class:    Bridges\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
+    service:
+        mailer: fos_user.mailer.twig_swift
+
+

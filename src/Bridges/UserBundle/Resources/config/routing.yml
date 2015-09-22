@@ -1,0 +1,76 @@
+bridges_user_homepage:
+    path:     /
+    defaults: { _controller: BridgesUserBundle:User:indexUser }
+
+# For the pages
+bridges_user_page:
+    path:     /pages/
+    defaults: { _controller: BridgesUserBundle:User:page }
+
+bridges_user_page_spe:
+    path:     /pages/{pageId}/
+    defaults: { _controller: BridgesUserBundle:User:page }
+    requirements:
+        pageId: \d+
+
+bridges_user_page_new:
+    path:     /pages/new/
+    defaults: { _controller: BridgesUserBundle:User:pageNew }
+
+bridges_user_page_edit:
+    path:     /pages/edit/{pageId}/
+    defaults: { _controller: BridgesUserBundle:User:pageNew }
+    requirements:
+        pageId: \d*
+
+bridges_user_page_delete:
+    path:     /pages/delete/{pageId}/
+    defaults: { _controller: BridgesUserBundle:User:pageDelete }
+    requirements:
+        pageId: \d+
+
+
+# For the page
+bridges_user_photos:
+    path:     /photos/
+    defaults: { _controller: BridgesUserBundle:User:photos }
+
+bridges_user_photos_new:
+    path:     /photos/new/
+    defaults: { _controller: BridgesUserBundle:User:photoNew }
+
+bridges_user_photos_edit:
+    path:     /photos/edit/{photoId}/
+    defaults: { _controller: BridgesUserBundle:User:photoNew }
+    requirements:
+        photoId: \d*
+
+bridges_user_photos_delete:
+    path:     /photos/delete/{photoId}/
+    defaults: { _controller: BridgesUserBundle:User:photoDelete }
+    requirements:
+        photoId: \d+
+
+
+# For the stories
+bridges_user_stories:
+    path:     /stories/
+    defaults: { _controller: BridgesUserBundle:User:stories }
+
+bridges_user_stories_new:
+    path:     /stories/new/
+    defaults: { _controller: BridgesUserBundle:User:storyNew }
+
+bridges_user_stories_edit:
+    path:     /stories/edit/{storyId}/
+    defaults: { _controller: BridgesUserBundle:User:storyNew }
+    requirements:
+        storyId: \d*
+
+bridges_user_stories_delete:
+    path:     /stories/delete/{storyId}/
+    defaults: { _controller: BridgesUserBundle:User:storyDelete }
+    requirements:
+        storyId: \d+
+
+

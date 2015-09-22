@@ -1,0 +1,52 @@
+{# src/Bridges/UserBundle/Resources/User/indexUser.html.twig #}
+
+{% extends "BridgesUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block Bridges_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+
+			<div class="section" id="user">
+				<div class="inner-section">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+			        <!-- ADMIN JAVASCRIPTS -->
+			        {% javascripts 
+			        	'js/admin_javascripts_bridges.js'
+			        	%}
+			        	<script type="text/javascript" src="{{ asset_url }}"></script>
+			        	{% endjavascripts %}
+			        <!-- END ADMIN JAVASCRIPTS -->
+				  	
+	        	{% else %}
+	        		<div class='center'>
+	        			<br/><br/><br/><br/><br/>
+	        			You're not allowed on this part of the website ...
+	        		</div>
+	        	{% endif %}
+
+				</div>	
+			</div>
+
+		</div>
+
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_User_body %}

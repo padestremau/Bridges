@@ -1,0 +1,130 @@
+{# src/LBF/UserBundle/Resources/view/layout.html.twig #}
+{% set route = app.request.attributes.get( '_route' ) %}
+
+{% extends "::index_base.html.twig" %}
+
+{% block body %}
+
+  <!-- BEGIN CONTENT -->
+  <div id="page_content" class="row">
+
+    <!-- BEGIN CONTENT -->
+    <div id="fullpage">
+
+      <div class="section">
+
+        <div class="inner-section">
+          <h1>
+            Administracion del sitio web
+          </h1>
+          
+          {% if route == 'fos_user_security_login' %}
+            <div class="row">
+              <h3>
+                ¡Bienvenido administrator!
+              </h3>
+            </div>
+
+            <div class="row60">
+              <!-- BEGIN LOGIN FORM -->
+                <form class="login-form" action="{{ path("fos_user_security_check") }}" method="post">
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                  
+                    {% if error %}
+                        <div class="error_message">
+                          <span class="warning_word">
+                            Cuidado!
+                          </span>
+                          <span class="warning_message">
+                            {{ error|trans }}
+                          </span>
+                        </div>
+                        <br/>
+                    {% endif %}
+
+                  <div class="form-group">
+                    <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <label class="control-label visible-ie8 visible-ie9" for="username">
+                      Email
+                    </label>
+                    <div class="input-icon">
+                      <input class="form-control placeholder-no-fix" type="text" placeholder="john.diggle@gmail.com" value="{{ last_username }}" id="username" name="_username" required="required" autofocus>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9" for="password">
+                      Contraseña
+                    </label>
+                    <div class="input-icon">
+                      <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="*********" id="password" name="_password" required="required">
+                    </div>
+                  </div>
+                  <div class="form-actions remember_me_box">
+                    <label for="remember_me" class="checkbox">
+                      <div class="checker">
+                        <span>
+                          <input type="checkbox" id="remember_me" name="_remember_me" value="on">
+                        </span>
+                      </div> 
+                      Recordarse de mi ?
+                    </label>
+                  </div>
+                  <div class="center">
+                    <button type="submit" class="btn btn-perso center">
+                      Entrar
+                    </button>
+                  </div>
+                </form>
+            </div>
+            <!-- END LOGIN FORM -->
+
+          
+
+          {% else %}
+            <h1>
+              Oops ...!
+            </h1>
+            <hr/>
+
+            <br/><br/><br/><br/>
+
+            <div class="row center ">
+              Sorry, something went wrong, please contact the association or the webmaster at the following email addresses:
+              <br/><br/><br/><br/>
+              <strong>
+                The association :
+              </strong>
+              <a href="mailto:info@bridgestoday.com">
+                info@bridgestoday.com
+              </a>
+              <br/><br/><br/><br/>
+              <strong>
+                The webmaster :
+              </strong>
+              <a href="mailto:p.a.destremau@gmail.com">
+                p.a.destremau@gmail.com
+              </a>
+            </div>
+
+            <br/><br/>
+
+            <div class="center italic">
+              {{ 'check.problem.ifAny' | trans }}
+              <br/><br/>
+              <a href="{{ path('lbf_main_homepage') }}#footerSection" class="center btn-login no_style_a">
+                {{ 'check.problem.contact' | trans }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+          
+
+      </div>
+
+    </div>
+    <!-- END CONTENT -->
+  </div>
+  <!-- END CONTENT -->
+
+{% endblock body %}
+

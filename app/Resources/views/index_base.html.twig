@@ -90,32 +90,94 @@
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
-  <body onLoad="onLoadData()">
+  <!-- If not doing the administration -->
+  <body onLoad="
+    {% if route != 'bridges_user_homepage' 
+      and route != 'bridges_user_page'
+      and route != 'bridges_user_page_spe'
+      and route != 'bridges_user_page_new'
+      and route != 'bridges_user_page_edit'
+      and route != 'bridges_user_page_delete'
+      and route != 'bridges_user_photos'
+      and route != 'bridges_user_photos_new'
+      and route != 'bridges_user_photos_edit'
+      and route != 'bridges_user_photos_delete'
+      and route != 'bridges_user_stories'
+      and route != 'bridges_user_stories_new'
+      and route != 'bridges_user_stories_edit'
+      and route != 'bridges_user_stories_delete'
+      and route != 'fos_user_security_login'
+      and route != 'fos_user_security'
+      and route != 'fos_user_profile'
+      and route != 'fos_user_register'
+      and route != 'fos_user_resetting'
+      and route != 'fos_user_change_password'
+      %}
+      onLoadData()
+    {% else %}
+      onLoadDataSpecial()
+    {% endif %}
+    ">
 
-        <!-- BEGIN header -->
-          {% include 'includes/header.html.twig' %}
-        <!-- END header -->
+    <!-- For Facebook -->
+    <div id="fb-root"></div>
+    {% set current_language = '' %}
+    {% if (app.request.get('_route_params')) != null %}
+      {% if (app.request.get('_route_params')._locale == 'es') %}
+        {% set current_language = 'es' %}
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.4";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+      {% else %}
+        {% set current_language = 'en' %}
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+      {% endif %}
+    {% else %}
+      {% set current_language = 'en' %}
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.4";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    {% endif %}
 
-        <!-- BEGIN button to top -->
-          {% include 'includes/button_to_top.html.twig' %}
-        <!-- END button to top -->
-        
-        <!-- BEGIN CONTAINER -->
-        <div id="page_container_gen" class="page-container row margin0">
-            {% block body %}
-            {% endblock body %}  
-        </div>
-        <!-- END CONTAINER -->
+    <!-- BEGIN header -->
+      {% include 'includes/header.html.twig' %}
+    <!-- END header -->
 
 
-        <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
-        {% javascripts 
-          'js/javascripts_bridges.js'
-          'js/ajax_load.js'
-          %}
-          <script src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        <!-- END JAVASCRIPTS -->
+    <!-- BEGIN button to top -->
+      {% include 'includes/button_to_top.html.twig' %}
+    <!-- END button to top -->
+    
+    <!-- BEGIN CONTAINER -->
+    <div id="page_container_gen" class="page-container row margin0">
+        {% block body %}
+        {% endblock body %}  
+    </div>
+    <!-- END CONTAINER -->
+
+
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    {% javascripts 
+      'js/javascripts_bridges.js'
+      'js/ajax_load.js'
+      %}
+      <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <!-- END JAVASCRIPTS -->
   </body>
   <!-- END BODY -->
 </html>

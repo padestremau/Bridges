@@ -16,7 +16,13 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new Bridges\MainBundle\BridgesMainBundle(),
+            new Bridges\UserBundle\BridgesUserBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            // new MA\RedactorBundle\MARedactorBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -26,6 +32,12 @@ class AppKernel extends Kernel
         }
 
         return $bundles;
+    }
+
+    public function init()
+    {
+        date_default_timezone_set( 'America/Lima' );
+        parent::init();
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

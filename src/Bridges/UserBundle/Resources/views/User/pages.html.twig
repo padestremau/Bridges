@@ -1,0 +1,140 @@
+{# src/MA/UserBundle/Resources/User/content.html.twig #}
+
+{% extends "BridgesUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Paginas
+{% endblock %}
+
+{% block Bridges_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			
+			<div class="section" id="user">
+				<div class="inner-section">
+				
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+				  		<div class="row92">
+			    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 left">
+								<br/><br/>
+								<div class="thumbnail thumbnail_page">
+									<h4 class="left">
+										Paginas :
+									</h4>
+									{% if pages|length > 0 %}
+										<ul class="list_no_style_li list_pages_admin">
+											{% for single_page in pages %}
+												<li class="page_link {% if single_page == pageAsked %}li_page_active{% endif %}" id="page_n_{{ single_page.id }}">
+													<a href="javascript:displaySelectedPage('{{ path('bridges_user_page_spe', {'pageId':single_page.id}) }}', 'page_n_{{ single_page.id }}')" class="no_style_a">
+														{{ single_page.name|truncate(40, false, '...') }}
+														<span class="float-right arrow_page">
+															<img src="{{ asset('img/system/defaults/right_arrow_spe.png') }}" alt=""/>
+														</span>
+														<span class="float-right date_page">
+															{% if single_page.updatedAt|length > 0 %}
+																{{ single_page.updatedAt|date('d M Y') }}
+															{% else %}
+																(Vide)
+															{% endif %}
+														</span>
+													</a>
+												</li>
+											{% endfor %}
+										</ul>
+									{% else %}
+										Ningun pagina
+									{% endif %}
+								</div>
+							</div>
+
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+								<div id="pageShow_content">
+									<br/>
+									<div class="row">
+					    				{% if pages|length > 0 %}
+					    				<a class="btn btn-perso float-right"  href="{{ path('bridges_user_page_edit', {'pageId':pageAsked.id}) }}">
+					    					Modificar
+					    				</a>
+					    				{% endif %}
+					    			</div>
+					    			<br/>
+					    			<div class="row left">
+					    				
+										{% if pageAsked %}
+											<div class="">
+												<div class="row">
+													{% if pageAsked.header|length > 0 %}
+														<h3>
+															{{ pageAsked.header|raw }}
+														</h3>
+													{% endif %}
+													<div class="center date_page_lg">
+														{% if pageAsked.updatedAt|length > 0 %}
+															el {{ pageAsked.updatedAt|date('d M Y') }} a la(s) {{ pageAsked.updatedAt|date('H:i') }}
+														{% else %}
+															(fecha vacia)
+														{% endif %}
+													</div>
+													{% if pageAsked.dataBaseName|length > 0 %}
+													<div class="center">
+														<strong>Nom DB: </strong>{{ pageAsked.dataBaseName }}
+													</div>
+													{% endif %}
+												</div>
+
+												<br/>
+												
+												<div class="row80">
+													{% if pageAsked.content|length > 0 %}
+														{{ pageAsked.content|raw }}
+													{% else %}
+														(pagina vacia)
+													{% endif %}
+												</div>
+
+												<br/><br/>
+											</div>
+										{% endif %}
+					    			</div>
+								</div>
+							</div>
+		    			</div>
+
+
+				  		<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_bridges.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div class="center">
+	        			<br/><br/><br/><br/><br/>
+	        			You're not allowed on this part of the website ...
+	        		</div>
+	        	{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_User_body %}

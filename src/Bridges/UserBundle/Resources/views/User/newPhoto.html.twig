@@ -1,0 +1,134 @@
+{# src/Bridges/UserBundle/Resources/User/newPhoto.html.twig #}
+
+{% extends "BridgesUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Modificar una foto
+{% endblock %}
+
+{% block Bridges_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			
+			<div class="section" id="user">
+				<div class="inner-section">
+
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+						<div class="row92">
+							<div class="row">
+			    				<a class="btn btn-perso float-left" href="javascript:loadContentAdmin('{{ path('bridges_user_photos') }}')">
+			    					<img src="{{ asset('img/system/defaults/left_arrow.png') }}" alt="" class="btn_arrow"/>
+			    					Atras
+			    				</a>
+			    			</div>
+
+			    			<div class="row left">
+			    				<form method="post" {{ form_enctype(formNewPhoto) }}>
+				        		{% if form_errors(formNewPhoto) %}
+				                    <div class="error_message">
+				                      <span class="warning_word">
+				                        {{ 'user.warning.warning'|trans }}
+				                      </span>
+				                      <span class="warning_message">
+				                        {{ form_errors(formNewPhoto) }}
+				                      </span>
+				                    </div>
+				                    <br/>
+				                  {% endif %}
+								<div class="row80">
+
+									<div class="form-group">
+										{{ form_label(formNewPhoto.file, "Imagen de fondo de pagina", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        <p class="left">
+								        	Por favor, intente no cargar fotos tan pesadas : 500Ko max.
+								        </p>
+								        {% if form_errors(formNewPhoto.file) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPhoto.file) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	<i class="fa fa-user"></i>
+								        	{% set opt_file = {'attr': {'type':'file', 'id':'file', 'name':'_file'}} %}
+								        	{{ form_widget(formNewPhoto.file, opt_file) }}
+								        </div>
+									</div>
+
+									<div class="form-group">
+										{{ form_label(formNewPhoto.category, "Seccion ?", 
+								        	{'label_attr': {'class': 'control-label'}}) }}
+								        {% if form_errors(formNewPhoto.category) %}
+						                    <div class="error_message">
+						                      	<span class="warning_word">
+						                        	{{ 'user.warning.warning'|trans }}
+						                      	</span>
+						                      	<span class="warning_message">
+						                        	{{ form_errors(formNewPhoto.category) }}
+						                      	</span>
+						                    </div>
+						                    <br/>
+						                {% endif %}
+										<div class="input-icon">
+								        	{% set opt_category = {'attr': {'class': 'form-control placeholder-no-fix',
+								        		'id':'category', 'name':'_category' }} %}
+								        	{{ form_widget(formNewPhoto.category, opt_category) }}
+								        </div>
+									</div>
+
+									<div>
+										<br/><br/>
+									</div>
+
+									<!-- Et pour le reste du formulaire ... ;) -->
+									{{ form_widget(formNewPhoto) }}
+									<div class="center">
+										<input type="submit" class="btn btn-log" value="Guardar"/>
+									</div>
+								</div>
+							</form>
+			    			</div>
+		    			</div>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_bridges.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div class='center'>
+	        			<br/><br/><br/><br/><br/>
+	        			You're not allowed on this part of the website ...
+	        		</div>
+	        	{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_User_body %}

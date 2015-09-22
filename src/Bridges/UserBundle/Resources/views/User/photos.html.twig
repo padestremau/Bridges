@@ -1,0 +1,150 @@
+{# src/Bridges/UserBundle/Resources/User/photos.html.twig #}
+
+{% extends "BridgesUserBundle::user_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }} - Admin - Fotos
+{% endblock %}
+
+{% block Bridges_User_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+			
+			<div class="section" id="user">
+				<div class="inner-section">
+				
+				<!--  ///// ///// ///// ///// /////  AUTHORISED  ///// ///// ///// ///// ///// --> 
+	        	{% if is_granted("ROLE_ADMIN") %}
+
+	        		<!-- BEGIN nav admin -->
+			          {% include 'includes/nav_admin.html.twig' %}
+			        <!-- END nav admin -->
+
+				  	<div id="section_admin" class="row center">
+				  		<div class="row">
+				  			<p class="center italic">
+		    					Si las fotos no aparecen correctamente, actualize la pagina.
+		    				</p>
+				  		</div>
+						<div class="row">
+				    		{% if photos|length > 0 %}
+								<div class="table-responsive">
+			                      <table class="table">
+			                        <thead>
+			                          <tr>
+			                            <th class="center">
+			                              	Id
+			                            </th>
+			                            <th class="center">
+			                              	Imagen
+			                            </th>
+			                            <th class="center">
+			                              	Sección
+			                            </th>
+			                            <th class="center">
+			                              	Modificada el
+			                            </th>
+			                            <th class="center">
+			                              	Acción
+			                            </th>
+			                          </tr>
+			                        </thead>
+			                        <tbody>
+			                          {% for photo in photos %}
+			                            <tr>
+			                            	<th class="center">
+				                              {{ photo.id }}
+				                            </th>
+				                            <td class="center">
+				                              	{% if photo.alt|length > 0 and photo.url|length > 0 %}
+													<div class="coverPhoto_img_admin" style="background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%; min-height:60px; ">
+													</div>
+												{% else %}
+													<div class="coverPhoto_img_admin" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%; min-height:60px; ">
+													</div>
+												{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if photo.sectionName|length > 0 %}
+				                              		{% if photo.sectionName == "home" %}
+				                              			Home
+				                              		{% elseif photo.sectionName == "aboutUs" %}
+				                              			About us
+				                              		{% elseif photo.sectionName == "stories" %}
+				                              			Stories
+				                              		{% elseif photo.sectionName == "work" %}
+				                              			The work
+				                              		{% elseif photo.sectionName == "volunteer" %}
+				                              			Volunteer
+				                              		{% elseif photo.sectionName == "donate" %}
+				                              			Donate
+				                              		{% elseif photo.sectionName == "footer" %}
+				                              			Footer
+				                              		{% else %}
+				                              			Erreur
+				                              			<span class="italic">
+				                              				Selecciona una seccion entre las disponibles por favor
+					                              		</span>
+				                              		{% endif %}
+				                              	{% else %}
+				                              		Error
+				                              		<span class="italic">
+														Selecciona una seccion entre las disponibles por favor
+				                              		</span>
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                              	{% if photo.updatedAt|length > 0 %}
+				                              		{{ photo.updatedAt|date("d/M/Y") }}
+				                              	{% else %}
+				                              		---
+				                              	{% endif %}
+				                            </td>
+				                            <td class="center">
+				                            	<a href="javascript:loadContentAdmin('{{ path('ma_user_BG_photos_edit', {'BGPhotoId':photo.id}) }}')" class="btn btn-action-admin-icon">
+					                            	<span class="glyphicon glyphicon-pencil"></span>
+				                            	</a>
+				                            </td>
+			                            </tr>
+			                          {% endfor %}
+			                        </tbody>
+			                      </table>
+			                    </div>
+							{% else %}
+								<div class="center">
+									Disculpa, ningun foto ahora ...
+								</div>
+							{% endif %}
+				    	</div>
+
+		    			<br/><br/><br/>
+		    			<!-- ADMIN JAVASCRIPTS -->
+					    {% javascripts 
+					      'js/admin_javascripts_bridges.js'
+
+					      %}
+					      <script type="text/javascript" src="{{ asset_url }}"></script>
+					    {% endjavascripts %}
+					    <!-- END ADMIN JAVASCRIPTS -->
+				  	</div>
+				  	
+	        	{% else %}
+	        		<div class='center'>
+	        			<br/><br/><br/><br/><br/>
+	        			You're not allowed on this part of the website ...
+	        		</div>
+	        	{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_User_body %}
