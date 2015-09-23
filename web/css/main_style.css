@@ -155,7 +155,7 @@ h3
 
 h4
 {
-	color: rgba(9,85,143,0.6);	
+	color: white;
 	font-weight: 200;
 	text-align: center;
 }
@@ -186,7 +186,7 @@ h4
 }
 
 h5 {
-	color: rgba(9,85,143,1);
+	color: rgba(9,85,143,0.88);
 	font-weight: 300;
 }
 @media (min-width: 1400px) {
@@ -419,6 +419,10 @@ hr {
 	background-color: transparent;
 	margin: 5px 0 !important;
 	height: 1px;
+}
+.hr60 {
+	width: 60%;
+	margin-left: 20% !important;
 }
 .dark_hr {
 	box-shadow: none;
@@ -1214,6 +1218,7 @@ hr {
 	border: 3px solid rgba(9,85,143,0.88);
 }
 
+
 /* ------------------------------------------------------ Admin - Login ------------------------------------------------------ */
 
 .remember_me_box {
@@ -1249,9 +1254,75 @@ hr {
 	background-color: rgba(200,79,86,0.6) !important;
 }
 
-.thumbnail_page {
+.thumbnail_page, .thumbnail_story {
 	padding: 10px;
 	border-radius: 0 !important;
+}
+.list_stories, .list_pages {
+	margin: 0;
+	margin-left: 10px;
+	padding: 0;
+}
+.list_stories li, .list_pages li {
+	color: rgba(12,28,57,1) !important;
+	margin-top: 5px;
+	margin-bottom: 8px;
+	padding: 3px;
+}
+.list_stories li:hover, .list_pages li:hover {
+	border-bottom: 1px solid rgba(22,54,110,0.2);
+	/*background-color: rgba(22,54,110,0.1);*/
+}
+.list_stories li:hover .arrow_story img, .list_pages li:hover .arrow_page img {
+	opacity: 0.5;
+}
+.li_story_active, .li_page_active {
+	border-bottom: 1px solid rgba(22,54,110,0.5);
+	/*background-color: rgba(22,54,110,0.1);*/
+}
+.li_story_active a, .li_page_active a {
+	font-weight: 900 !important;
+}
+.li_story_active .arrow_story img, .li_page_active .arrow_page img {
+	opacity: 1;
+}
+.date_story, .date_page {
+	font-size: 0.6em;
+	color: rgba(150,150,150,0.8);
+	font-style: italic;
+}
+.date_story_lg, .date_page_lg {
+	margin-top: 20px;
+	font-size: 1em;
+	color: rgba(50,50,50,0.8);
+	font-style: italic;	
+}
+.top_info_modal_story, .top_info_modal_page {
+	font-size: 1em;
+	color: rgba(150,150,150,0.8);
+	font-style: italic;		
+}
+.arrow_story, .arrow_page {
+	margin-left: 5px;
+}
+.arrow_story img, .arrow_page img {
+	width: 20px;
+	opacity: 0;
+}
+
+.btn-delete-admin {
+	border-radius: 0;
+	background-color: transparent;
+	border: none;
+	padding: 5px ;
+	margin-left: 10px;	
+	opacity: 0;
+}
+.photo_admin_container:hover .btn-delete-admin {
+	opacity: 0.5;
+}
+.btn-delete-admin:hover {
+	opacity: 1 !important;
 }
 
 /* ------------------------------------------------------ Footer ------------------------------------------------------ */

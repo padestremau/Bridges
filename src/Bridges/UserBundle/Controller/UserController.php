@@ -113,8 +113,11 @@ class UserController extends Controller
                         ->getRepository('BridgesMainBundle:Photo')
                         ->findAll();
 
+        $categories = array('home','aboutUs','stories','work','volunteer','donate','footer');
+        
         return $this->render('BridgesUserBundle:User:photos.html.twig', array(
-            'photos' => $photos
+            'photos' => $photos,
+            'categories' => $categories
             ));
     }
 
@@ -163,15 +166,35 @@ class UserController extends Controller
         return $this->redirect($this->generateUrl('bridges_user_photos'));
     }
 
-    public function storiesAction()
+    public function storiesAction($storyId = null)
     {
         $stories = $this ->getDoctrine()
                         ->getManager()
                         ->getRepository('BridgesMainBundle:Story')
                         ->findAll(['orderList' => 'ASC']);
 
+        if ($storyId == null) {
+            $storyAsked = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('BridgesMainBundle:Story')
+                                ->findLatestOne();
+            if (sizeof($storyAsked) > 0) {
+                $storyAsked = $storyAsked[0];
+            }
+            else {
+                $storyAsked = new Story;
+            }
+        }
+        else {
+            $storyAsked = $this ->getDoctrine()
+                                ->getManager()
+                                ->getRepository('BridgesMainBundle:Story')
+                                ->find($storyId);
+        }
+
         return $this->render('BridgesUserBundle:User:stories.html.twig', array(
-            'stories' => $stories
+            'stories' => $stories,
+            'storyAsked' => $storyAsked
             ));
     }
 

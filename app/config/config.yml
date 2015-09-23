@@ -29,6 +29,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'BridgesRedactorBundle:Redactor:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -76,5 +79,57 @@ fos_user:
     user_class:    Bridges\UserBundle\Entity\User # La classe de l'entité User que nous utilisons
     service:
         mailer: fos_user.mailer.twig_swift
+
+
+# Redactor bundle
+bridges_redactor:
+    admin_page:
+        settings:
+            minHeight:              200
+            plugins:                ['fullscreen']
+            tabindex : 0
+            buttons:                ['html', 'formatting', 'bold', 'italic', 'underline', 'deleted', 'link', 'alignment', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'horizontalrule']
+            formattingTags:         ['p', 'blockquote', 'pre']
+        role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
+    admin_story:
+        upload_file:
+            dir: /../web/uploads/files/stories
+            web_dir : /uploads/files/stories/
+            maxSize: 20M
+            mimeTypes:
+                - image/png
+                - image/jpeg
+                - image/jpg
+                - application/pdf
+                - application/msword
+                - text/csv
+                - text/plain
+            folders: false
+        upload_image:
+            dir: /../web/uploads/images/stories
+            web_dir : /uploads/images/stories/
+            maxSize: 5M
+            # minWidth:               100
+            # maxWidth:               1000
+            # minHeight:              100
+            # maxHeight:              1000
+            folders: false
+        settings:
+            minHeight:              200
+            plugins:                ['fullscreen']
+            tabindex : 0
+            buttons:                ['html', 'formatting', 'bold', 'italic', 'underline', 'deleted', 'link', 'alignment', 'unorderedlist', 'orderedlist', 'outdent', 'indent', 'image', 'video', 'file', 'table', 'horizontalrule']
+            formattingTags:         ['p', 'blockquote', 'pre']
+            imageEditable:          true
+            imageResizable:         true
+            imageLink:              true
+            imagePosition:          true
+            imageFloatMargin:       '20px'
+            imageUpload :           '/redactor/imageUpload/default'
+            fileUpload:             '/redactor/fileUpload/default'
+            clipboardUpload:        true
+            clipboardUploadUrl:     '/redactor/clipboardUpload/default'
+        role: [ROLE_ADMIN, IS_AUTHENTICATED_REMEMBERED]
+
 
 

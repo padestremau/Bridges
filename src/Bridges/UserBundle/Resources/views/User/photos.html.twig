@@ -32,90 +32,59 @@
 		    					Si las fotos no aparecen correctamente, actualize la pagina.
 		    				</p>
 				  		</div>
+				  		<div class="row left">
+			    			<a href="{{ path('bridges_user_photos_new') }}" class="btn btn-perso float-left">
+			    				Nueva foto
+			    			</a>
+			    		</div>
 						<div class="row">
 				    		{% if photos|length > 0 %}
-								<div class="table-responsive">
-			                      <table class="table">
-			                        <thead>
-			                          <tr>
-			                            <th class="center">
-			                              	Id
-			                            </th>
-			                            <th class="center">
-			                              	Imagen
-			                            </th>
-			                            <th class="center">
-			                              	Sección
-			                            </th>
-			                            <th class="center">
-			                              	Modificada el
-			                            </th>
-			                            <th class="center">
-			                              	Acción
-			                            </th>
-			                          </tr>
-			                        </thead>
-			                        <tbody>
-			                          {% for photo in photos %}
-			                            <tr>
-			                            	<th class="center">
-				                              {{ photo.id }}
-				                            </th>
-				                            <td class="center">
-				                              	{% if photo.alt|length > 0 and photo.url|length > 0 %}
-													<div class="coverPhoto_img_admin" style="background-image: url('{{ asset(photo.webPath) }}'); background-size: cover; background-position: 50%; min-height:60px; ">
-													</div>
-												{% else %}
-													<div class="coverPhoto_img_admin" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%; min-height:60px; ">
-													</div>
-												{% endif %}
-				                            </td>
-				                            <td class="center">
-				                              	{% if photo.sectionName|length > 0 %}
-				                              		{% if photo.sectionName == "home" %}
-				                              			Home
-				                              		{% elseif photo.sectionName == "aboutUs" %}
-				                              			About us
-				                              		{% elseif photo.sectionName == "stories" %}
-				                              			Stories
-				                              		{% elseif photo.sectionName == "work" %}
-				                              			The work
-				                              		{% elseif photo.sectionName == "volunteer" %}
-				                              			Volunteer
-				                              		{% elseif photo.sectionName == "donate" %}
-				                              			Donate
-				                              		{% elseif photo.sectionName == "footer" %}
-				                              			Footer
-				                              		{% else %}
-				                              			Erreur
-				                              			<span class="italic">
-				                              				Selecciona una seccion entre las disponibles por favor
-					                              		</span>
-				                              		{% endif %}
-				                              	{% else %}
-				                              		Error
-				                              		<span class="italic">
-														Selecciona una seccion entre las disponibles por favor
-				                              		</span>
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
-				                              	{% if photo.updatedAt|length > 0 %}
-				                              		{{ photo.updatedAt|date("d/M/Y") }}
-				                              	{% else %}
-				                              		---
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
-				                            	<a href="javascript:loadContentAdmin('{{ path('ma_user_BG_photos_edit', {'BGPhotoId':photo.id}) }}')" class="btn btn-action-admin-icon">
-					                            	<span class="glyphicon glyphicon-pencil"></span>
-				                            	</a>
-				                            </td>
-			                            </tr>
-			                          {% endfor %}
-			                        </tbody>
-			                      </table>
-			                    </div>
+								{% for category in categories %}
+									<div class="row">
+										<h5 class="left">
+											{% if category == 'home' %}
+												Home
+											{% elseif category == 'aboutUs' %}
+												About us
+											{% elseif category == 'stories' %}
+												Stories
+											{% elseif category == 'work' %}
+												The work
+											{% elseif category == 'volunteer' %}
+												Volunteer
+											{% elseif category == 'donate' %}
+												Donate
+											{% elseif category == 'footer' %}
+												Footer
+											{% else %}
+												(Vacio ...)
+											{% endif %}
+										</h5>
+										<hr/>
+										{% for single_photo in photos %}
+											{% if single_photo.category == category %}
+												<div class="col-lg-1 col-md-1 col-sm-2 col-xs-3 photo_admin_container">
+													{% if single_photo.alt|length > 0 and single_photo.url|length > 0 %}
+														<div class="photo_admin" style="background-image: url('{{ asset(single_photo.webPath) }}'); background-size: cover; background-position: 50%; min-height:60px; ">
+														</div>
+													{% else %}
+														<div class="photo_admin" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%; min-height:60px; ">
+														</div>
+													{% endif %}
+													<a href="javascript:areYouSureDeletePhoto('{{ path('bridges_user_photos_delete', {'photoId':single_photo.id}) }}')">
+					                              		<button class="btn btn-delete-admin">
+						                              		<span class="glyphicon black glyphicon-trash" aria-hidden="true"></span>
+					                              		</button>
+					                              	</a>
+												</div>
+											{% endif %}
+										{% endfor %}
+
+									</div>
+									<div class="row center">
+										<br/><br/>
+									</div>
+								{% endfor %}
 							{% else %}
 								<div class="center">
 									Disculpa, ningun foto ahora ...

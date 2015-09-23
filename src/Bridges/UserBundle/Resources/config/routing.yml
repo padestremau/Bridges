@@ -57,6 +57,12 @@ bridges_user_stories:
     path:     /stories/
     defaults: { _controller: BridgesUserBundle:User:stories }
 
+bridges_user_stories_spe:
+    path:     /stories/{storyId}/
+    defaults: { _controller: BridgesUserBundle:User:stories }
+    requirements:
+        storyId: \d+
+
 bridges_user_stories_new:
     path:     /stories/new/
     defaults: { _controller: BridgesUserBundle:User:storyNew }

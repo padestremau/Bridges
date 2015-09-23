@@ -10,4 +10,11 @@ namespace Bridges\MainBundle\Entity;
  */
 class StoryRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function findLatestOne() {
+		return $this->createQueryBuilder('s')
+					->orderBy('s.updatedAt', 'DESC')
+					->setMaxResults(1)
+					->getQuery()
+					->getResult();
+	}
 }

@@ -111,8 +111,8 @@
 						                {% endif %}
 										<div class="input-icon">
 								        	<i class="fa fa-user"></i>
-								        	{% set opt_content = {'attr': {'class': 'form-control placeholder-no-fix',
-								        		'type':'textarea', 'placeholder':"Contenido de la historia", 'id':'_content', 'name':'_content'}} %}
+								        	{% set opt_content = {'attr': {'class': 'redactor',
+								        		'placeholder':"Contenido de la historia", 'id':'_content', 'name':'_content'}} %}
 								        	{{ form_widget(formNewStory.content, opt_content) }}
 								        </div>
 									</div>

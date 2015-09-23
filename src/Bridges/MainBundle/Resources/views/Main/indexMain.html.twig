@@ -16,6 +16,73 @@
 
 		<div id="fullpage">
 
+			<script type="text/javascript">
+				var home_images_bank = [];
+				var home_counter = 0;
+				var aboutUs_images_bank = [];
+				var aboutUs_counter = 0;
+				var stories_images_bank = [];
+				var stories_counter = 0;
+				var work_images_bank = [];
+				var work_counter = 0;
+				var volunteer_images_bank = [];
+				var volunteer_counter = 0;
+				var donate_images_bank = [];
+				var donate_counter = 0;
+				var footer_images_bank = [];
+				var footer_counter = 0;
+			</script>
+
+			{% if photos|length > 0 %}
+				{% for single_photo in photos %}
+					{% if single_photo.category == 'home' %}
+						<script type="text/javascript">
+							home_images_bank[home_images_bank.length] = "{{ asset(single_photo.webPath) }}";
+						</script>
+					{% elseif single_photo.category == 'aboutUs' %}
+						<script type="text/javascript">
+							aboutUs_images_bank[aboutUs_images_bank.length] = "{{ asset(single_photo.webPath) }}";
+						</script>
+					{% elseif single_photo.category == 'stories' %}
+						<script type="text/javascript">
+							stories_images_bank[stories_images_bank.length] = "{{ asset(single_photo.webPath) }}";
+						</script>
+					{% elseif single_photo.category == 'work' %}
+						<script type="text/javascript">
+							work_images_bank[work_images_bank.length] = "{{ asset(single_photo.webPath) }}";
+						</script>
+					{% elseif single_photo.category == 'volunteer' %}
+						<script type="text/javascript">
+							volunteer_images_bank[volunteer_images_bank.length] = "{{ asset(single_photo.webPath) }}";
+						</script>
+					{% elseif single_photo.category == 'donate' %}
+						<script type="text/javascript">
+							donate_images_bank[donate_images_bank.length] = "{{ asset(single_photo.webPath) }}";
+						</script>
+					{% elseif single_photo.category == 'footer' %}
+						<script type="text/javascript">
+							footer_images_bank[footer_images_bank.length] = "{{ asset(single_photo.webPath) }}";
+						</script>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+
+			<script type="text/javascript">
+				function changeImage() {
+					$("#home").css({'background-image' : "url ('"+home_images_bank[home_counter]+"')"}); 
+					if (home_counter < home_images_bank.length) {
+						home_counter ++;
+					}
+					else {
+						home_counter = 0;
+					}
+					// For recursive
+					setTimeout(changeImage, 3000);
+				}
+				setTimeout(changeImage, 3000);
+			</script>
+
+
 			<!-- Accueil -->
 			<div class="section" id="home" style="background-image: url('{{ asset("img/bg/2.jpg") }}'); background-size: cover; background-position: 50%;">
 				<div class="inner-section row">
@@ -36,10 +103,10 @@
 						</div>
 						<div class="bg_frame_content">
 							<h1>
-								Welcome to Bridges
+								{{ 'home.titles.h1' | trans }}
 							</h1>
 							<h3>
-								Love hopes and endures all things
+								{{ 'home.titles.h3' | trans }}
 							</h3>
 						</div>
 					</div>
@@ -50,6 +117,14 @@
 
 
 			<div class="section" id="aboutUs" style="background-image: url('{{ asset("img/bg/3.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photoSectionAboutUs = '' %}
+				{% if pages|length > 0 %}
+					{% for single_page in pages %}
+						{% if single_page.dataBaseName == 'aboutUs' %}
+							{% set photoSectionAboutUs = single_page %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
 
 				<div class="inner-section row">
 					<div class="row">
@@ -68,15 +143,11 @@
 								{{ 'header.titles.aboutUs' | trans }}
 							</h1>
 							<div class="left">
-								<p>
-									We believe that the fulfillment of the human person is realized in the encounter of charity. Hoping to create true unity in a society that is divided by diverse circumstances, we seek to facilitate the opportunity to live love.  
-								</p>
-								<p>
-									When the poor and needy of society meet those who have reached out to help, there is a richness to the encounter that surpasses the act itself and bridges the farthest distances. This communion with the other is what gives meaning to our work and acts as the fountain for our hope in a more reconciled society. 
-								</p>
-								<p>
-									We therefore look to create solutions for both those looking to help and for existing organizations in need of volunteers by creating partnerships and helping more people find how they can make a real difference.
-								</p>
+								{% if photoSectionAboutUs.content|length > 0 %}
+									{{ photoSectionAboutUs.content|raw }}
+								{% else %}
+									{{ 'home.warning.noContent' | trans }}
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -88,6 +159,14 @@
 			
 
 			<div class="section" id="stories" style="background-image: url('{{ asset("img/bg/1.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photoSectionStories = '' %}
+				{% if pages|length > 0 %}
+					{% for single_page in pages %}
+						{% if single_page.dataBaseName == 'stories' %}
+							{% set photoSectionStories = single_page %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
 				<div class="inner-section row">
 					<div class="row">
 						<div class="unshow_photo_bg float-right" style="opacity:0;" onClick="showFrame(true);">
@@ -101,202 +180,99 @@
 							{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span>
 						</div>
 						<div class="bg_frame_content">
-							<h1>
-								{{ 'header.titles.stories' | trans }}
-							</h1>
-							<h3>
-								Little anecdotes 
-							</h3>
 							<div class="row">
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 project_case_parent">
-									<div class="project_case" style="background-image: url('{{ asset("img/projects/1.png") }}'); background-size: cover; background-position: 50%;">
-										<div class="project_case_inner">
-											<h4>
-												Stories written together
-											</h4>
+								<h1>
+									{{ 'header.titles.stories' | trans }}
+								</h1>
+								<h3>
+									{% if photoSectionStories.header|length > 0 %}
+										{{ photoSectionStories.header }}
+									{% else %}
+										{{ 'home.warning.noHeader' | trans }}
+									{% endif %}
+								</h3>
+							</div>
+							<div class="row">
+								{% if photoSectionStories.content|length > 0 %}
+									{{ photoSectionStories.content|raw }}
+								{% else %}
+									{{ 'home.warning.noContent' | trans }}
+								{% endif %}
+							</div>
+							<div class="row">
+								{% if stories|length > 0 %}
+									{% for single_story in stories %}
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 project_case_parent">
+											<div class="project_case" style="background-image: url('{{ asset(single_story.webPath) }}'); background-size: cover; background-position: 50%;">
+												<div class="project_case_inner">
+													<h4>
+														{% if single_story.title|length > 0 %}
+															{{ single_story.title }}
+														{% else %}
+															{{ 'stories.warning.noTitle' | trans }}
+														{% endif %}
+													</h4>
+												</div>
+											</div>
+											<div class="over_div_stories">
+												<button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_story_{{ single_story.id }}" data-backdrop="true" data-keyboard="true">
+													{{ 'stories.actions.moreInfos' | trans }}
+												</button>
+											</div>
 										</div>
-									</div>
-									<div class="over_div_stories">
-										<button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_" data-backdrop="true" data-keyboard="true">
-											More infos
-										</button>
-
-									</div>
-								</div>
-								
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 project_case_parent">
-									<div class="project_case" style="background-image: url('{{ asset("img/projects/2.png") }}'); background-size: cover; background-position: 50%;">
-										<div class="project_case_inner">
-											<h4>
-												Campaign in Ayacucho 2011 - Peru
-											</h4>
-										</div>
-									</div>
-									<div class="over_div_stories">
-										<button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_1" data-backdrop="true" data-keyboard="true">
-											More infos
-										</button>
-
-									</div>
-								</div>
-								
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 project_case_parent">
-									<div class="project_case" style="background-image: url('{{ asset("img/projects/3.jpg") }}'); background-size: cover; background-position: 50%;">
-										<div class="project_case_inner">
-											<h4>
-												Into the depths
-											</h4>
-										</div>
-									</div>
-									<div class="over_div_stories">
-										<button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_2" data-backdrop="true" data-keyboard="true">
-											More infos
-										</button>
-
-									</div>
-								</div>
-								
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 project_case_parent">
-									<div class="project_case" style="background-image: url('{{ asset("img/projects/4.jpg") }}'); background-size: cover; background-position: 50%;">
-										<div class="project_case_inner">
-											<h4>
-												The students become the teachers
-											</h4>
-										</div>
-									</div>
-									<div class="over_div_stories">
-										<button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_3" data-backdrop="true" data-keyboard="true">
-											More infos
-										</button>
-
-									</div>
-								</div>
-								
-								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 project_case_parent">
-									<div class="project_case" style="background-image: url('{{ asset("img/projects/5.jpg") }}'); background-size: cover; background-position: 50%;">
-										<div class="project_case_inner">
-											<h4>
-												Christmas as it was meant to be
-											</h4>
-										</div>
-									</div>
-									<div class="over_div_stories">
-										<button type="button" class="btn btn-perso" data-toggle="modal" data-target="#modal_4" data-backdrop="true" data-keyboard="true">
-											More infos
-										</button>
-
-									</div>
-								</div>
+									{% endfor %}
+								{% else %}
+									{{ 'stories.warning.noStories' | trans }}
+								{% endif %}
 								
 								<!-- Modal photos  -->
-								<div class="modal fade modal_for_photo" id="modal_" tabindex="-1" role="dialog" aria-labelledby="modal_photosLabel" aria-hidden="true">
-								  <div class="vertical-alignment-helper">
-								    <div class="modal-dialog vertical-align-center">
-								        <div class="modal-content">
-								            <div class="modal-body">
-								                <div class="row">
-									                <button type="button" class="close float-right" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-									                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
-									                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-										                <img src="{{ asset('img/projects/1.png') }}" alt="Photo" class="carousel_photo"/>
-										                <br/><br/>
-									                </div>
-									                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
-								                </div>
-								                <div class="row right grey italic">
-								                	- 09 Sep. 2015
-								                </div>
-								                <div class="row">
-									              	<h2>
-									                	Stories written together
-									                </h2>
-									                <p>
-									                	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus ipsa recusandae tempora. Deserunt deleniti illo, eius, voluptates cumque ratione, quasi, officia aperiam maiores repellat aliquid iusto in quo. Quasi, ex.
-									                	<br/>
-									                	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae saepe iure laboriosam ex delectus cumque. Repellat temporibus dolorum, autem voluptatem necessitatibus! Culpa facere fugit reiciendis adipisci, quae maiores atque, distinctio!
-									                	<br/>
-									                	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae saepe iure laboriosam ex delectus cumque. Repellat temporibus dolorum, autem voluptatem necessitatibus! Culpa facere fugit reiciendis adipisci, quae maiores atque, distinctio!
-									                	<br/>
-									                	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae saepe iure laboriosam ex delectus cumque. Repellat temporibus dolorum, autem voluptatem necessitatibus! Culpa facere fugit reiciendis adipisci, quae maiores atque, distinctio!
-									                	<br/>
-									                	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae saepe iure laboriosam ex delectus cumque. Repellat temporibus dolorum, autem voluptatem necessitatibus! Culpa facere fugit reiciendis adipisci, quae maiores atque, distinctio!
-									                	<br/>
-									                	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae saepe iure laboriosam ex delectus cumque. Repellat temporibus dolorum, autem voluptatem necessitatibus! Culpa facere fugit reiciendis adipisci, quae maiores atque, distinctio!
-									                </p>
-								                </div>
-								            </div>
-								        </div>
-								    </div>
-								  </div>
-								</div>
-								
-								<!-- Modal photos  -->
-								<div class="modal fade modal_for_photo" id="modal_1" tabindex="-1" role="dialog" aria-labelledby="modal_photosLabel" aria-hidden="true">
-								  <div class="vertical-alignment-helper">
-								    <div class="modal-dialog vertical-align-center">
-								        <div class="modal-content">
-								            <div class="modal-body">
-								              <!-- <button type="button" class="close float-right"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
-								              <!-- Indicators -->
-								              <a href="" data-dismiss="modal">
-								                <img src="" alt="Photo" class="carousel_photo" id="photo_in_carousel_toReplace"/>
-								              </a>
-								            </div>
-								        </div>
-								    </div>
-								  </div>
-								</div>
-								
-								<!-- Modal photos  -->
-								<div class="modal fade modal_for_photo" id="modal_2" tabindex="-1" role="dialog" aria-labelledby="modal_photosLabel" aria-hidden="true">
-								  <div class="vertical-alignment-helper">
-								    <div class="modal-dialog vertical-align-center">
-								        <div class="modal-content">
-								            <div class="modal-body">
-								              <!-- <button type="button" class="close float-right"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
-								              <!-- Indicators -->
-								              <a href="" data-dismiss="modal">
-								                <img src="" alt="Photo" class="carousel_photo" id="photo_in_carousel_toReplace"/>
-								              </a>
-								            </div>
-								        </div>
-								    </div>
-								  </div>
-								</div>
-								
-								<!-- Modal photos  -->
-								<div class="modal fade modal_for_photo" id="modal_3" tabindex="-1" role="dialog" aria-labelledby="modal_photosLabel" aria-hidden="true">
-								  <div class="vertical-alignment-helper">
-								    <div class="modal-dialog vertical-align-center">
-								        <div class="modal-content">
-								            <div class="modal-body">
-								              <!-- <button type="button" class="close float-right"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
-								              <!-- Indicators -->
-								              <a href="" data-dismiss="modal">
-								                <img src="" alt="Photo" class="carousel_photo" id="photo_in_carousel_toReplace"/>
-								              </a>
-								            </div>
-								        </div>
-								    </div>
-								  </div>
-								</div>
-								
-								<!-- Modal photos  -->
-								<div class="modal fade modal_for_photo" id="modal_4" tabindex="-1" role="dialog" aria-labelledby="modal_photosLabel" aria-hidden="true">
-								  <div class="vertical-alignment-helper">
-								    <div class="modal-dialog vertical-align-center">
-								        <div class="modal-content">
-								            <div class="modal-body">
-								              <!-- <button type="button" class="close float-right"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
-								              <!-- Indicators -->
-								              <a href="" data-dismiss="modal">
-								                <img src="" alt="Photo" class="carousel_photo" id="photo_in_carousel_toReplace"/>
-								              </a>
-								            </div>
-								        </div>
-								    </div>
-								  </div>
-								</div>
+								{% if stories|length > 0 %}
+									{% for single_story in stories %}
+										<div class="modal fade modal_for_photo" id="modal_story_" tabindex="-1" role="dialog" aria-labelledby="modal_photosLabel" aria-hidden="true">
+										  <div class="vertical-alignment-helper">
+										    <div class="modal-dialog vertical-align-center">
+										        <div class="modal-content">
+										            <div class="modal-body">
+										                <div class="row">
+											                <button type="button" class="close float-right" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+											                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+											                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+												                <img src="{{ asset('img/projects/1.png') }}" alt="Photo" class="carousel_photo"/>
+												                <br/><br/>
+											                </div>
+											                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+										                </div>
+										                <div class="row right grey italic">
+										                	- 
+										                	{% if single_story.updatedAt|length > 0 %}
+																{{ single_story.updatedAt|date('d M Y') }}
+															{% else %}
+																{{ 'stories.warning.noDate' | trans }}
+															{% endif %}
+										                </div>
+										                <div class="row">
+											              	<h2>
+											                	{% if single_story.title|length > 0 %}
+																	{{ single_story.title }}
+																{% else %}
+																	{{ 'stories.warning.noTitle' | trans }}
+																{% endif %}
+											                </h2>
+											                <p>
+											                	{% if single_story.content|length > 0 %}
+																	{{ single_story.content|raw }}
+																{% else %}
+																	{{ 'stories.warning.noContent' | trans }}
+																{% endif %}
+											                </p>
+										                </div>
+										            </div>
+										        </div>
+										    </div>
+										  </div>
+										</div>
+									{% endfor %}
+								{% endif %}
 
 							</div>
 						</div>
@@ -306,6 +282,14 @@
 
 
 			<div class="section" id="work" style="background-image: url('{{ asset("img/bg/4.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photoSectionTheWork = '' %}
+				{% if pages|length > 0 %}
+					{% for single_page in pages %}
+						{% if single_page.dataBaseName == 'work' %}
+							{% set photoSectionTheWork = single_page %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
 
 				<div class="inner-section row">
 					<div class="row">
@@ -324,53 +308,18 @@
 								{{ 'header.titles.work' | trans }}
 							</h1>
 							<h3>
-								Building the Bridges
+								{% if photoSectionTheWork.header|length > 0 %}
+									{{ photoSectionTheWork.header }}
+								{% else %}
+									{{ 'home.warning.noHeader' | trans }}
+								{% endif %}
 							</h3>
 							<div class="left">
-								<p>
-									Through our various partnerships, the specific projects we offer share the common goal of reaching out to towards the human person, in his diverse, unique, and integral reality.
-								</p>
-								<h5>
-									Leveling Courses &amp; Educational Workshops:
-								</h5>
-								<p>
-									Remedial classes that seek to compensate for differing educational backgrounds and focus on subjects such as math, language, geography, history, and English. Additionally, we provide workshops in art, music, theatre, and sports.
-								</p>
-								<h5>
-									Visits to Children’s Hospitals: 
-								</h5>
-								<p>
-									More than just a visit, we look to generate moments of joy and to be a witness of hope in encounters with children who are suffering due to illness. Growth in charity, solidarity and perseverance are promoted in an environment in which the experience of love touches the depths of one’s heart.
-								</p>
-								<h5>
-									Visits to Nursing Homes &amp; Homeless Shelters: 
-								</h5>
-								<p>
-									These visits seek to offer all types of care and assistance to the elderly and those in Lima who are in most need. We look to attend to essential needs, promoting the integral good of the suffering human person.
-								</p>
-								<h5>
-									Visits to Schools for Disabled Children: 
-								</h5>
-								<p>
-									These schools seek to form and rehabilitate children and youth with motor disabilities (cerebral palsy, myelomeningocele, arthrogryposis, muscular dystrophy, amputee and burn victims). Our visits seek to meet the students in their condition and offer assistance in workshops, which include computer, music, art and English.
-								</p>
-								<h5>
-									Solidarity Trips to Peruvian Highlands
-									<span class="italic grey">
-										(Huaraz, Ayaviri (Puno), Arequipa, Colca Canyon)
-									</span>
-									:
-								</h5>
-								<p>
-									Two-week volunteer experiences to assist impoverished communities in the Peruvian Andes. Students help in solidarity work with impoverished communities, receive talks on social justice and environmental issues, and do eco-tourism to develop environmental awareness, all within the natural beauty of the Peruvian Andes.
-								</p>
-								<h5>
-									Community-Building Projects: 
-								</h5>
-								<p>
-									This work is aimed at assisting the poorest of the poor and helping to make a change in the shantytowns of Lima. We assist the locals in the specific projects they need, such as construction of houses, reparation of chapels and other similar services. In addition to this, we teach children instructional games and sports, and promote ownership and sustainability through community interaction.
-								</p>
-
+								{% if photoSectionTheWork.content|length > 0 %}
+									{{ photoSectionTheWork.content|raw }}
+								{% else %}
+									{{ 'home.warning.noContent' | trans }}
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -383,6 +332,14 @@
 
 
 			<div class="section" id="volunteer" style="background-image: url('{{ asset("img/bg/5.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photoSectionVolunteer = '' %}
+				{% if pages|length > 0 %}
+					{% for single_page in pages %}
+						{% if single_page.dataBaseName == 'volunteer' %}
+							{% set photoSectionVolunteer = single_page %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
 
 				<div class="inner-section row">
 					<div class="row">
@@ -401,10 +358,18 @@
 								{{ 'header.titles.volunteer' | trans }}
 							</h1>
 							<h3>
-								Join the adventure !
+								{% if photoSectionVolunteer.header|length > 0 %}
+									{{ photoSectionVolunteer.header }}
+								{% else %}
+									{{ 'home.warning.noHeader' | trans }}
+								{% endif %}
 							</h3>
 							<p>
-								We are so grateful for your interest in Bridges! Please use this form to tell us a little more about yourself and we will contact you as soon as we can. Corporate participation is encouraged as well! 
+								{% if photoSectionVolunteer.content|length > 0 %}
+									{{ photoSectionVolunteer.content|raw }}
+								{% else %}
+									{{ 'home.warning.noContent' | trans }}
+								{% endif %}
 							</p>
 							<div class="row">
 								<form id="volunteer_form" method="post" action="{{ path('bridges_main_volunteer') }}">
@@ -412,46 +377,48 @@
 
 							        	<div class="form-group row">
 											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="senderVolunteer" id="senderVolunteer" placeholder="Name" class="form-control placeholder-no-fix"/>
+												<input type="text" name="senderVolunteer" id="senderVolunteer" placeholder="{{ 'volunteer.form.name' | trans }}" class="form-control placeholder-no-fix"/>
 									        </div>
 											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="emailVolunteer" id="emailVolunteer" placeholder="Email" class="form-control placeholder-no-fix"/>
+												<input type="text" name="emailVolunteer" id="emailVolunteer" placeholder="{{ 'volunteer.form.email' | trans }}" class="form-control placeholder-no-fix"/>
 									        </div>
 										</div>
 										<br/>
 										<div class="form-group row">
 											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<input type="integer" name="ageVolunteer" id="ageVolunteer" placeholder="Age" class="form-control placeholder-no-fix"/>
+												<input type="integer" name="ageVolunteer" id="ageVolunteer" placeholder="{{ 'volunteer.form.age' | trans }}" class="form-control placeholder-no-fix"/>
 									        </div>
 											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<input type="tel" name="telVolunteer" id="telVolunteer" placeholder="Telephone" class="form-control placeholder-no-fix"/>
+												<input type="tel" name="telVolunteer" id="telVolunteer" placeholder="{{ 'volunteer.form.tel' | trans }}" class="form-control placeholder-no-fix"/>
 									        </div>
 										</div>
 										<br/>
 							            <div class="form-group row">
-							            	Why would you like to be part of the Bridges team?
+							            	{{ 'volunteer.form.whyPartOf' | trans }}
 							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="Why would you like to be part of the Bridges team?"></textarea>
+							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.whyPartOf' | trans }}"></textarea>
 							                </div>
 							            </div>
 							            <br/>
 							            <div class="form-group row">
-							            	How much time would you be willing to dedicate to volunteering?
+							            	{{ 'volunteer.form.howMuchTime' | trans }}
+							            	<br/>
+							            	{{ 'volunteer.form.manyPositions' | trans }}
 							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="We have many positions available, ranging from once or twice a month to full time!"></textarea>
+							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.manyPositions' | trans }}"></textarea>
 							                </div>
 							            </div>
 							            <br/>
 							            <div class="form-group row">
-							            	How did you hear about Bridges?
+							            	{{ 'volunteer.form.howHearAbout' | trans }}
 							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="How did you hear about Bridges?"></textarea>
+							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.howHearAbout' | trans }}"></textarea>
 							                </div>
 							            </div>
 							        </div>
 							        <br/>
 							        <div class="center">
-								        <input type="submit" value="Send" class="btn btn-footer uppercase">
+								        <input type="submit" value="{{ 'volunteer.actions.send' | trans }}" class="btn btn-footer uppercase">
 							        </div>
 							    </form>
 							</div>
@@ -464,6 +431,14 @@
 			</div>
 
 			<div class="section" id="donate" style="background-image: url('{{ asset("img/bg/6.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photoSectionDonate = '' %}
+				{% if pages|length > 0 %}
+					{% for single_page in pages %}
+						{% if single_page.dataBaseName == 'donate' %}
+							{% set photoSectionDonate = single_page %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
 
 				<div class="inner-section row">
 					<div class="row">
@@ -483,32 +458,17 @@
 								{{ 'header.titles.donate' | trans }}
 							</h1>
 							<h3>
-								- Common questions
+								{% if photoSectionDonate.header|length > 0 %}
+									{{ photoSectionDonate.header }}
+								{% else %}
+									{{ 'home.warning.noHeader' | trans }}
+								{% endif %}
 							</h3>
-							<h5>
-								How important are donations for Bridges?
-							</h5>
-							<p>
-								- Very important! As a non-profit organization, most of our projects are made possible by the generosity of sponsors. For us, it is also very edifying to see those "with" seeking to help in whatever way they can those "without." It is evidence that our dream to reconcile society is both shared with others, and is already beginning to come true. 
-							</p>
-							<h5>
-								How are the donations used?
-							</h5>
-							<p>
-								- Each donation is received with a particular project in mind. We are grateful for the opportunity in each project to work to improve the lives of others, and so we recognize that each donation must be used with prudence so that there is no waste. We have seen donations to less transparent non-profit organizations get "lost in translation" in ways that we can assure doesn't happen.
-							</p>
-							<p>
-								- Check out our "Your Stories" page to see how your generosity, in a dynamic way, has changed the lives of others. We think it is important to document our projects in order to better spread our message of hope and encourage others to join us. Each story will be a good way for you to better understand our projects and to rest assured that your contribution has reached its goal.
-							</p>
-							<p>
-								- Please contact us if you would like to sponsor a specific project.
-							</p>
-							<h5>
-								Is money the only thing I can donate?
-							</h5>
-							<p>
-								- We are open to any and all things that will help us in our mission. If you have something in mind, we'd love to discuss it with you!
-							</p>
+							{% if photoSectionDonate.content|length > 0 %}
+								{{ photoSectionDonate.content|raw }}
+							{% else %}
+								{{ 'home.warning.noContent' | trans }}
+							{% endif %}
 						</div>
 
 					</div>

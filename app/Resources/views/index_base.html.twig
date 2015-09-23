@@ -68,8 +68,10 @@
     {% endjavascripts %}
     <!-- END JAVASCRIPTS -->
 
-    {% if route == 'lbf_admin_new_page'
-        or route == 'lbf_admin_edit_page' %}
+    {% if route == 'bridges_user_stories_new'
+        or route == 'bridges_user_stories_edit'
+        or route == 'bridges_user_page_new'
+        or route == 'bridges_user_page_edit' %}
     {% stylesheets
       'redactor/redactor.css'
       'bundles/lbfredactor/css/sonata.css'
@@ -79,7 +81,6 @@
     {% javascripts 
       'redactor/redactor.js'
       'redactor/fullscreen.js'
-      'redactor/fr.js'
       'bundles/bridgesredactor/js/script.js'
       %}
       <script type="text/javascript" src="{{ asset_url }}"> </script>
@@ -103,6 +104,7 @@
       and route != 'bridges_user_photos_edit'
       and route != 'bridges_user_photos_delete'
       and route != 'bridges_user_stories'
+      and route != 'bridges_user_stories_spe'
       and route != 'bridges_user_stories_new'
       and route != 'bridges_user_stories_edit'
       and route != 'bridges_user_stories_delete'

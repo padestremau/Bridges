@@ -27,132 +27,156 @@
 			        <!-- END nav admin -->
 
 				  	<div id="section_admin" class="row center">
-						<div class="row">
-				    		<div class="row left">
+				  		<div class="row92">
+				  			<div class="row left">
 				    			<a href="{{ path('bridges_user_stories_new') }}" class="btn btn-perso float-left">
 				    				Nueva historia
 				    			</a>
 				    		</div>
-				    		{% if stories|length > 0 %}
-								<div class="table-responsive">
-			                      <table class="table">
-			                        <thead>
-			                          <tr>
-			                            <th class="center">
-			                              	Orden
-			                            </th>
-			                            <th class="center">
-			                              	Imagen
-			                            </th>
-			                            <th class="center">
-			                              	Titulo
-			                            </th>
-			                            <th class="center">
-			                              	Contenido
-			                            </th>
-			                            <th class="center">
-			                              	Créada el
-			                            </th>
-			                            <th class="center">
-			                              	Modificada el
-			                            </th>
-			                            <th class="center">
-			                              	Statuo
-			                            </th>
-			                            <th class="center">
-			                            	Acción
-			                            </th>
-			                          </tr>
-			                        </thead>
-			                        <tbody>
-			                          {% for story in stories %}
-			                            <tr>
-				                            <td class="center">
-				                              	{% if story.orderList|length > 0 %}
-				                              		{{ story.orderList }}
-				                              	{% else %}
-				                              		-
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
-				                              	{% if story.alt|length > 0 and story.url|length > 0 %}
-													<div class="story_img_admin" style="background-image: url('{{ asset(story.webPath) }}'); background-size: cover; background-position: 50%; min-height:20px;">
-													</div>
-												{% else %}
-													<div class="story_img_admin" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%; min-height:20px;" alt="Default" >
-													</div>
-												{% endif %}
-				                            </td>
-				                            <td class="center">
-				                              	{% if story.title|length > 0 %}
-				                              		{{ story.title | truncate(20, false, '...')  }}
-				                              	{% else %}
-				                              		---
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
-				                              	{% if story.content|length > 0 %}
-				                              		{{ story.content | truncate(50, false, '...')  }}
-				                              	{% else %}
-				                              		---
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
-				                              	{% if story.createdAt|length > 0 %}
-				                              		{{ story.createdAt|date("d/M/Y") }}
-				                              	{% else %}
-				                              		---
-				                              	{% endif %}
-				                            </td>
-				                            <td class="center">
-				                              	{% if story.updatedAt|length > 0 %}
-				                              		{{ story.updatedAt|date("d/M/Y") }}
-				                              	{% else %}
-				                              		---
-				                              	{% endif %}
-				                            </td>
-				                            <th class="center hover_popup">
-				                            	{% if story.status %}
-				                              		{% if story.status == "active" %}
-				                              			Activa
-				                              		{% elseif story.status == "inactive" %}
-				                              			Inactiva
-				                              		{% else %}
-				                              			Error
-				                              			<span class="italic">
-				                              				Selecciona una seccion entre las disponibles por favor
-					                              		</span>
-				                              		{% endif %}
-				                              	{% else %}
-				                              		Erreur
-				                              		<span class="italic">
-														Selecciona una seccion entre las disponibles por favor
-				                              		</span>
-				                              	{% endif %}
-				                            </th>
-				                            <td class="center">
-				                            	<a href="javascript:loadContentAdmin('{{ path('bridges_user_stories_edit', {'storyId':story.id}) }}')" class="btn btn-action-admin-icon">
-					                            	<span class="glyphicon glyphicon-pencil"></span>
-				                            	</a>
-				                            	<a href="javascript:areYouSureDeleteStory('{{ path('bridges_user_stories_delete', {'storyId':story.id}) }}')" class="btn btn-action-admin-icon">
-					                            	<span class="glyphicon glyphicon-trash"></span>
-				                            	</a>
-				                            </td>
-			                            </tr>
-			                          {% endfor %}
-			                        </tbody>
-			                      </table>
-			                    </div>
-							{% else %}
-								<div class="center col-md-9">
-									Disculpa, ningun historia ...
+			    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 left">
+								<br/><br/>
+								<div class="thumbnail thumbnail_story">
+									<h5 class="left">
+										Historias :
+									</h5>
+									{% if stories|length > 0 %}
+										<ul class="list_no_style_li list_stories_admin">
+											{% for single_story in stories %}
+												<li class="story_link {% if single_story == storyAsked %}li_story_active{% endif %}" id="story_n_{{ single_story.id }}">
+													<a href="javascript:displaySelectedStory('{{ path('bridges_user_stories_spe', {'storyId':single_story.id}) }}', 'story_n_{{ single_story.id }}')" class="no_style_a">
+														{% if single_story.orderList|length > 0 %}
+						                              		{{ single_story.orderList }}
+						                              	{% else %}
+						                              		-
+						                              	{% endif %}.
+														{{ single_story.title|truncate(20, false, '...') }}
+														<span class="float-right arrow_story">
+															<img src="{{ asset('img/system/defaults/right_arrow_spe.png') }}" alt=""/>
+														</span>
+														<span class="float-right date_story hidden-md hidden-sm hidden-xs">
+															{% if single_story.updatedAt|length > 0 %}
+																{{ single_story.updatedAt|date('d M Y') }}
+															{% else %}
+																(Vide)
+															{% endif %}
+														</span>
+													</a>
+												</li>
+											{% endfor %}
+										</ul>
+									{% else %}
+										Ningun historia
+									{% endif %}
 								</div>
-								<div class="col-md-3"></div>
-							{% endif %}
-				    	</div>
+							</div>
 
-		    			<br/><br/><br/>
-		    			<!-- ADMIN JAVASCRIPTS -->
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 ">
+								<div id="storyShow_content">
+									<br/>
+									<div class="row">
+					    				{% if stories|length > 0 %}
+					    				<a class="btn btn-perso float-right"  href="{{ path('bridges_user_stories_edit', {'storyId':storyAsked.id}) }}">
+					    					Modificar
+					    				</a>
+					    				<a class="btn btn-perso float-left logout-btn-admin"  href="javascript:areYouSureDeleteStory('{{ path('bridges_user_stories_delete', {'storyId':storyAsked.id}) }}')">
+					    					Suprimir
+					    				</a>
+					    				{% endif %}
+					    			</div>
+					    			<br/>
+					    			<div class="row left">
+					    				
+										{% if storyAsked %}
+											<div class="">
+												<div class="row">
+													<div class="col-lg-2 col-md-1 hidden-sm hidden-xs"></div>
+													<div class="col-lg-8 col-md-10 col-sm-12 col-xs-12">
+														{% if storyAsked.alt|length > 0 and storyAsked.url|length > 0 %}
+															<div class="story_img_admin carousel_photo" style="background-image: url('{{ asset(storyAsked.webPath) }}'); background-size: cover; background-position: 50%; min-height:20px;">
+															</div>
+														{% else %}
+															<div class="story_img_admin carousel_photo" style="background-image: url('{{ asset('img/system/defaults/default_img.png') }}'); background-size: cover; background-position: 50%; min-height:20px;" alt="Default" >
+															</div>
+														{% endif %}
+													</div>
+													<div class="col-lg-2 col-md-1 hidden-sm hidden-xs"></div>
+												</div>
+												<br/>
+												<div class="row">
+													{% if storyAsked.title|length > 0 %}
+														<h3>
+															{{ storyAsked.title|raw }}
+														</h3>
+													{% endif %}
+													<div class="center date_story_lg italic">
+														{% if storyAsked.createdAt|length > 0 %}
+															creada el {{ storyAsked.createdAt|date('d M Y') }} a la(s) {{ storyAsked.createdAt|date('H:i') }}
+														{% else %}
+															(fecha vacia)
+														{% endif %}
+														<br/>
+														{% if storyAsked.updatedAt|length > 0 %}
+															ultima modificacion el {{ storyAsked.updatedAt|date('d M Y') }} a la(s) {{ storyAsked.updatedAt|date('H:i') }}
+														{% else %}
+															(fecha vacia)
+														{% endif %}
+													</div>
+													<br/>
+													<div class="center">
+														<strong>
+															Statuo :
+														</strong>
+														{% if storyAsked.status %}
+						                              		{% if storyAsked.status == "active" %}
+						                              			Activa (visible sobre el sitio)
+						                              		{% elseif storyAsked.status == "inactive" %}
+						                              			Inactiva (invisible sobre el sitio)
+						                              		{% else %}
+						                              			Error
+						                              			<span class="italic">
+						                              				Selecciona una seccion entre las disponibles por favor
+							                              		</span>
+						                              		{% endif %}
+						                              	{% else %}
+						                              		Erreur
+						                              		<span class="italic">
+																Selecciona una seccion entre las disponibles por favor
+						                              		</span>
+						                              	{% endif %}
+													</div>
+													<br/>
+													<div class="center">
+														<strong>
+															Orden :
+														</strong>
+														{% if storyAsked.orderList %}
+															{{ storyAsked.orderList }}
+						                              	{% else %}
+						                              		-
+						                              	{% endif %}
+													</div>
+												</div>
+
+												<br/>
+												
+												<div class="row80">
+													{% if storyAsked.content|length > 0 %}
+														{{ storyAsked.content|raw }}
+													{% else %}
+														(historia vacia)
+													{% endif %}
+												</div>
+
+												<br/><br/>
+											</div>
+										{% endif %}
+					    			</div>
+								</div>
+							</div>
+		    			</div>
+
+
+				  		<!-- ADMIN JAVASCRIPTS -->
 					    {% javascripts 
 					      'js/admin_javascripts_bridges.js'
 

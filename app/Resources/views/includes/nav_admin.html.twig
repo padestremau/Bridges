@@ -1,6 +1,35 @@
 <div class="row">
 	<h1>
+		<a href="{{ path('bridges_main_homepage') }}" class="float-left">
+			<div class="glyphicon_header">
+				<span class="glyphicon glyphicon-home"></span> 
+			</div>
+		</a>
         Administracion del sitio web
+        <div class="float-right language_box_mobile">
+        	{% set current_language = '' %}
+			{% if (app.request.get('_route_params')) != null %}
+			  {% if (app.request.get('_route_params')._locale == 'es') %}
+			    {% set current_language = 'es' %}
+			  {% else %}
+			    {% set current_language = 'en' %}
+			  {% endif %}
+			{% endif %}
+			<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}" title="EN" alt="EN" class="language_selection no_style_a
+			{% if current_language == 'en' %}
+			  language_active
+			{% endif %}
+			">
+			  <img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+			</a>
+			<a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}" title="ES" alt="ES" class="language_selection no_style_a
+			{% if current_language == 'es' %}
+			  language_active
+			{% endif %}
+			">
+			  <img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+			</a>
+        </div>
     </h1>
 </div>
 

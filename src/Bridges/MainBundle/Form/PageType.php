@@ -15,10 +15,16 @@ class PageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('header')
-            ->add('content')
-            ->add('dataBaseName')
+            ->add('name', 'text', array('label' => 'Name',
+                                        'required' => false))
+            ->add('header', 'text', array('label' => 'Header',
+                                        'required' => false))
+            ->add('content','redactor', array( 
+                                            "redactor"=>"admin_page",
+                                            'label' => 'Content',
+                                            'required' => false
+                                            ))
+            ->add('dataBaseName', 'text', array('label' => 'Name in database'))
         ;
     }
     

@@ -16,6 +16,38 @@ header:
         donate:                 Donate
         contact:                Contact
 
+# Home
+home:
+    titles:
+        h1:                     "Welcome to Bridges"
+        h3:                     "Love hopes and endures all things"
+    warning:
+        noHeader:               "No header..." 
+        noContent:              "No content. Please contact the webmaster."
+
+# Stories
+stories:
+    actions:
+        moreInfos:              More infos
+    warning:
+        noStories:              "No stories for now ..."
+        noTitle:                "(Empty title)"
+        noContent:              "(Empty content)"
+        noDate:                 "(no date)"
+
+# Volunteer
+volunteer:
+    form:
+        name:                   Name
+        email:                  Email
+        age:                    Age
+        tel:                    Telephone
+        whyPartOf:              "Why would you like to be part of the Bridges team?"
+        howMuchTime:            "How much time would you be willing to dedicate to volunteering?"
+        manyPositions:          "We have many positions available, ranging from once or twice a month to full time!"
+        howHearAbout:           "How did you hear about Bridges?"
+    actions:
+        send:                   Send
 
 # Footer
 

@@ -49,7 +49,7 @@ fos_user_change_password:
 
 
 # Redactor 
-# bridges_redactor:
-#     resource: "@BridgesRedactorBundle/Controller/"
-#     type:     annotation
-#     prefix:   /redactor/
+bridges_redactor:
+    resource: "@BridgesRedactorBundle/Controller/"
+    type:     annotation
+    prefix:   /redactor/

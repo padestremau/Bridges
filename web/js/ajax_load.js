@@ -10,8 +10,35 @@ function displaySelectedPage(path_chosen, id_toSet_active)
 			if(statusTxt == "success") {
 				$('#pageShow_content').fadeIn('slow');
 
-				$('.pageShow_link').attr('class', 'pageShow_link');
-				document.getElementById(id_toSet_active).className = "pageShow_link li_pageShow_active";
+				$('.page_link').attr('class', 'page_link');
+				document.getElementById(id_toSet_active).className = "page_link li_page_active";
+			}
+			else {
+	            alert("Error: " + xhr.status + ": " + xhr.statusText);
+			}
+		});
+	}
+
+	//to change the browser URL to 'path_chosen'
+    if(path_chosen!=window.location){
+        window.history.pushState({path:path_chosen},'',path_chosen);    
+    }
+
+	return false;
+}
+
+function displaySelectedStory(path_chosen, id_toSet_active)
+{
+	$('#storyShow_content').fadeOut('slow',loadContent);
+	var toLoad = path_chosen +' #storyShow_content';
+
+	function loadContent() {
+		$('#storyShow_content').load(toLoad,'',function(responseTxt, statusTxt, xhr) {
+			if(statusTxt == "success") {
+				$('#storyShow_content').fadeIn('slow');
+
+				$('.story_link').attr('class', 'story_link');
+				document.getElementById(id_toSet_active).className = "story_link li_story_active";
 			}
 			else {
 	            alert("Error: " + xhr.status + ": " + xhr.statusText);
