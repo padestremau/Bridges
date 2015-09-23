@@ -1,0 +1,148 @@
+{# src/LBF/UserBundle/Resources/views/User/emailAdmin.html.twig #}
+
+{% block body_html %}
+{#
+    You can of course render the html directly here.
+    Including a template as done here allows keeping things DRY by using
+    the template inheritance in it
+#}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+  <head>
+
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      Bridges - Nuevo mensaje
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body >
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+      <tr >
+        <td style="padding:0 0 20px 0; " bgcolor="#D4D5D1" >
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse; " >
+            <tr >
+              <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
+                <div style="width:100%; " class="" id="pre-header-text" >
+                  Este email viene de <strong>Bridges.</strong>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="rgba(9,85,143,0.6)" width="600" valign="top" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #4d5259;">
+                <a href="http://www.bridgestoday.com" target="_blank">
+                  <img src="http://www.bridgestoday.com/img/system/email/email_header.png" alt="Bridges" border="0" width="600" height="95" style="display:block; color: white; text-align:center;"/>
+                </a>
+              </td>
+            </tr>
+            <tr >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 20px 15px; " >
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td width="100%" valign="top" >
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                        <tr >
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
+                            <div style="width:100%; " class="" id="title_one_half" >
+                              NUEVO MENSAJE
+                            </div>
+                          </td>
+                        </tr>
+                        <tr >
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
+                            <div style="width:100%; text-align:justify;">
+                                Este email viene de <strong><a href="www.bridgestoday.com" target="_blank" style="color: #4d5259; text-decoration:none;">Bridges</a></strong> a propuesto de un mensaje recien enviado por
+                                <strong style="text-decoration:underline;">
+                                  {{ senderName }}
+                                </strong>. 
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr >
+              <td style="padding:0 15px 0 15px; " bgcolor="#FFFFFF" >
+                <table style="border-bottom-width:1px; border-bottom-style:solid; border-bottom-color:rgba(9,85,143,0.5); " border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:14px; " >
+                      <div style="width:100%; " class="" id="header_text_01" >
+                        CONTENIDO DEL MENSAJE
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 20px 15px; " >
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td >
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                        <tr >
+                          <td width="100%" valign="top" >
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                              <tr >
+                                <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:14px; " >
+                                  <div style="width:100%; ">
+                                    Aqui esta el mensaje enviado por <strong><a href="mailto:{{ senderEmail }}">{{ senderName }}</a></strong>:
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr >
+                                <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:14px; " >
+                                  <div style="width:100%; ">
+                                    <strong>Pregunta</strong>: 
+                                    {% if senderSubject|length > 0 %}
+                                      {{ senderSubject }}
+                                    {% else %}
+                                      Pregunta vacía ...
+                                    {% endif %}
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr >
+                                <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300;" >
+                                  <div style="width:100%; text-align:justify;">
+                                    {% if senderContent|length > 0 %}
+                                      {{ senderContent|nl2br }}
+                                    {% else %}
+                                      Ese mensaje esta vacío ... <br/>
+                                      <a href="mailto:p.a.destremau@gmail.com">Contacte el webmaster</a> del sitio por favor.
+                                    {% endif %}
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    
+    <script type="text/javascript" src="/js/public/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/js/forwardemail.js"></script>
+    <link rel="stylesheet" href="/css/forwardemail.css" type="text/css" />
+  </body>
+</html>
+
+{% endblock %}
+

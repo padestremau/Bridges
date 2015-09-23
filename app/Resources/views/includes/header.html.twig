@@ -30,75 +30,76 @@
 		</li>
 		<!-- END LANGUAGE SELECTION DROPDOWN -->
 	</ul>
+	<br/><br/>
 	<ul class="uppercase" id="menu">
 		<li class="header_li" id="btn_header0">
-			<a href="{{ path('bridges_main_homepage') }}#home" id="btn_section0">
-				<div class="glyphicon_header">
+			<a href="{{ path('bridges_main_homepage') }}#home" id="btn_section0" class="no_style_a">
+				<span class="glyphicon_header">
 					<span class="glyphicon glyphicon-home"></span> 
-				</div>
-				<div class="text_header">
+				</span>
+				<span class="text_header">
 					{{ 'header.titles.home' | trans }}
-				</div>
+				</span>
 			</a>
 		</li>
 		<li class="header_li" id="btn_header1">
-			<a href="{{ path('bridges_main_homepage') }}#aboutUs" id="btn_section1">
-				<div class="glyphicon_header">
+			<a href="{{ path('bridges_main_homepage') }}#aboutUs" id="btn_section1" class="no_style_a">
+				<span class="glyphicon_header">
 					<span class="glyphicon glyphicon-info-sign"></span> 
-				</div>
-				<div class="text_header">
+				</span>
+				<span class="text_header">
 					{{ 'header.titles.aboutUs' | trans }}
-				</div>
+				</span>
 			</a>
 		</li>
 		<li class="header_li" id="btn_header2">
-			<a href="{{ path('bridges_main_homepage') }}#stories" id="btn_section2">
-				<div class="glyphicon_header">
+			<a href="{{ path('bridges_main_homepage') }}#stories" id="btn_section2" class="no_style_a">
+				<span class="glyphicon_header">
 					<span class="glyphicon glyphicon-send"></span> 
-				</div>
-				<div class="text_header">
+				</span>
+				<span class="text_header">
 					{{ 'header.titles.stories' | trans }}
-				</div>
+				</span>
 			</a>
 		</li>
 		<li class="header_li" id="btn_header3">
-			<a href="{{ path('bridges_main_homepage') }}#work" id="btn_section3">
-				<div class="glyphicon_header">
+			<a href="{{ path('bridges_main_homepage') }}#work" id="btn_section3" class="no_style_a">
+				<span class="glyphicon_header">
 					<span class="glyphicon glyphicon-stats"></span> 
-				</div>
-				<div class="text_header">
+				</span>
+				<span class="text_header">
 					{{ 'header.titles.work' | trans }}
-				</div>
+				</span>
 			</a>
 		</li>
 		<li class="header_li" id="btn_header4">
-			<a href="{{ path('bridges_main_homepage') }}#volunteer" id="btn_section4">
-				<div class="glyphicon_header">
+			<a href="{{ path('bridges_main_homepage') }}#volunteer" id="btn_section4" class="no_style_a">
+				<span class="glyphicon_header">
 					<span class="glyphicon glyphicon-knight"></span> 
-				</div>
-				<div class="text_header">
+				</span>
+				<span class="text_header">
 					{{ 'header.titles.volunteer' | trans }}
-				</div>
+				</span>
 			</a>
 		</li>
 		<li class="header_li" id="btn_header5">
-			<a href="{{ path('bridges_main_homepage') }}#donate" id="btn_section5">
-				<div class="glyphicon_header">
+			<a href="{{ path('bridges_main_homepage') }}#donate" id="btn_section5" class="no_style_a">
+				<span class="glyphicon_header">
 					<span class="glyphicon glyphicon-gift"></span> 
-				</div>
-				<div class="text_header">
+				</span>
+				<span class="text_header">
 					{{ 'header.titles.donate' | trans }}
-				</div>
+				</span>
 			</a>
 		</li>
 		<li class="header_li" id="btn_header6">
-			<a href="{{ path('bridges_main_homepage') }}#footer" id="btn_section6">
-				<div class="glyphicon_header">
+			<a href="{{ path('bridges_main_homepage') }}#footer" id="btn_section6" class="no_style_a">
+				<span class="glyphicon_header">
 					<span class="glyphicon glyphicon-envelope"></span> 
-				</div>
-				<div class="text_header">
+				</span>
+				<span class="text_header">
 					{{ 'header.titles.contact' | trans }}
-				</div>
+				</span>
 			</a>
 		</li>
 	</ul>
@@ -118,7 +119,7 @@
         <span class="icon-bar white"></span>
         <span class="icon-bar white"></span>
       </button>
-      <a class="navbar-brand hidden-lg hidden-md hidden-sm" href="#home" id="btn_section0">
+      <a class="navbar-brand hidden-lg hidden-md hidden-sm" href="{{ path('bridges_main_homepage') }}#home" id="btn_section0">
       	<div id="div_logo_welcome_xs">
 			<img src="{{ asset('img/system/logo/logo.jpg') }}" alt="Logo" id="logo_welcome_xs"/>
 		</div>

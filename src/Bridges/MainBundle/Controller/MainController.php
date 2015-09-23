@@ -33,35 +33,21 @@ class MainController extends Controller
     public function footerContactAction() 
     {
 
-        /* Current User */
-        $currentUser = $this->getUser();
-        if ($currentUser) {
-            $senderName = $currentUser->getFirstName();
-            $senderEmail = $currentUser->getEmail();
-        } else {
-            $senderName = $_POST['senderContact'];
-            $senderEmail = $_POST['emailContact'];
-        }
-        $senderSubject = $_POST['sujetMail'];
-        
-        $senderOrderNumber = '';
-        if ($_POST['orderNumber']) {
-            $senderOrderNumber = $_POST['orderNumber'];
-        }
-
+        $senderName = $_POST['senderContact'];
+        $senderEmail = $_POST['emailContact'];
+        $senderSubject = $_POST['subjectMail'];
         $senderContent = $_POST['corpsMail'];
 
         // Message for client
         $message = \Swift_Message::newInstance()
             ->setContentType('text/html')
-            ->setSubject('[Le Buffet Francés]')
-            ->setFrom(array('antoine@lebuffetfrances.com' => 'Le Buffet Francés'))
+            ->setSubject('Copy of your mail')
+            ->setFrom(array('info@bridgestoday.com' => 'Bridges'))
             ->setTo($senderEmail)
             ->setBody(
-                $this->renderView('LBFMainBundle:Main:emailContactClient.html.twig',
+                $this->renderView('BridgesMainBundle:Main:emailClient.html.twig',
                     array(  'senderName' => $senderName,
                             'senderSubject' => $senderSubject,
-                            'senderOrderNumber' => $senderOrderNumber,
                             'senderContent' => $senderContent
                             )
                 )
@@ -71,15 +57,15 @@ class MainController extends Controller
         // Message for manager/admin
         $messageAdmin = \Swift_Message::newInstance()
             ->setContentType('text/html')
-            ->setSubject('[Le Buffet Francés] Nouveau message.')
-            ->setFrom(array('antoine@lebuffetfrances.com' => 'Le Buffet Francés'))
-            ->setTo('antoine@lebuffetfrances.com')
+            ->setSubject('Nuevo mensaje')
+            ->setFrom(array($senderEmail => $senderName))
+            ->setTo('info@bridgestoday.com')
+            // ->setTo('p.a.destremau@gmail.com')                                                // A CHANGER !!!!
             ->setBody(
-                $this->renderView('LBFMainBundle:Main:emailContactAdmin.html.twig',
+                $this->renderView('BridgesMainBundle:Main:emailAdmin.html.twig',
                     array(  'senderName' => $senderName,
                             'senderEmail' => $senderEmail,
                             'senderSubject' => $senderSubject,
-                            'senderOrderNumber' => $senderOrderNumber,
                             'senderContent' => $senderContent
                             )
                 )
@@ -90,13 +76,13 @@ class MainController extends Controller
         $this->get('mailer')->send($messageAdmin);        
 
         // On redirige vers la page de visualisation de le document nouvellement créé
-        return $this->redirect($this->generateUrl('lbf_main_footer_contact_thankYou'));
+        return $this->redirect($this->generateUrl('bridges_main_footer_contact_thankYou'));
     }
 
     public function footerContactThankYouAction() 
     {
         
-        return $this->render('LBFMainBundle:Main:contactThankYou.html.twig');
+        return $this->render('BridgesMainBundle:Main:contactThankYou.html.twig');
     }
 
 }

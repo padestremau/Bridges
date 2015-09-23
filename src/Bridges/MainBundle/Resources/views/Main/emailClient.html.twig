@@ -1,0 +1,215 @@
+{# src/LBF/UserBundle/Resources/views/User/emailConfirmation.html.twig #}
+
+{# block subject %}
+{% autoescape false %}
+{{ "emailContact.titles.general" | trans }}.
+{% endautoescape %}
+{% endblock #}
+
+
+{% block body_html %}
+{#
+    You can of course render the html directly here.
+    Including a template as done here allows keeping things DRY by using
+    the template inheritance in it
+#}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+  <head>
+
+    <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>
+      Bridges - {{ 'emailContact.titles.general' | trans }}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body >
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+      <tr >
+        <td style="padding:0 0 20px 0; " bgcolor="#D4D5D1" >
+          <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse; " >
+            <tr >
+              <td align="center" style="padding:10px 0 10px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
+                <div style="width:100%; " class="" id="pre-header-text" >
+                  {{ 'emailContact.notes.topSentence' | trans }} <strong> Bridges.</strong>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td bgcolor="rgba(9,85,143,0.6)" width="600" valign="top" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #4d5259;">
+                <a href="http://www.bridgestoday.com" target="_blank">
+                  <img src="http://www.bridgestoday.com/img/system/email/email_header.png" alt="Bridges" border="0" width="600" height="95" style="display:block; color: white; text-align:center;"/>
+                </a>
+              </td>
+            </tr>
+            <tr >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 20px 15px; " >
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td width="100%" valign="top" >
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                        <tr >
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:16px; " >
+                            <div style="width:100%; " class="" id="title_one_half" >
+                              {{ 'emailContact.titles.general' | trans }}
+                            </div>
+                          </td>
+                        </tr>
+                        <tr >
+                          <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300; font-size:12px; " >
+                            <div style="width:100%; text-align:justify;">
+                              {{ 'emailContact.content.youWrote' | trans }}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr >
+              <td style="padding:0 15px 0 15px; " bgcolor="#FFFFFF" >
+                <table style="border-bottom-width:1px; border-bottom-style:solid; border-bottom-color:rgba(9,85,143,0.6); " border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:800; font-size:14px; " >
+                      <div style="width:100%; " class="" id="header_text_01" >
+                        {{ 'emailContact.titles.messageWritten' | trans }}
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr >
+              <td bgcolor="#FFFFFF" style="padding:20px 15px 20px 15px; " >
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                  <tr >
+                    <td >
+                      <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                        <tr >
+                          <td width="100%" valign="top" >
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" >
+                              <tr >
+                                <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:12px; " >
+                                  <div style="width:100%; ">
+                                    {{ 'emailContact.content.thankYou' | trans }} <strong>{{ senderName }}</strong> {{ 'emailContact.content.forMessage' | trans }} {{ 'emailContact.content.mailContent' | trans }}
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr >
+                                <td style="padding:0 0 5px 0; color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:700; font-size:12px; " >
+                                  <div style="width:100%; ">
+                                    <strong>{{ 'emailContact.content.question' | trans }}</strong>: 
+                                    {% if senderSubject|length > 0 %}
+                                      {{ senderSubject }}
+                                    {% else %}
+                                      {{ 'emailContact.content.questionEmpty' | trans }}
+                                    {% endif %}
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr >
+                                <td style="color: #4d5259; font-family:Open Sans, 'Helvetica Neue', Helvetica, sans-serif; font-weight:300;" >
+                                  <div style="width:100%; text-align:justify;">
+                                    {% if senderContent|length > 0 %}
+                                      {{ senderContent|nl2br }}  
+                                    {% else %}
+                                      {{ 'emailContact.errors.nothingHere' | trans }}
+                                      <br/>
+                                      {{ 'emailContact.errors.please' | trans }}
+                                      <a href="mailto:info@bridgestoday.com">
+                                        {{ 'emailContact.errors.contactAdministration' | trans }}
+                                      </a>.
+                                    {% endif %}
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <table border="0" cellspacing="0" cellpadding="0" width="600">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <table class="full-width" style="background-color: rgba(9,85,143,0.2); border-top: 2px solid rgba(9,85,143,1);" border="0" cellspacing="0" cellpadding="0" width="100%">
+                          <tbody>
+                            <tr>
+                              <td style="padding-top: 20px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 400; color: #ffffff;" align="left">
+                                <strong><a href="http://www.bridgestoday.com" target="_blank" style="color:rgba(9,85,143,1); text-decoration:none; font-size: 12px;">Bridges</a></strong> 
+                                {{ 'emailContact.footer.anecdote' | trans }}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                <div style="display:inline-block; margin-right : 10px;">
+                                  {{ 'emailContact.footer.keepInTouch' | trans }}
+                                </div>
+                                <div style="display:inline-block;">
+                                  <a href="https://www.facebook.com/pages/Bridges-140667802651315" style="position:relative; top:4px;">
+                                    <img src="http://www.bridgestoday.com/img/system/email/fb.png" alt="FB" border="0"  width="16" height="16" style="display:block; font-size:8px; color:white;">
+                                  </a>
+                                </div>
+                              </td>
+                            </tr>
+                            <br/>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                <strong><a href="http://www.bridgestoday.com" target="_blank" style="color:rgba(9,85,143,1); text-decoration:none;">Bridges</a></strong>
+                              </td>
+
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                Calle correspondiente
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 20px; font-size: 10px; font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; color: #ffffff;" align="left">
+                                Barrillo - Lima
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="padding-top: 0px; padding-right: 0px; padding-bottom: 20px; padding-left: 20px;" align="left">
+                                <a style="font-family: Open Sans, Arial, Helvetica, sans-serif; font-weight: 500; font-size: 10px; color: rgba(9,85,143,1); text-decoration: none;" href="http://www.bridgestoday.com" target="_blank">
+                                  www.bridgestoday.com
+                                </a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    
+    <script type="text/javascript" src="/js/public/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/js/forwardemail.js"></script>
+    <link rel="stylesheet" href="/css/forwardemail.css" type="text/css" />
+  </body>
+</html>
+
+{% endblock %}
+
+

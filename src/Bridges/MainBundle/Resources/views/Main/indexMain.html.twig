@@ -224,61 +224,61 @@
 								{% else %}
 									{{ 'stories.warning.noStories' | trans }}
 								{% endif %}
-								
-								<!-- Modal photos  -->
-								{% if stories|length > 0 %}
-									{% for single_story in stories %}
-										<div class="modal fade modal_for_photo" id="modal_story_" tabindex="-1" role="dialog" aria-labelledby="modal_photosLabel" aria-hidden="true">
-										  <div class="vertical-alignment-helper">
-										    <div class="modal-dialog vertical-align-center">
-										        <div class="modal-content">
-										            <div class="modal-body">
-										                <div class="row">
-											                <button type="button" class="close float-right" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-											                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
-											                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												                <img src="{{ asset('img/projects/1.png') }}" alt="Photo" class="carousel_photo"/>
-												                <br/><br/>
-											                </div>
-											                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
-										                </div>
-										                <div class="row right grey italic">
-										                	- 
-										                	{% if single_story.updatedAt|length > 0 %}
-																{{ single_story.updatedAt|date('d M Y') }}
-															{% else %}
-																{{ 'stories.warning.noDate' | trans }}
-															{% endif %}
-										                </div>
-										                <div class="row">
-											              	<h2>
-											                	{% if single_story.title|length > 0 %}
-																	{{ single_story.title }}
-																{% else %}
-																	{{ 'stories.warning.noTitle' | trans }}
-																{% endif %}
-											                </h2>
-											                <p>
-											                	{% if single_story.content|length > 0 %}
-																	{{ single_story.content|raw }}
-																{% else %}
-																	{{ 'stories.warning.noContent' | trans }}
-																{% endif %}
-											                </p>
-										                </div>
-										            </div>
-										        </div>
-										    </div>
-										  </div>
-										</div>
-									{% endfor %}
-								{% endif %}
 
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<!-- Modal stories  -->
+			{% if stories|length > 0 %}
+				{% for single_story in stories %}
+					<div class="modal fade modal_for_photo" id="modal_story_{{ single_story.id }}" tabindex="-1" role="dialog" aria-labelledby="modal_photosLabel" aria-hidden="true">
+					  <div class="vertical-alignment-helper">
+					    <div class="modal-dialog vertical-align-center">
+					        <div class="modal-content">
+					            <div class="modal-body">
+					                <div class="row">
+						                <button type="button" class="close float-right" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+						                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							                <img src="{{ asset('img/projects/1.png') }}" alt="Photo" class="carousel_photo"/>
+							                <br/><br/>
+						                </div>
+						                <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+					                </div>
+					                <div class="row right grey italic">
+					                	- 
+					                	{% if single_story.updatedAt|length > 0 %}
+											{{ single_story.updatedAt|date('d M Y') }}
+										{% else %}
+											{{ 'stories.warning.noDate' | trans }}
+										{% endif %}
+					                </div>
+					                <div class="row">
+						              	<h2>
+						                	{% if single_story.title|length > 0 %}
+												{{ single_story.title }}
+											{% else %}
+												{{ 'stories.warning.noTitle' | trans }}
+											{% endif %}
+						                </h2>
+						                <p>
+						                	{% if single_story.content|length > 0 %}
+												{{ single_story.content|raw }}
+											{% else %}
+												{{ 'stories.warning.noContent' | trans }}
+											{% endif %}
+						                </p>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					  </div>
+					</div>
+				{% endfor %}
+			{% endif %}
 
 
 			<div class="section" id="work" style="background-image: url('{{ asset("img/bg/4.jpg") }}'); background-size: cover; background-position: 50%;">

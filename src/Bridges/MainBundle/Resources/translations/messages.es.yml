@@ -90,3 +90,37 @@ footer:
     bottom: 
         definition:             "Bridges is a non-profit organization"
         allRightsReserved:      "All rights reserved"
+
+footerThankYou:
+    titles:
+        thankYou:               Thank you!
+        messageSent:            Message sent
+    content: 
+        thankYou:               "Thank you for your message, it was sent to our team. You should receive a copy of it very soon, and we'll get back to you after processing it very quickly."
+        pleasantDay:            "We wish you a very pleasant day."
+        regards:                "Best regards"
+        teamBridges:            "Team Bridges"
+
+
+# Email contact
+emailContact:
+    notes: 
+        topSentence:            "This is a message from "
+    titles:
+        general:                MESSAGE SENT
+        messageWritten:         CONTENT OF YOUR MESSAGE
+    content:
+        youWrote:               "You sent us a message through our website and we are very thankful to you for that. We should be able to resolve the matter and get back to you very soon."
+        thankYou:               Thank you again
+        forMessage:             for your message. 
+        mailContent:            "Reminder of the content of your message:"
+        question:               Question
+        questionEmpty:          "Your question is empty ..."
+    errors:
+        nothingHere:            Your message is empty.
+        please:                 Please contact the
+        contactAdministration:  administration
+    footer:
+        anecdote:               "is an association based in Lima, who comes in help of the poorest and the most in need essentially in Pamplona. Volunteers the association attracts come to give a hand on saturday mornings mostly. Join us if you feel like it!"
+        keepInTouch:            "Keep in touch: "
+

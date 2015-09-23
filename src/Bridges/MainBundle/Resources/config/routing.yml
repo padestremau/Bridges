@@ -3,9 +3,17 @@ bridges_main_homepage:
     defaults: { _controller: BridgesMainBundle:Main:indexMain }
 
 bridges_main_footer_contact:
-    path:     /footer/contact/
+    path:     /contact/
     defaults: { _controller: BridgesMainBundle:Main:footerContact }
+
+bridges_main_footer_contact_thankYou:
+    path:     /contact/thankYou/
+    defaults: { _controller: BridgesMainBundle:Main:footerContactThankYou }
 
 bridges_main_volunteer:
     path:     /volunteer/contact/
     defaults: { _controller: BridgesMainBundle:Main:volunteerContact }
+
+bridges_main_volunteer_thankYou:
+    path:     /volunteer/contact/thankYou/
+    defaults: { _controller: BridgesMainBundle:Main:volunteerContactThankYou }

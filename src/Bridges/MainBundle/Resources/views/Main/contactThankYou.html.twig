@@ -1,0 +1,76 @@
+{# src/Bridges/MainBundle/Resources/Main/contactThankYou.html.twig #}
+
+{% extends "BridgesMainBundle::main_general.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+{% endblock %}
+
+{% block Bridges_Main_body %}
+
+	<!-- BEGIN CONTENT -->
+	<div id="page_content" class="row">
+
+		<div id="sessionFlash" class="sessionFlash">
+		</div>
+
+		<div id="fullpage">
+
+			<!-- Accueil -->
+			<div class="section section-footer center" id="otherSection" style="background-image: url('{{ asset("img/bg/7.jpg") }}'); background-size: cover; background-position: 50%;">
+				<div class="inner-section inner-section-footer row">
+					
+					<div class="div_logo_welcome hidden-xs">
+						<img src="{{ asset('img/system/logo/logo.jpg') }}" alt="Logo" id="logo_welcome"/>
+					</div>
+
+					<div class="row">
+						<div class="col-lg-2 col-md-1 col-sm-1 hidden-xs"></div>
+						<div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 bg_frame bg_frame_footer">
+							<div class="bg_frame_content">
+								<h1>
+									{{ 'footerThankYou.titles.thankYou' | trans }}
+								</h1>
+								<h3>
+									{{ 'footerThankYou.titles.messageSent' | trans }}
+								</h3>
+
+								<div class="row">
+									<p>
+										{{ 'footerThankYou.content.thankYou' | trans }}
+									</p>
+									<p>
+										{{ 'footerThankYou.content.pleasantDay' | trans }}
+									</p>
+									<p>
+										{{ 'footerThankYou.content.regards' | trans }}, <br/>
+										<strong>
+											{{ 'footerThankYou.content.teamBridges' | trans }}
+										</strong>
+									</p>
+								</div>
+							</div>
+							
+						</div>
+						<div class="col-lg-2 col-md-1 col-sm-1 hidden-xs"></div>
+					</div>
+
+					<br/><br/>
+
+
+					<div class="footer_copyright row">
+						<a href="{{ path('bridges_user_homepage') }}" class="no_style_a">
+							{{ 'footer.bottom.definition' | trans }} © {{ 'footer.bottom.allRightsReserved' | trans }} 2015
+						</a>
+					</div>
+				</div>
+
+				
+			</div>
+
+		</div>
+
+	</div>
+	<!-- END CONTENT -->
+
+{% endblock Bridges_Main_body %}
