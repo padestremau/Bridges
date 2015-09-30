@@ -42,7 +42,7 @@ class MainController extends Controller
         $message = \Swift_Message::newInstance()
             ->setContentType('text/html')
             ->setSubject('Copy of your mail')
-            ->setFrom(array('info@bridgestoday.com' => 'Bridges'))
+            ->setFrom(array('amolina@bridgestoday.com' => 'Bridges'))
             ->setTo($senderEmail)
             ->setBody(
                 $this->renderView('BridgesMainBundle:Main:emailClient.html.twig',
@@ -59,7 +59,7 @@ class MainController extends Controller
             ->setContentType('text/html')
             ->setSubject('Nuevo mensaje')
             ->setFrom(array($senderEmail => $senderName))
-            ->setTo('info@bridgestoday.com')
+            ->setTo('amolina@bridgestoday.com')
             // ->setTo('p.a.destremau@gmail.com')                                                // A CHANGER !!!!
             ->setBody(
                 $this->renderView('BridgesMainBundle:Main:emailAdmin.html.twig',

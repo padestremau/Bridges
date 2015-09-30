@@ -16,6 +16,15 @@
 
 		<div id="fullpage">
 
+			{% set current_language = '' %}
+	        {% if (app.request.get('_route_params')) != null %}
+	          {% if (app.request.get('_route_params')._locale == 'es') %}
+	            {% set current_language = 'es' %}
+	          {% else %}
+	            {% set current_language = 'en' %}
+	          {% endif %}
+	        {% endif %}
+
 			<div class="section" id="user">
 				<div class="inner-section">
 
@@ -76,10 +85,24 @@
 										{% if pageAsked %}
 											<div class="">
 												<div class="row">
-													{% if pageAsked.header|length > 0 %}
-														<h3>
-															{{ pageAsked.header|raw }}
-														</h3>
+													{% if current_language %}
+														{% if current_language == 'es' and pageAsked.headerEsp|length > 0 %}
+															<h3>
+																{{ pageAsked.headerEsp }} 
+															</h3>
+														{% else %}
+															{% if pageAsked.headerEng|length > 0 %}
+																<h3>
+																	{{ pageAsked.headerEng|raw }}
+																</h3>
+															{% endif %}
+														{% endif %}
+													{% else %}
+														{% if pageAsked.headerEng|length > 0 %}
+															<h3>
+																{{ pageAsked.headerEng|raw }}
+															</h3>
+														{% endif %}
 													{% endif %}
 													<div class="center date_page_lg">
 														{% if pageAsked.updatedAt|length > 0 %}
@@ -98,10 +121,22 @@
 												<br/>
 												
 												<div class="row80">
-													{% if pageAsked.content|length > 0 %}
-														{{ pageAsked.content|raw }}
+													{% if current_language %}
+														{% if current_language == 'es' and pageAsked.contentEsp|length > 0 %}
+															{{ pageAsked.contentEsp }} 
+														{% else %}
+															{% if pageAsked.contentEng|length > 0 %}
+																{{ pageAsked.contentEng|raw }}
+															{% else %}
+																(pagina vacia)
+															{% endif %}
+														{% endif %}
 													{% else %}
-														(pagina vacia)
+														{% if pageAsked.contentEng|length > 0 %}
+															{{ pageAsked.contentEng|raw }}
+														{% else %}
+															(pagina vacia)
+														{% endif %}
 													{% endif %}
 												</div>
 

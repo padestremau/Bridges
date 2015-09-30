@@ -15,6 +15,15 @@
 		</div>
 
 		<div id="fullpage">
+
+			{% set current_language = '' %}
+	        {% if (app.request.get('_route_params')) != null %}
+	          {% if (app.request.get('_route_params')._locale == 'es') %}
+	            {% set current_language = 'es' %}
+	          {% else %}
+	            {% set current_language = 'en' %}
+	          {% endif %}
+	        {% endif %}
 			
 			<div class="section" id="user">
 				<div class="inner-section">
@@ -72,49 +81,126 @@
 								        </div>
 									</div>
 
-									<div class="form-group">
-								        {{ form_label(formNewStory.title, "Titulo de la historia", 
-								        	{'label_attr': {'class': 'control-label'}}) }}
-								        {% if form_errors(formNewStory.title) %}
-						                    <div class="error_message">
-						                      	<span class="warning_word">
-						                        	{{ 'user.warning.warning'|trans }}
-						                      	</span>
-						                      	<span class="warning_message">
-						                        	{{ form_errors(formNewStory.title) }}
-						                      	</span>
-						                    </div>
-						                    <br/>
-						                {% endif %}
-										<div class="input-icon">
-								        	<i class="fa fa-user"></i>
-								        	{% set opt_title = {'attr': {'class': 'form-control placeholder-no-fix',
-								        		'type':'text', 'placeholder':"Titulo de la historia", 'id':'_title', 
-								        		'name':'_title'}} %}
-								        	{{ form_widget(formNewStory.title, opt_title) }}
-								        </div>
-									</div>
+									<ul class="nav nav-tabs">
+										{% set index_general = 1 %}
+										{% for lang in 1..2 %}
+											<li class="{% if index_general == 1 %} active {% endif %}">
+												<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+													{% if lang == 1 %}
+														<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+													{% elseif lang == 2 %}
+														<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+													{% endif %}
+												</a>
+											</li>
+											{% set index_general = index_general + 1 %}
+										{% endfor %}
+									</ul>
 
-									<div class="form-group">
-								        {{ form_label(formNewStory.content, "Contenido de la historia", 
-								        	{'label_attr': {'class': 'control-label'}}) }}
-								        {% if form_errors(formNewStory.content) %}
-						                    <div class="error_message">
-						                      	<span class="warning_word">
-						                        	{{ 'user.warning.warning'|trans }}
-						                      	</span>
-						                      	<span class="warning_message">
-						                        	{{ form_errors(formNewStory.content) }}
-						                      	</span>
-						                    </div>
-						                    <br/>
-						                {% endif %}
-										<div class="input-icon">
-								        	<i class="fa fa-user"></i>
-								        	{% set opt_content = {'attr': {'class': 'redactor',
-								        		'placeholder':"Contenido de la historia", 'id':'_content', 'name':'_content'}} %}
-								        	{{ form_widget(formNewStory.content, opt_content) }}
-								        </div>
+									<br/>
+
+									<div class="tab-content" id="product_content">
+										<div class="tab-pane fade active in" id="tab_1">
+											<div class="row">
+												<div class="row">
+									  				<strong>
+									  					Título aparente:
+									  				</strong>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														{% if form_errors(formNewStory.titleEsp) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formNewStory.titleEsp) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_titleEsp = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Titulo aparente', 'id':'_titleEsp'}} %}
+												        	{{ form_widget(formNewStory.titleEsp, opt_titleEsp) }}
+												        </div>
+													</div>
+								  				</div>
+
+												<div class="row">
+									  				<strong>
+									  					Contenido:
+									  				</strong>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formNewStory.contentEsp) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formNewStory.contentEsp) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set contentEsp = {'attr': {'class': 'redactor', 'placeholder':'Contenido', 'id':'_contentEsp', 'name':'_contentEsp'}} %}
+												        	{{ form_widget(formNewStory.contentEsp, contentEsp) }}
+												        </div>
+													</div>
+								  				</div>
+											</div>
+										</div>
+										
+										<div class="tab-pane fade" id="tab_2">
+											<div class="row">
+												<div class="row" >
+									  				<strong>
+									  					Title displayed:
+									  				</strong>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formNewStory.titleEng) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formNewStory.titleEng) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_titleEng = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'title', 'id':'_titleEng'}} %}
+												        	{{ form_widget(formNewStory.titleEng, opt_titleEng) }}
+												        </div>
+													</div>
+								  				</div>
+
+												<div class="row" >
+									  				<strong>
+									  					Content:
+									  				</strong>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formNewStory.contentEng) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formNewStory.contentEng) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set contentEng = {'attr': {'class': 'redactor', 'placeholder':'Content', 'id':'_contentEng', 'name':'_contentEng'}} %}
+												        	{{ form_widget(formNewStory.contentEng, contentEng) }}
+												        </div>
+													</div>
+								  				</div>
+											</div>
+										</div>
 									</div>
 
 									<div class="form-group">

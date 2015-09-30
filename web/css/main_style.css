@@ -1202,7 +1202,7 @@ hr {
 	-ms-transition: 0.3s;
 	transition: 0.3s;
 }
-.over_div_stories .btn-perso {
+.over_div_stories .btn-perso, .over_div_stories .btn-perso-bis {
 	margin-top: 25px;
 }
 .project_case {
@@ -1245,6 +1245,40 @@ hr {
 }
 @media (min-width: 478px) and (max-width: 993px){
 	.btn-perso {
+		padding: 3px 5px; 
+		font-size: 1em;
+	}
+}
+
+.btn-perso-bis, .btn-perso-bis:focus {
+	outline:none;
+	margin: 1px !important;
+	background-color: rgba(9,85,143,0.18);
+	color: rgba(9,85,143,0.88);
+	border-radius: 0;
+	border: none;
+	box-shadow: none;
+}
+.btn-perso-bis:hover, .btn-perso-bis-active {
+	background-color: rgba(9,85,143,0.88);
+	color: white;
+	border: none;
+	box-shadow: none;
+}
+@media (min-width: 1400px) {
+	.btn-perso-bis {
+		padding: 5px 9px; 
+		font-size: 1em;
+	}
+}
+@media (min-width: 992px) and (max-width: 1399px){
+	.btn-perso-bis {
+		padding: 4px 7px; 
+		font-size: 1em;
+	}
+}
+@media (min-width: 478px) and (max-width: 993px){
+	.btn-perso-bis {
 		padding: 3px 5px; 
 		font-size: 1em;
 	}

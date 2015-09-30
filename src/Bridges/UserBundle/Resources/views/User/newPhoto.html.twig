@@ -15,6 +15,15 @@
 		</div>
 
 		<div id="fullpage">
+
+			{% set current_language = '' %}
+	        {% if (app.request.get('_route_params')) != null %}
+	          {% if (app.request.get('_route_params')._locale == 'es') %}
+	            {% set current_language = 'es' %}
+	          {% else %}
+	            {% set current_language = 'en' %}
+	          {% endif %}
+	        {% endif %}
 			
 			<div class="section" id="user">
 				<div class="inner-section">

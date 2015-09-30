@@ -31,16 +31,30 @@ class Page
     /**
      * @var string
      *
-     * @ORM\Column(name="header", type="string", length=255, nullable=true)
+     * @ORM\Column(name="headerEng", type="string", length=255, nullable=true)
      */
-    private $header;
+    private $headerEng;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="text", nullable=true)
+     * @ORM\Column(name="contentEng", type="text", nullable=true)
      */
-    private $content;
+    private $contentEng;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="headerEsp", type="string", length=255, nullable=true)
+     */
+    private $headerEsp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contentEsp", type="text", nullable=true)
+     */
+    private $contentEsp;
 
     /**
      * @var \DateTime
@@ -227,5 +241,100 @@ class Page
     {
         return $this->dataBaseName;
     }
-}
 
+    /**
+     * Set headerEng
+     *
+     * @param string $headerEng
+     *
+     * @return Page
+     */
+    public function setHeaderEng($headerEng)
+    {
+        $this->headerEng = $headerEng;
+
+        return $this;
+    }
+
+    /**
+     * Get headerEng
+     *
+     * @return string
+     */
+    public function getHeaderEng()
+    {
+        return $this->headerEng;
+    }
+
+    /**
+     * Set contentEng
+     *
+     * @param string $contentEng
+     *
+     * @return Page
+     */
+    public function setContentEng($contentEng)
+    {
+        $this->contentEng = $contentEng;
+
+        return $this;
+    }
+
+    /**
+     * Get contentEng
+     *
+     * @return string
+     */
+    public function getContentEng()
+    {
+        return $this->contentEng;
+    }
+
+    /**
+     * Set headerEsp
+     *
+     * @param string $headerEsp
+     *
+     * @return Page
+     */
+    public function setHeaderEsp($headerEsp)
+    {
+        $this->headerEsp = $headerEsp;
+
+        return $this;
+    }
+
+    /**
+     * Get headerEsp
+     *
+     * @return string
+     */
+    public function getHeaderEsp()
+    {
+        return $this->headerEsp;
+    }
+
+    /**
+     * Set contentEsp
+     *
+     * @param string $contentEsp
+     *
+     * @return Page
+     */
+    public function setContentEsp($contentEsp)
+    {
+        $this->contentEsp = $contentEsp;
+
+        return $this;
+    }
+
+    /**
+     * Get contentEsp
+     *
+     * @return string
+     */
+    public function getContentEsp()
+    {
+        return $this->contentEsp;
+    }
+}

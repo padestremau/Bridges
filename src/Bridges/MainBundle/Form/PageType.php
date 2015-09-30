@@ -17,9 +17,16 @@ class PageType extends AbstractType
         $builder
             ->add('name', 'text', array('label' => 'Name',
                                         'required' => false))
-            ->add('header', 'text', array('label' => 'Header',
+            ->add('headerEng', 'text', array('label' => 'Header',
                                         'required' => false))
-            ->add('content','redactor', array( 
+            ->add('contentEng','redactor', array( 
+                                            "redactor"=>"admin_page",
+                                            'label' => 'Content',
+                                            'required' => false
+                                            ))
+            ->add('headerEsp', 'text', array('label' => 'Header',
+                                        'required' => false))
+            ->add('contentEsp','redactor', array( 
                                             "redactor"=>"admin_page",
                                             'label' => 'Content',
                                             'required' => false

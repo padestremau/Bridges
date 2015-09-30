@@ -1,0 +1,49 @@
+<form id="volunteer_form" method="post" action="{{ path('bridges_main_volunteer') }}">
+							        <div id="" class="row">
+
+							        	<div class="form-group row">
+											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="senderVolunteer" id="senderVolunteer" placeholder="{{ 'volunteer.form.name' | trans }}" class="form-control placeholder-no-fix"/>
+									        </div>
+											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+												<input type="text" name="emailVolunteer" id="emailVolunteer" placeholder="{{ 'volunteer.form.email' | trans }}" class="form-control placeholder-no-fix"/>
+									        </div>
+										</div>
+										<br/>
+										<div class="form-group row">
+											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+												<input type="integer" name="ageVolunteer" id="ageVolunteer" placeholder="{{ 'volunteer.form.age' | trans }}" class="form-control placeholder-no-fix"/>
+									        </div>
+											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
+												<input type="tel" name="telVolunteer" id="telVolunteer" placeholder="{{ 'volunteer.form.tel' | trans }}" class="form-control placeholder-no-fix"/>
+									        </div>
+										</div>
+										<br/>
+							            <div class="form-group row">
+							            	{{ 'volunteer.form.whyPartOf' | trans }}
+							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.whyPartOf' | trans }}"></textarea>
+							                </div>
+							            </div>
+							            <br/>
+							            <div class="form-group row">
+							            	{{ 'volunteer.form.howMuchTime' | trans }}
+							            	<br/>
+							            	{{ 'volunteer.form.manyPositions' | trans }}
+							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.manyPositions' | trans }}"></textarea>
+							                </div>
+							            </div>
+							            <br/>
+							            <div class="form-group row">
+							            	{{ 'volunteer.form.howHearAbout' | trans }}
+							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.howHearAbout' | trans }}"></textarea>
+							                </div>
+							            </div>
+							        </div>
+							        <br/>
+							        <div class="center">
+								        <input type="submit" value="{{ 'volunteer.actions.send' | trans }}" class="btn btn-footer uppercase">
+							        </div>
+							    </form>

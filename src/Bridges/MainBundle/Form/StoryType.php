@@ -15,9 +15,16 @@ class StoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', 'text', array('label' => 'Title',
+            ->add('titleEng', 'text', array('label' => 'Title',
                                         'required' => false))
-            ->add('content','redactor', array( 
+            ->add('contentEng','redactor', array( 
+                                            "redactor"=>"admin_story",
+                                            'label' => 'Content',
+                                            'required' => false
+                                            ))
+            ->add('titleEsp', 'text', array('label' => 'Title',
+                                        'required' => false))
+            ->add('contentEsp','redactor', array( 
                                             "redactor"=>"admin_story",
                                             'label' => 'Content',
                                             'required' => false

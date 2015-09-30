@@ -1,6 +1,29 @@
 <!-- BEGIN FOOTER -->
 <div id="footer" class="section section_content section-footer center">
-	<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/7.jpg") }}'); background-size: cover; background-position: 50%;"></div>
+	<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/7.jpg") }}'); background-size: cover; background-position: 50%;">
+		<!-- Jssor Slider Begin -->
+				    <!-- You can move inline styles to css file or css block. -->
+				    <div id="slider_container_footer" class="slider_container_bg">
+				        <!-- Slides Container -->
+				        <div u="slides" id="slider_inner_footer" class="slider_inner_bg">
+				        	
+							{% if photos|length > 0 %}
+								{% for single_photo in photos %}
+									{% if single_photo.category == 'footer' %}
+										<div>
+											<img u=image src="{{ asset(single_photo.webPath) }}" />
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+				        </div>
+				    </div>
+				    <!-- Trigger -->
+				    <script>
+				        jssor_slider_starter('slider_container_footer');
+				    </script>
+				    <!-- Jssor Slider End -->
+	</div>
 
 	<div class="inner-section inner-section-footer row">
 		<div class="row">

@@ -16,6 +16,15 @@
 
 		<div id="fullpage">
 
+			{% set current_language = '' %}
+	        {% if (app.request.get('_route_params')) != null %}
+	          {% if (app.request.get('_route_params')._locale == 'es') %}
+	            {% set current_language = 'es' %}
+	          {% else %}
+	            {% set current_language = 'en' %}
+	          {% endif %}
+	        {% endif %}
+
 			<script type="text/javascript">
 				var home_images_bank = [];
 				var home_counter = 0;
@@ -67,92 +76,59 @@
 				{% endfor %}
 			{% endif %}
 
-			<script type="text/javascript">
-				function changeImage() {
-					$("#home").css({'background-image' : "url ('"+home_images_bank[home_counter]+"')"}); 
-					if (home_counter < home_images_bank.length) {
-						home_counter ++;
-					}
-					else {
-						home_counter = 0;
-					}
-					// For recursive
-					setTimeout(changeImage, 3000);
-				}
-				setTimeout(changeImage, 3000);
-			</script>
+			<script>
+		        jssor_slider_starter = function (containerId) {
+		        	var _SlideshowTransitions = [
+		            //Fade
+		            { $Duration: 1400, $Opacity: 2 }
+		            ];
+
+		            var options = {
+		                $FillMode: 2,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
+		                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+		                $AutoPlayInterval: 3000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+		                $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+		                $SlideDuration: 3000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+		                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+		                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+
+		                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
+		                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
+		                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
+		                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
+		                }
+		            };
+
+		            var jssor_slider = new $JssorSlider$(containerId, options);
+
+		            //responsive code begin
+		            //you can remove responsive code if you don't want the slider scales while window resizes
+		            function ScaleSlider() {
+		                var bodyWidth = document.body.clientWidth;
+		                if (bodyWidth)
+		                    jssor_slider.$ScaleWidth(Math.min(bodyWidth, 1920));
+		                else
+		                    $Jssor$.$Delay(ScaleSlider, 30);
+		            }
+
+		            ScaleSlider();
+		            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+
+		            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
+		            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+		        };
+		    </script>
 
 
 			<!-- Accueil -->
 			<div class="section section_content" id="home" >
 				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/2.jpg") }}'); background-size: cover; background-position: 50%;">
-					<script>
-				        jssor_slider1_starter = function (containerId) {
-				        	var _SlideshowTransitions = [
-				            //Fade
-				            { $Duration: 1400, $Opacity: 2 }
-				            ];
-
-				            var options = {
-				                $FillMode: 2,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
-				                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
-				                $AutoPlayInterval: 3000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
-				                $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
-				                $SlideDuration: 3000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
-				                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
-				                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
-
-				                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
-				                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
-				                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
-				                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
-				                }
-				            };
-
-				            var jssor_slider1 = new $JssorSlider$(containerId, options);
-
-				            //responsive code begin
-				            //you can remove responsive code if you don't want the slider scales while window resizes
-				            function ScaleSlider() {
-				                var bodyWidth = document.body.clientWidth;
-				                if (bodyWidth)
-				                    jssor_slider1.$ScaleWidth(Math.min(bodyWidth, 1920));
-				                else
-				                    $Jssor$.$Delay(ScaleSlider, 30);
-				            }
-
-				            ScaleSlider();
-				            $Jssor$.$AddEvent(window, "load", ScaleSlider);
-
-				            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
-				            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-				            //responsive code end
-							// var slider_width = $('#page_container_gen').innerWidth();
-							// var slider_height = window.innerHeight * 0.45;
-							// $('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-							// $('#slider1_container_content').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-							// $(window).resize(function() {
-							// 	var slider_width = $('#page_container_gen').innerWidth();
-							// 	var slider_height = window.innerHeight * 0.45;
-							// 	$('#slider1_container').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-							// 	$('#slider1_container_content').css({'width':slider_width+'px !important', 'height':slider_height+'px'});
-							// });
-				        };
-				    </script>
 				    <!-- Jssor Slider Begin -->
 				    <!-- You can move inline styles to css file or css block. -->
-				    <div id="slider1_container" class="slider_container_bg">
-				        <!-- Loading Screen -->
-				        <div u="loading" style="position: absolute; top: 0px; left: 0px;">
-				            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
-				                top: 0px; left: 0px; width: 100%; height: 100%;">
-				            </div>
-				            <div style="position: absolute; display: block; background: url("{{ asset('img/system/slideshow/loader2.gif') }}") no-repeat center center;
-				                top: 0px; left: 0px; width: 100%; height: 100%;">
-				            </div>
-				        </div>
+				    <div id="slider_container_home" class="slider_container_bg">
 				        <!-- Slides Container -->
-				        <div u="slides" id="slider1_inner" class="slider_inner_bg">
+				        <div u="slides" id="slider_inner_home" class="slider_inner_bg">
+				        	
 							{% if photos|length > 0 %}
 								{% for single_photo in photos %}
 									{% if single_photo.category == 'home' %}
@@ -166,7 +142,7 @@
 				    </div>
 				    <!-- Trigger -->
 				    <script>
-				        jssor_slider1_starter('slider1_container');
+				        jssor_slider_starter('slider_container_home');
 				    </script>
 				    <!-- Jssor Slider End -->
 				</div>
@@ -203,7 +179,30 @@
 
 
 			<div class="section section_content" id="aboutUs" >
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/3.jpg") }}'); background-size: cover; background-position: 50%;"></div>
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/3.jpg") }}'); background-size: cover; background-position: 50%;">
+					<!-- Jssor Slider Begin -->
+				    <!-- You can move inline styles to css file or css block. -->
+				    <div id="slider_container_aboutUs" class="slider_container_bg">
+				        <!-- Slides Container -->
+				        <div u="slides" id="slider_inner_aboutUs" class="slider_inner_bg">
+				        	
+							{% if photos|length > 0 %}
+								{% for single_photo in photos %}
+									{% if single_photo.category == 'aboutUs' %}
+										<div>
+											<img u=image src="{{ asset(single_photo.webPath) }}" />
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+				        </div>
+				    </div>
+				    <!-- Trigger -->
+				    <script>
+				        jssor_slider_starter('slider_container_aboutUs');
+				    </script>
+				    <!-- Jssor Slider End -->
+				</div>
 
 				{% set photoSectionAboutUs = '' %}
 				{% if pages|length > 0 %}
@@ -231,10 +230,22 @@
 								{{ 'header.titles.aboutUs' | trans }}
 							</h1>
 							<div class="left">
-								{% if photoSectionAboutUs.content|length > 0 %}
-									{{ photoSectionAboutUs.content|raw }}
+								{% if current_language %}
+									{% if current_language == 'es' and photoSectionAboutUs.contentEsp|length > 0 %}
+										{{ photoSectionAboutUs.contentEsp }} 
+									{% else %}
+										{% if photoSectionAboutUs.contentEng|length > 0 %}
+											{{ photoSectionAboutUs.contentEng|raw }}
+										{% else %}
+											{{ 'home.warning.noContent' | trans }}
+										{% endif %}
+									{% endif %}
 								{% else %}
-									{{ 'home.warning.noContent' | trans }}
+									{% if photoSectionAboutUs.contentEng|length > 0 %}
+										{{ photoSectionAboutUs.contentEng|raw }}
+									{% else %}
+										{{ 'home.warning.noContent' | trans }}
+									{% endif %}
 								{% endif %}
 							</div>
 						</div>
@@ -247,7 +258,30 @@
 			
 
 			<div class="section section_content" id="stories">
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/1.jpg") }}'); background-size: cover; background-position: 50%;"></div>
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/1.jpg") }}'); background-size: cover; background-position: 50%;">
+					<!-- Jssor Slider Begin -->
+				    <!-- You can move inline styles to css file or css block. -->
+				    <div id="slider_container_stories" class="slider_container_bg">
+				        <!-- Slides Container -->
+				        <div u="slides" id="slider_inner_stories" class="slider_inner_bg">
+				        	
+							{% if photos|length > 0 %}
+								{% for single_photo in photos %}
+									{% if single_photo.category == 'stories' %}
+										<div>
+											<img u=image src="{{ asset(single_photo.webPath) }}" />
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+				        </div>
+				    </div>
+				    <!-- Trigger -->
+				    <script>
+				        jssor_slider_starter('slider_container_stories');
+				    </script>
+				    <!-- Jssor Slider End -->
+				</div>
 				{% set photoSectionStories = '' %}
 				{% if pages|length > 0 %}
 					{% for single_page in pages %}
@@ -274,18 +308,42 @@
 									{{ 'header.titles.stories' | trans }}
 								</h1>
 								<h3>
-									{% if photoSectionStories.header|length > 0 %}
-										{{ photoSectionStories.header }}
+									{% if current_language %}
+										{% if current_language == 'es' and photoSectionStories.headerEsp|length > 0 %}
+											{{ photoSectionStories.headerEsp }} 
+										{% else %}
+											{% if photoSectionStories.headerEng|length > 0 %}
+												{{ photoSectionStories.headerEng|raw }}
+											{% else %}
+												{{ 'home.warning.noHeader' | trans }}
+											{% endif %}
+										{% endif %}
 									{% else %}
-										{{ 'home.warning.noHeader' | trans }}
+										{% if photoSectionStories.headerEng|length > 0 %}
+											{{ photoSectionStories.headerEng|raw }}
+										{% else %}
+											{{ 'home.warning.noHeader' | trans }}
+										{% endif %}
 									{% endif %}
 								</h3>
 							</div>
 							<div class="row">
-								{% if photoSectionStories.content|length > 0 %}
-									{{ photoSectionStories.content|raw }}
+								{% if current_language %}
+									{% if current_language == 'es' and photoSectionStories.contentEsp|length > 0 %}
+										{{ photoSectionStories.contentEsp }} 
+									{% else %}
+										{% if photoSectionStories.contentEng|length > 0 %}
+											{{ photoSectionStories.contentEng|raw }}
+										{% else %}
+											{{ 'home.warning.noContent' | trans }}
+										{% endif %}
+									{% endif %}
 								{% else %}
-									{{ 'home.warning.noContent' | trans }}
+									{% if photoSectionStories.contentEng|length > 0 %}
+										{{ photoSectionStories.contentEng|raw }}
+									{% else %}
+										{{ 'home.warning.noContent' | trans }}
+									{% endif %}
 								{% endif %}
 							</div>
 							<div class="row">
@@ -295,10 +353,22 @@
 											<div class="project_case" style="background-image: url('{{ asset(single_story.webPath) }}'); background-size: cover; background-position: 50%;">
 												<div class="project_case_inner">
 													<h4>
-														{% if single_story.title|length > 0 %}
-															{{ single_story.title }}
+														{% if current_language %}
+															{% if current_language == 'es' and single_story.titleEsp|length > 0 %}
+																{{ single_story.titleEsp }} 
+															{% else %}
+																{% if single_story.titleEng|length > 0 %}
+																	{{ single_story.titleEng|raw }}
+																{% else %}
+																	{{ 'stories.warning.noTitle' | trans }}
+																{% endif %}
+															{% endif %}
 														{% else %}
-															{{ 'stories.warning.noTitle' | trans }}
+															{% if single_story.titleEng|length > 0 %}
+																{{ single_story.titleEng|raw }}
+															{% else %}
+																{{ 'stories.warning.noTitle' | trans }}
+															{% endif %}
 														{% endif %}
 													</h4>
 												</div>
@@ -347,17 +417,41 @@
 					                </div>
 					                <div class="row">
 						              	<h2>
-						                	{% if single_story.title|length > 0 %}
-												{{ single_story.title }}
+						                	{% if current_language %}
+												{% if current_language == 'es' and single_story.titleEsp|length > 0 %}
+													{{ single_story.titleEsp }} 
+												{% else %}
+													{% if single_story.titleEng|length > 0 %}
+														{{ single_story.titleEng|raw }}
+													{% else %}
+														{{ 'stories.warning.noTitle' | trans }}
+													{% endif %}
+												{% endif %}
 											{% else %}
-												{{ 'stories.warning.noTitle' | trans }}
+												{% if single_story.titleEng|length > 0 %}
+													{{ single_story.titleEng|raw }}
+												{% else %}
+													{{ 'stories.warning.noTitle' | trans }}
+												{% endif %}
 											{% endif %}
 						                </h2>
 						                <p>
-						                	{% if single_story.content|length > 0 %}
-												{{ single_story.content|raw }}
+						                	{% if current_language %}
+												{% if current_language == 'es' and single_story.contentEsp|length > 0 %}
+													{{ single_story.contentEsp }} 
+												{% else %}
+													{% if single_story.contentEng|length > 0 %}
+														{{ single_story.contentEng|raw }}
+													{% else %}
+														{{ 'stories.warning.noContent' | trans }}
+													{% endif %}
+												{% endif %}
 											{% else %}
-												{{ 'stories.warning.noContent' | trans }}
+												{% if single_story.contentEng|length > 0 %}
+													{{ single_story.contentEng|raw }}
+												{% else %}
+													{{ 'stories.warning.noContent' | trans }}
+												{% endif %}
 											{% endif %}
 						                </p>
 					                </div>
@@ -371,7 +465,30 @@
 
 
 			<div class="section section_content" id="work">
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/4.jpg") }}'); background-size: cover; background-position: 50%;"></div>
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/4.jpg") }}'); background-size: cover; background-position: 50%;">
+					<!-- Jssor Slider Begin -->
+				    <!-- You can move inline styles to css file or css block. -->
+				    <div id="slider_container_work" class="slider_container_bg">
+				        <!-- Slides Container -->
+				        <div u="slides" id="slider_inner_work" class="slider_inner_bg">
+				        	
+							{% if photos|length > 0 %}
+								{% for single_photo in photos %}
+									{% if single_photo.category == 'work' %}
+										<div>
+											<img u=image src="{{ asset(single_photo.webPath) }}" />
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+				        </div>
+				    </div>
+				    <!-- Trigger -->
+				    <script>
+				        jssor_slider_starter('slider_container_work');
+				    </script>
+				    <!-- Jssor Slider End -->
+				</div>
 
 				{% set photoSectionTheWork = '' %}
 				{% if pages|length > 0 %}
@@ -399,17 +516,41 @@
 								{{ 'header.titles.work' | trans }}
 							</h1>
 							<h3>
-								{% if photoSectionTheWork.header|length > 0 %}
-									{{ photoSectionTheWork.header }}
+								{% if current_language %}
+									{% if current_language == 'es' and photoSectionTheWork.headerEsp|length > 0 %}
+										{{ photoSectionTheWork.headerEsp }} 
+									{% else %}
+										{% if photoSectionTheWork.headerEng|length > 0 %}
+											{{ photoSectionTheWork.headerEng|raw }}
+										{% else %}
+											{{ 'home.warning.noHeader' | trans }}
+										{% endif %}
+									{% endif %}
 								{% else %}
-									{{ 'home.warning.noHeader' | trans }}
+									{% if photoSectionTheWork.headerEng|length > 0 %}
+										{{ photoSectionTheWork.headerEng|raw }}
+									{% else %}
+										{{ 'home.warning.noHeader' | trans }}
+									{% endif %}
 								{% endif %}
 							</h3>
 							<div class="left">
-								{% if photoSectionTheWork.content|length > 0 %}
-									{{ photoSectionTheWork.content|raw }}
+								{% if current_language %}
+									{% if current_language == 'es' and photoSectionTheWork.contentEsp|length > 0 %}
+										{{ photoSectionTheWork.contentEsp }} 
+									{% else %}
+										{% if photoSectionTheWork.contentEng|length > 0 %}
+											{{ photoSectionTheWork.contentEng|raw }}
+										{% else %}
+											{{ 'home.warning.noContent' | trans }}
+										{% endif %}
+									{% endif %}
 								{% else %}
-									{{ 'home.warning.noContent' | trans }}
+									{% if photoSectionTheWork.contentEng|length > 0 %}
+										{{ photoSectionTheWork.contentEng|raw }}
+									{% else %}
+										{{ 'home.warning.noContent' | trans }}
+									{% endif %}
 								{% endif %}
 							</div>
 						</div>
@@ -423,7 +564,30 @@
 
 
 			<div class="section section_content" id="volunteer">
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/5.jpg") }}'); background-size: cover; background-position: 50%;"></div>
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/5.jpg") }}'); background-size: cover; background-position: 50%;">
+					<!-- Jssor Slider Begin -->
+				    <!-- You can move inline styles to css file or css block. -->
+				    <div id="slider_container_volunteer" class="slider_container_bg">
+				        <!-- Slides Container -->
+				        <div u="slides" id="slider_inner_volunteer" class="slider_inner_bg">
+				        	
+							{% if photos|length > 0 %}
+								{% for single_photo in photos %}
+									{% if single_photo.category == 'volunteer' %}
+										<div>
+											<img u=image src="{{ asset(single_photo.webPath) }}" />
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+				        </div>
+				    </div>
+				    <!-- Trigger -->
+				    <script>
+				        jssor_slider_starter('slider_container_volunteer');
+				    </script>
+				    <!-- Jssor Slider End -->
+				</div>
 
 				{% set photoSectionVolunteer = '' %}
 				{% if pages|length > 0 %}
@@ -451,69 +615,47 @@
 								{{ 'header.titles.volunteer' | trans }}
 							</h1>
 							<h3>
-								{% if photoSectionVolunteer.header|length > 0 %}
-									{{ photoSectionVolunteer.header }}
+								{% if current_language %}
+									{% if current_language == 'es' and photoSectionVolunteer.headerEsp|length > 0 %}
+										{{ photoSectionVolunteer.headerEsp }} 
+									{% else %}
+										{% if photoSectionVolunteer.headerEng|length > 0 %}
+											{{ photoSectionVolunteer.headerEng|raw }}
+										{% else %}
+											{{ 'home.warning.noHeader' | trans }}
+										{% endif %}
+									{% endif %}
 								{% else %}
-									{{ 'home.warning.noHeader' | trans }}
+									{% if photoSectionVolunteer.headerEng|length > 0 %}
+										{{ photoSectionVolunteer.headerEng|raw }}
+									{% else %}
+										{{ 'home.warning.noHeader' | trans }}
+									{% endif %}
 								{% endif %}
 							</h3>
 							<p>
-								{% if photoSectionVolunteer.content|length > 0 %}
-									{{ photoSectionVolunteer.content|raw }}
+								{% if current_language %}
+									{% if current_language == 'es' and photoSectionVolunteer.contentEsp|length > 0 %}
+										{{ photoSectionVolunteer.contentEsp }} 
+									{% else %}
+										{% if photoSectionVolunteer.contentEng|length > 0 %}
+											{{ photoSectionVolunteer.contentEng|raw }}
+										{% else %}
+											{{ 'home.warning.noContent' | trans }}
+										{% endif %}
+									{% endif %}
 								{% else %}
-									{{ 'home.warning.noContent' | trans }}
+									{% if photoSectionVolunteer.contentEng|length > 0 %}
+										{{ photoSectionVolunteer.contentEng|raw }}
+									{% else %}
+										{{ 'home.warning.noContent' | trans }}
+									{% endif %}
 								{% endif %}
 							</p>
-							<div class="row">
-								<form id="volunteer_form" method="post" action="{{ path('bridges_main_volunteer') }}">
-							        <div id="" class="row">
-
-							        	<div class="form-group row">
-											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="senderVolunteer" id="senderVolunteer" placeholder="{{ 'volunteer.form.name' | trans }}" class="form-control placeholder-no-fix"/>
-									        </div>
-											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<input type="text" name="emailVolunteer" id="emailVolunteer" placeholder="{{ 'volunteer.form.email' | trans }}" class="form-control placeholder-no-fix"/>
-									        </div>
-										</div>
-										<br/>
-										<div class="form-group row">
-											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<input type="integer" name="ageVolunteer" id="ageVolunteer" placeholder="{{ 'volunteer.form.age' | trans }}" class="form-control placeholder-no-fix"/>
-									        </div>
-											<div class="input-icon col-lg-6 col-md-6 col-sm-6 col-xs-12">
-												<input type="tel" name="telVolunteer" id="telVolunteer" placeholder="{{ 'volunteer.form.tel' | trans }}" class="form-control placeholder-no-fix"/>
-									        </div>
-										</div>
-										<br/>
-							            <div class="form-group row">
-							            	{{ 'volunteer.form.whyPartOf' | trans }}
-							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.whyPartOf' | trans }}"></textarea>
-							                </div>
-							            </div>
-							            <br/>
-							            <div class="form-group row">
-							            	{{ 'volunteer.form.howMuchTime' | trans }}
-							            	<br/>
-							            	{{ 'volunteer.form.manyPositions' | trans }}
-							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.manyPositions' | trans }}"></textarea>
-							                </div>
-							            </div>
-							            <br/>
-							            <div class="form-group row">
-							            	{{ 'volunteer.form.howHearAbout' | trans }}
-							                <div class="input-icon col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							                	<textarea class="form-control placeholder-no-fix" name="corpsMail" id="corpsMail" placeholder="{{ 'volunteer.form.howHearAbout' | trans }}"></textarea>
-							                </div>
-							            </div>
-							        </div>
-							        <br/>
-							        <div class="center">
-								        <input type="submit" value="{{ 'volunteer.actions.send' | trans }}" class="btn btn-footer uppercase">
-							        </div>
-							    </form>
+							<div class="row center">
+								<a href="http://goo.gl/forms/AGF4Um8NHI" target="_blank" class="btn btn-perso-bis uppercase">
+									{{ 'home.actions.join' | trans }}
+								</a>
 							</div>
 						</div>
 					</div>
@@ -524,7 +666,30 @@
 			</div>
 
 			<div class="section section_content" id="donate">
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/6.jpg") }}'); background-size: cover; background-position: 50%;"></div>
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/6.jpg") }}'); background-size: cover; background-position: 50%;">
+					<!-- Jssor Slider Begin -->
+				    <!-- You can move inline styles to css file or css block. -->
+				    <div id="slider_container_donate" class="slider_container_bg">
+				        <!-- Slides Container -->
+				        <div u="slides" id="slider_inner_donate" class="slider_inner_bg">
+				        	
+							{% if photos|length > 0 %}
+								{% for single_photo in photos %}
+									{% if single_photo.category == 'donate' %}
+										<div>
+											<img u=image src="{{ asset(single_photo.webPath) }}" />
+										</div>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+				        </div>
+				    </div>
+				    <!-- Trigger -->
+				    <script>
+				        jssor_slider_starter('slider_container_donate');
+				    </script>
+				    <!-- Jssor Slider End -->
+				</div>
 
 				{% set photoSectionDonate = '' %}
 				{% if pages|length > 0 %}
@@ -553,16 +718,40 @@
 								{{ 'header.titles.donate' | trans }}
 							</h1>
 							<h3>
-								{% if photoSectionDonate.header|length > 0 %}
-									{{ photoSectionDonate.header }}
+								{% if current_language %}
+									{% if current_language == 'es' and photoSectionDonate.headerEsp|length > 0 %}
+										{{ photoSectionDonate.headerEsp }} 
+									{% else %}
+										{% if photoSectionDonate.headerEng|length > 0 %}
+											{{ photoSectionDonate.headerEng|raw }}
+										{% else %}
+											{{ 'home.warning.noHeader' | trans }}
+										{% endif %}
+									{% endif %}
 								{% else %}
-									{{ 'home.warning.noHeader' | trans }}
+									{% if photoSectionDonate.headerEng|length > 0 %}
+										{{ photoSectionDonate.headerEng|raw }}
+									{% else %}
+										{{ 'home.warning.noHeader' | trans }}
+									{% endif %}
 								{% endif %}
 							</h3>
-							{% if photoSectionDonate.content|length > 0 %}
-								{{ photoSectionDonate.content|raw }}
+							{% if current_language %}
+								{% if current_language == 'es' and photoSectionDonate.contentEsp|length > 0 %}
+									{{ photoSectionDonate.contentEsp }} 
+								{% else %}
+									{% if photoSectionDonate.contentEng|length > 0 %}
+										{{ photoSectionDonate.contentEng|raw }}
+									{% else %}
+										{{ 'home.warning.noContent' | trans }}
+									{% endif %}
+								{% endif %}
 							{% else %}
-								{{ 'home.warning.noContent' | trans }}
+								{% if photoSectionDonate.contentEng|length > 0 %}
+									{{ photoSectionDonate.contentEng|raw }}
+								{% else %}
+									{{ 'home.warning.noContent' | trans }}
+								{% endif %}
 							{% endif %}
 						</div>
 

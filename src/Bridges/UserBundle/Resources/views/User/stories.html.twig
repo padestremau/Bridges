@@ -16,6 +16,15 @@
 
 		<div id="fullpage">
 
+			{% set current_language = '' %}
+	        {% if (app.request.get('_route_params')) != null %}
+	          {% if (app.request.get('_route_params')._locale == 'es') %}
+	            {% set current_language = 'es' %}
+	          {% else %}
+	            {% set current_language = 'en' %}
+	          {% endif %}
+	        {% endif %}
+
 			<div class="section" id="user">
 				<div class="inner-section">
 				
@@ -54,7 +63,23 @@
 						                              	{% else %}
 						                              		-
 						                              	{% endif %}.
-														{{ single_story.title|truncate(20, false, '...') }}
+						                              	{% if current_language %}
+															{% if current_language == 'es' and single_story.titleEsp|length > 0 %}
+																{{ single_story.titleEsp|truncate(20, false, '...') }}
+															{% else %}
+																{% if single_story.titleEng|length > 0 %}
+																	{{ single_story.titleEng|truncate(20, false, '...') }}
+																{% else %}
+																	(vacio)
+																{% endif %}
+															{% endif %}
+														{% else %}
+															{% if single_story.titleEng|length > 0 %}
+																{{ single_story.titleEng|truncate(20, false, '...') }}
+															{% else %}
+																(vacio)
+															{% endif %}
+														{% endif %}
 														<span class="float-right arrow_story">
 															<img src="{{ asset('img/system/defaults/right_arrow_spe.png') }}" alt=""/>
 														</span>
@@ -108,10 +133,24 @@
 												</div>
 												<br/>
 												<div class="row">
-													{% if storyAsked.title|length > 0 %}
-														<h3>
-															{{ storyAsked.title|raw }}
-														</h3>
+													{% if current_language %}
+														{% if current_language == 'es' and storyAsked.titleEsp|length > 0 %}
+															<h3>
+																{{ storyAsked.titleEsp }} 
+															</h3>
+														{% else %}
+															{% if storyAsked.titleEng|length > 0 %}
+																<h3>
+																	{{ storyAsked.titleEng|raw }}
+																</h3>
+															{% endif %}
+														{% endif %}
+													{% else %}
+														{% if storyAsked.titleEng|length > 0 %}
+															<h3>
+																{{ storyAsked.titleEng|raw }}
+															</h3>
+														{% endif %}
 													{% endif %}
 													<div class="center date_story_lg italic">
 														{% if storyAsked.createdAt|length > 0 %}
@@ -165,10 +204,22 @@
 												<br/>
 												
 												<div class="row80">
-													{% if storyAsked.content|length > 0 %}
-														{{ storyAsked.content|raw }}
+													{% if current_language %}
+														{% if current_language == 'es' and storyAsked.contentEsp|length > 0 %}
+															{{ storyAsked.contentEsp }} 
+														{% else %}
+															{% if storyAsked.contentEng|length > 0 %}
+																{{ storyAsked.contentEng|raw }}
+															{% else %}
+																(historia vacia)
+															{% endif %}
+														{% endif %}
 													{% else %}
-														(historia vacia)
+														{% if storyAsked.contentEng|length > 0 %}
+															{{ storyAsked.contentEng|raw }}
+														{% else %}
+															(historia vacia)
+														{% endif %}
 													{% endif %}
 												</div>
 

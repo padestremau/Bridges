@@ -29,16 +29,30 @@ class Story
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     * @ORM\Column(name="titleEng", type="string", length=255, nullable=true)
      */
-    private $title;
+    private $titleEng;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="content", type="text", nullable=true)
+     * @ORM\Column(name="contentEng", type="text", nullable=true)
      */
-    private $content;
+    private $contentEng;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titleEsp", type="string", length=255, nullable=true)
+     */
+    private $titleEsp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contentEsp", type="text", nullable=true)
+     */
+    private $contentEsp;
 
     /**
      * @var \DateTime
@@ -394,5 +408,101 @@ class Story
     public function getOrderList()
     {
         return $this->orderList;
+    }
+
+    /**
+     * Set titleEng
+     *
+     * @param string $titleEng
+     *
+     * @return Story
+     */
+    public function setTitleEng($titleEng)
+    {
+        $this->titleEng = $titleEng;
+
+        return $this;
+    }
+
+    /**
+     * Get titleEng
+     *
+     * @return string
+     */
+    public function getTitleEng()
+    {
+        return $this->titleEng;
+    }
+
+    /**
+     * Set contentEng
+     *
+     * @param string $contentEng
+     *
+     * @return Story
+     */
+    public function setContentEng($contentEng)
+    {
+        $this->contentEng = $contentEng;
+
+        return $this;
+    }
+
+    /**
+     * Get contentEng
+     *
+     * @return string
+     */
+    public function getContentEng()
+    {
+        return $this->contentEng;
+    }
+
+    /**
+     * Set titleEsp
+     *
+     * @param string $titleEsp
+     *
+     * @return Story
+     */
+    public function setTitleEsp($titleEsp)
+    {
+        $this->titleEsp = $titleEsp;
+
+        return $this;
+    }
+
+    /**
+     * Get titleEsp
+     *
+     * @return string
+     */
+    public function getTitleEsp()
+    {
+        return $this->titleEsp;
+    }
+
+    /**
+     * Set contentEsp
+     *
+     * @param string $contentEsp
+     *
+     * @return Story
+     */
+    public function setContentEsp($contentEsp)
+    {
+        $this->contentEsp = $contentEsp;
+
+        return $this;
+    }
+
+    /**
+     * Get contentEsp
+     *
+     * @return string
+     */
+    public function getContentEsp()
+    {
+        return $this->contentEsp;
     }
 }

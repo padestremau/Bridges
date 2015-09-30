@@ -15,6 +15,15 @@
 		</div>
 
 		<div id="fullpage">
+
+			{% set current_language = '' %}
+	        {% if (app.request.get('_route_params')) != null %}
+	          {% if (app.request.get('_route_params')._locale == 'es') %}
+	            {% set current_language = 'es' %}
+	          {% else %}
+	            {% set current_language = 'en' %}
+	          {% endif %}
+	        {% endif %}
 			
 			<div class="section" id="user">
 				<div class="inner-section">
@@ -71,50 +80,126 @@
 								        </div>
 									</div>
 
-									<div class="form-group">
-								        {{ form_label(formNewPage.header, 'Sub-Titulo', 
-								        	{'label_attr': {'class': 'control-label'}}) }}
-								        {% if form_errors(formNewPage.header) %}
-						                    <div class="error_message">
-						                      	<span class="warning_word">
-						                        	{{ 'user.warning.warning'|trans }}
-						                      	</span>
-						                      	<span class="warning_message">
-						                        	{{ form_errors(formNewPage.header) }}
-						                      	</span>
-						                    </div>
-						                    <br/>
-						                {% endif %}
-										<div class="input-icon">
-								        	<i class="fa fa-user"></i>
-								        	{% set opt_header = {'attr': {'class': 'form-control placeholder-no-fix',
-								        		'type':'text', 'placeholder':"Sub-Titulo visible de la pagina", 'id':'_header', 
-								        		'name':'_header'}} %}
-								        	{{ form_widget(formNewPage.header, opt_header) }}
-								        </div>
-									</div>
-									<div class="form-group">
-								        {{ form_label(formNewPage.content, 'Contenido', 
-								        	{'label_attr': {'class': 'control-label'}}) }}
-								        {% if form_errors(formNewPage.content) %}
-						                    <div class="error_message">
-						                      	<span class="warning_word">
-						                        	{{ 'user.warning.warning'|trans }}
-						                      	</span>
-						                      	<span class="warning_message">
-						                        	{{ form_errors(formNewPage.content) }}
-						                      	</span>
-						                    </div>
-						                    <br/>
-						                {% endif %}
-										<div class="input-icon">
-								        	<i class="fa fa-user"></i>
-								        	{% set opt_content = {'attr': { 'class': 'redactor',
-								        		'placeholder':"Contenido de la pagina", 'id':'_content', 
-								        		'name':'_content'}} %}
-								        	{{ form_widget(formNewPage.content, opt_content) }}
-								        </div>
+									<ul class="nav nav-tabs">
+										{% set index_general = 1 %}
+										{% for lang in 1..2 %}
+											<li class="{% if index_general == 1 %} active {% endif %}">
+												<a data-target="#tab_{{ index_general }}" data-toggle="tab">
+													{% if lang == 1 %}
+														<img src="{{ asset('img/system/language_flags/en.png') }}" alt="EN" class="language_flag"/>
+													{% elseif lang == 2 %}
+														<img src="{{ asset('img/system/language_flags/es.png') }}" alt="ES" class="language_flag"/>
+													{% endif %}
+												</a>
+											</li>
+											{% set index_general = index_general + 1 %}
+										{% endfor %}
+									</ul>
 
+									<br/>
+
+									<div class="tab-content" id="product_content">
+										<div class="tab-pane fade active in" id="tab_1">
+											<div class="row">
+												<div class="row">
+									  				<strong>
+									  					Sub-Title displayed:
+									  				</strong>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formNewPage.headerEng) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formNewPage.headerEng) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_headerEng = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Header', 'id':'_headerEng'}} %}
+												        	{{ form_widget(formNewPage.headerEng, opt_headerEng) }}
+												        </div>
+													</div>
+								  				</div>
+
+												<div class="row">
+									  				<strong>
+									  					Content:
+									  				</strong>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formNewPage.contentEng) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formNewPage.contentEng) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set contentEng = {'attr': {'class': 'redactor', 'placeholder':'Content', 'id':'_contentEng', 'name':'_contentEng'}} %}
+												        	{{ form_widget(formNewPage.contentEng, contentEng) }}
+												        </div>
+													</div>
+								  				</div>
+											</div>
+										</div>
+
+										<div class="tab-pane fade" id="tab_2">
+											<div class="row">
+												<div class="row">
+									  				<strong>
+									  					Sub-Título aparente:
+									  				</strong>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formNewPage.headerEsp) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formNewPage.headerEsp) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set opt_nameEs = {'attr': {'class': 'form-control placeholder-no-fix',
+												        		'type':'text', 'placeholder':'Titulo aparente', 'id':'_headerEsp'}} %}
+												        	{{ form_widget(formNewPage.headerEsp, opt_nameEs) }}
+												        </div>
+													</div>
+								  				</div>
+
+												<div class="row">
+									  				<strong>
+									  					Contenido:
+									  				</strong>
+													<div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												        {% if form_errors(formNewPage.contentEsp) %}
+										                    <div class="error_message">
+										                      	<span class="warning_word">
+										                        	{{ 'user.warning.warning'|trans }}
+										                      	</span>
+										                      	<span class="warning_message">
+										                        	{{ form_errors(formNewPage.contentEsp) }}
+										                      	</span>
+										                    </div>
+										                    <br/>
+										                {% endif %}
+														<div class="input-icon">
+												        	{% set contentEsp = {'attr': {'class': 'redactor', 'placeholder':'Contenido', 'id':'_contentEsp', 'name':'_contentEsp'}} %}
+												        	{{ form_widget(formNewPage.contentEsp, contentEsp) }}
+												        </div>
+													</div>
+								  				</div>
+											</div>
+										</div>
 									</div>
 
 									<div class="form-group">
