@@ -15,12 +15,7 @@ use Bridges\MainBundle\Form\PhotoType;
 
 class UserController extends Controller
 {
-    public function indexUserAction()
-    {
-        return $this->render('BridgesUserBundle:User:indexUser.html.twig');
-    }
-
-    public function pageAction($pageId = null)
+    public function indexUserAction($pageId = null)
     {
         $pages = $this ->getDoctrine()
                         ->getManager()
@@ -46,7 +41,7 @@ class UserController extends Controller
                                 ->find($pageId);
         }
 
-        return $this->render('BridgesUserBundle:User:pages.html.twig', array(
+        return $this->render('BridgesUserBundle:User:indexUser.html.twig', array(
             'pages' => $pages,
             'pageAsked' => $pageAsked
             ));

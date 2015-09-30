@@ -189,6 +189,14 @@
       $('.text_header').css({'right':'160px'});
     });
 
+    // For BG photos changing
+    var photoSlider_width = window.innerWidth;
+    var photoSlider_height_current = $("#home").innerHeight;
+    var photoSlider_width_inner = window.innerWidth - 1;
+    var photoSlider_height_current_inner = $("#home").innerHeight - 1;
+    $('.slider_container_bg').css({'width':photoSlider_width+'px', 'height':photoSlider_height_current+'px'});
+    $('.slider_inner_bg').css({'width':photoSlider_width_inner+'px', 'height':photoSlider_height_current_inner+'px'});
+
     $('.li_mobile a').on('click', function(){
       $('.btn-navbar').click(); //bootstrap 2.x
       $('.navbar-toggle').click() //bootstrap 3.x by Richard
@@ -341,9 +349,9 @@ function showFrame(toDo) {
     $(".inner-section-footer").css({'background-color':'rgba(9,85,143,0.88)'});
     $(".div_logo_welcome").css({'left':'40%'});
     $(".footer_copyright").fadeIn();
-    $(".unshow_photo_bg").css({'opacity':'0'});
     $("#header").fadeIn('slow');
     $("#social_media").fadeIn('slow');
+    $(".unshow_photo_bg").css({'opacity':'0'});
   }
   else {
     var window_width = window.innerWidth;
@@ -352,10 +360,11 @@ function showFrame(toDo) {
     $(".inner-section-footer").css({'background-color':'transparent'});
     $(".div_logo_welcome").css({'left':'100%'});
     $(".footer_copyright").fadeOut();
-    $(".unshow_photo_bg").css({'opacity':'1'});
     $("#header").fadeOut('slow');
     $("#social_media").fadeOut('slow');
+    $(".unshow_photo_bg").css({'opacity':'1'});
   }
+  return false;
 }
 
 // Close Facebook frame

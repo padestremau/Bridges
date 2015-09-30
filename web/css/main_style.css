@@ -807,36 +807,46 @@ hr {
 	background-color:  transparent !important;/*#f1f1f1;*/
 	color: black !important;
 	z-index: 0 !important;
+	padding: 0;
+	margin: 0;
 }
 
 .section {
 	margin: 0;
+	padding: 0;
 	z-index: 2 !important;
 }
+.section_content {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: relative;
+}
 @media (min-width: 1400px) {
-	.section {
+	.section_content {
 		border-bottom: 1px solid rgba(9,85,143,1);
-		padding: 50px !important;
+		/*padding: 50px !important;*/
 		padding-top: 0px !important;
 	}
 }
 @media (min-width: 992px) and (max-width: 1399px){
-	.section {
+	.section_content {
 		border-bottom: 1px solid rgba(9,85,143,1);
-		padding: 30px !important;
+		/*padding: 30px !important;*/
 		padding-top: 0px !important;
 	}
 }
 @media (min-width: 478px) and (max-width: 991px) {
-	.section {
+	.section_content {
 		border-bottom: 1px solid rgba(9,85,143,1);
-		padding: 10px !important;
+		/*padding: 10px !important;*/
 		padding-top: 60px !important;
 	}
 }
 @media (max-width: 477px) {
-	.section {
-		padding: 10px !important;
+	.section_content {
+		/*padding: 10px !important;*/
 		padding-top: 60px !important;
 	}
 }
@@ -873,6 +883,37 @@ hr {
 	}
 }
 
+.bg_photo_changing {
+	margin: 0 !important;
+	padding: 0 !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1 !important;
+}
+
+.slider_container_bg {
+	position: relative; 
+	margin: 0 auto;
+	top: 0px; 
+	left: 0px; 
+	width: 1200px; 
+	height: 838px; 
+	overflow: hidden; 
+	opacity: 1 !important; 
+	z-index: 0;	
+}
+.slider_inner_bg {
+	cursor: move; 
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	width: 1200px; 
+	height: 838px; 
+	overflow: hidden;
+}
 
 #sessionFlash {
 	position: absolute;
@@ -1100,12 +1141,11 @@ hr {
 	}
 }
 
-.unshow_photo_bg span {
-	z-index: 30 !important;
-}
 .unshow_photo_bg {
-	color: rgba(100,100,100,0.68);
-	background-color: rgba(250,250,250,0.88);
+	opacity: 0;
+	z-index: 1 !important;
+	color: rgba(100,100,100,0.68) !important;
+	background-color: rgba(250,250,250,0.88) !important;
 	box-shadow: none;
 	cursor: pointer;
 	text-align: center;
@@ -1119,6 +1159,7 @@ hr {
 }
 .unshow_photo_bg:hover {
 	cursor: pointer;
+	background-color: rgba(250,250,250,0.88);
 	color: rgba(100,100,100,0.88);
 }
 .show_photo_bg{
@@ -1178,7 +1219,7 @@ hr {
 .btn-perso, .btn-perso:focus {
 	outline:none;
 	margin: 1px !important;
-	background-color: rgba(250,250,250,0.88);
+	background-color: rgba(240,240,240,0.88);
 	color: rgba(9,85,143,0.88);
 	border-radius: 0;
 	border: none;
@@ -1338,8 +1379,8 @@ hr {
 /* ------------------------------------------------------ Footer ------------------------------------------------------ */
 
 .inner-section-footer {
-	background-color: rgba(9,85,143,0.88);
-	z-index: 1 !important;
+	background-color: rgba(9,85,143,0.88) !important;
+	z-index: 8 !important;
 	width: 100% !important;
 	height: 100% !important;
 	margin: 0 !important;

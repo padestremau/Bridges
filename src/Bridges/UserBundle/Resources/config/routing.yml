@@ -5,11 +5,11 @@ bridges_user_homepage:
 # For the pages
 bridges_user_page:
     path:     /pages/
-    defaults: { _controller: BridgesUserBundle:User:page }
+    defaults: { _controller: BridgesUserBundle:User:indexUser }
 
 bridges_user_page_spe:
     path:     /pages/{pageId}/
-    defaults: { _controller: BridgesUserBundle:User:page }
+    defaults: { _controller: BridgesUserBundle:User:indexUser }
     requirements:
         pageId: \d+
 

@@ -72,7 +72,7 @@
 									</div>
 
 									<div class="form-group">
-								        {{ form_label(formNewPage.header, 'Titulo', 
+								        {{ form_label(formNewPage.header, 'Sub-Titulo', 
 								        	{'label_attr': {'class': 'control-label'}}) }}
 								        {% if form_errors(formNewPage.header) %}
 						                    <div class="error_message">
@@ -88,7 +88,7 @@
 										<div class="input-icon">
 								        	<i class="fa fa-user"></i>
 								        	{% set opt_header = {'attr': {'class': 'form-control placeholder-no-fix',
-								        		'type':'text', 'placeholder':"Titulo visible de la pagina", 'id':'_header', 
+								        		'type':'text', 'placeholder':"Sub-Titulo visible de la pagina", 'id':'_header', 
 								        		'name':'_header'}} %}
 								        	{{ form_widget(formNewPage.header, opt_header) }}
 								        </div>
