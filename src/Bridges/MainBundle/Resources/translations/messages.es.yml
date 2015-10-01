@@ -1,128 +1,106 @@
 # Main
 main:
     actions:
-        hide:                   Hide
-        show:                   Show
+        hide:                   Esconder
+        show:                   Monstrar
 
 
 # Header - Menu
 header:
     titles:
-        home:                   Home
-        aboutUs:                About us
-        stories:                Stories
-        work:                   The work
-        volunteer:              Volunteer
-        donate:                 Donate
-        contact:                Contact
+        home:                   Initio
+        aboutUs:                A propuesto
+        stories:                Historias
+        work:                   El trabajo
+        volunteer:              Voluntario
+        donate:                 Donacion
+        contact:                Contacto
 
 # Home
 home:
     titles:
-        h1:                     "Welcome to Bridges"
-        h3:                     "Love hopes and endures all things"
+        h1:                     "Bienvenidos a Bridges"
+        h3:                     "Amor espera y soporta todo"
     actions:
-        join:                   "Join"
+        join:                   "Participar"
     warning:
-        noHeader:               "No header..." 
-        noContent:              "No content. Please contact the webmaster."
+        noHeader:               "Ningun titulo..." 
+        noContent:              "Ningun contenido. Contacten el webmaster por favor."
 
 # Stories
 stories:
     actions:
-        moreInfos:              More infos
+        moreInfos:              Mas infos
     warning:
-        noStories:              "No stories for now ..."
-        noTitle:                "(Empty title)"
-        noContent:              "(Empty content)"
-        noDate:                 "(no date)"
+        noStories:              "Ningun historia ahorita ..."
+        noTitle:                "(Titulo vacío)"
+        noContent:              "(Contenido vacío)"
+        noDate:                 "(Ningun fecha)"
+
 
 # Volunteer
 volunteer:
     form:
-        name:                   Name
+        name:                   Nombre
         email:                  Email
-        age:                    Age
-        tel:                    Telephone
-        whyPartOf:              "Why would you like to be part of the Bridges team?"
-        howMuchTime:            "How much time would you be willing to dedicate to volunteering?"
-        manyPositions:          "We have many positions available, ranging from once or twice a month to full time!"
-        howHearAbout:           "How did you hear about Bridges?"
+        age:                    Edad
+        tel:                    Telefono
+        whyPartOf:              "Porque quiere ser parte de Bridges?"
+        howMuchTime:            "Cuanto tiempo podra dedicarse al voluntariado?"
+        manyPositions:          "Tenemos muchas oportunidades, empezando una vez al mez!"
+        howHearAbout:           "Como oyeron de Bridges?"
     actions:
-        send:                   Send
+        send:                   Mandar
 
 # Footer
 
 footer:
-    titles:
-        receiveOurNewsletter:   Receive our newsletter
-        testimonies:            Testimonies
-        clientService:          Client service
-        aboutUs:                Abous us
-        needHelp:               Need help?
-        blog:                   Blog
-    content:
-        receiveOurNewsletter:   Stay tuned to all our offers and recipes!
-        testimonies:            They already tried our products.
-        clientService:          At your service from 9am to 7pm!
-        whoWeAre:               Who we are
-        shops:                  Our shops
-        sellingConditions:      Terms of reference
-        legalMentions:          Legal mentions
-        delivery:               Delivery
-        ourProducts:            Our products
-        ourWork:                Our work
-        questions:              Your questions
     contact:
-        senderName:             Name
+        senderName:             Nombre
         senderEmail:            Email
-        selectObject:           "Select the subject of your demand"
-        object1:                "I wish to help with other means"
-        object2:                "I wish to get meet one of the assocation's leaders"
-        object3:                "I wish to extend the association's current field of application"
-        object4:                "I wish to participate in the next event"
-        object5:                "I wish to report a website problem"
-        object6:                "Other"
-        message:                "Message"
+        selectObject:           "Seleccione el tema de su pedida"
+        object1:                "Deseo ayudar de otra manera"
+        object2:                "Deseo encontrar a algun gerente de la assocacion"
+        object3:                "Deseo aumentar la zona de trabajo actual de la associacion"
+        object4:                "Deseo participar al evento siguiente"
+        object5:                "Deseo reportar un problema de pagina web"
+        object6:                "Otro"
+        message:                "Mensaje"
     actions: 
-        send:                   Send
-    newsletter:
-        user:                   Private
-        company:                Company
+        send:                   Mandar
     bottom: 
-        definition:             "Bridges is a non-profit organization"
-        allRightsReserved:      "All rights reserved"
+        definition:             "Bridges es una organizacion sin ánimo de lucro"
+        allRightsReserved:      "Reservados todos los derechos"
 
 footerThankYou:
     titles:
-        thankYou:               Thank you!
-        messageSent:            Message sent
+        thankYou:               Muchas gracias!
+        messageSent:            Mensaje enviado
     content: 
-        thankYou:               "Thank you for your message, it was sent to our team. You should receive a copy of it very soon, and we'll get back to you after processing it very quickly."
-        pleasantDay:            "We wish you a very pleasant day."
-        regards:                "Best regards"
-        teamBridges:            "Team Bridges"
-
+        thankYou:               "Gracias por su mensaje, fue correctamente enviado a nuestro equipo. Deberian recibir una copia rapidamente, deberiamos responder muy pronto a su pedida."
+        pleasantDay:            "Les deseamos un feliz día."
+        regards:                "Saludos"
+        teamBridges:            "Bridges"
 
 # Email contact
 emailContact:
     notes: 
-        topSentence:            "This is a message from "
+        topSentence:            "Eso es un mensaje de "
     titles:
-        general:                MESSAGE SENT
-        messageWritten:         CONTENT OF YOUR MESSAGE
+        general:                MENSAJE ENVIADO
+        messageWritten:         CONTENIDO DE SU MENSAJE
     content:
-        youWrote:               "You sent us a message through our website and we are very thankful to you for that. We should be able to resolve the matter and get back to you very soon."
-        thankYou:               Thank you again
-        forMessage:             for your message. 
-        mailContent:            "Reminder of the content of your message:"
-        question:               Question
-        questionEmpty:          "Your question is empty ..."
+        youWrote:               "Usted mando un mensaje con nuestra pagina y le agradecimos mucho para eso. Deberiamos resolvar su pedida muy pronto."
+        thankYou:               Gracias otra vez
+        forMessage:             por su mensaje. 
+        mailContent:            "Recuerdo del contenido de su mensaje:"
+        question:               Pregunta
+        questionEmpty:          "Su pregunta esta vacía ..."
     errors:
-        nothingHere:            Your message is empty.
-        please:                 Please contact the
-        contactAdministration:  administration
+        nothingHere:            Su mensaje esta vacío.
+        please:                 Por favor contacte la
+        contactAdministration:  administracion
     footer:
-        anecdote:               "is an association based in Lima, who comes in help of the poorest and the most in need essentially in Pamplona. Volunteers the association attracts come to give a hand on saturday mornings mostly. Join us if you feel like it!"
-        keepInTouch:            "Keep in touch: "
+        anecdote:               "es una associacion basada en Lima, qui viene ayudar a las mas pobres y los mas necesitados sobre todo en Pamplona, que son les asentamientos de Lima. Voluntarios que la associacion trae, vienen a ayudar en su mayoría los sabados por la mañana. Juntense si quieren!"
+        keepInTouch:            "Seguir sobre FaceBook: "
 

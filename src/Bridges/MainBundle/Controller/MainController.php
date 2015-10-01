@@ -22,11 +22,54 @@ class MainController extends Controller
                         ->getManager()
                         ->getRepository('BridgesMainBundle:Photo')
                         ->findAll(['category' => 'ASC']);
+
+        $photosHome = array();
+        $photosAboutUs = array();
+        $photosStories = array();
+        $photosWork = array();
+        $photosVolunteer = array();
+        $photosDonate = array();
+        $photosFooter = array();
+        for ($i=0; $i < sizeof($photos); $i++) { 
+            $single_photo = $photos[$i];
+            if ($single_photo->getCategory() == 'home') {
+                $photosHome[] = $single_photo;
+            }
+
+            else if ($single_photo->getCategory() == 'aboutUs') {
+                $photosAboutUs[] = $single_photo;
+            }
+
+            else if ($single_photo->getCategory() == 'stories') {
+                $photosStories[] = $single_photo;
+            }
+
+            else if ($single_photo->getCategory() == 'work') {
+                $photosWork[] = $single_photo;
+            }
+
+            else if ($single_photo->getCategory() == 'volunteer') {
+                $photosVolunteer[] = $single_photo;
+            }
+            else if ($single_photo->getCategory() == 'donate') {
+                $photosDonate[] = $single_photo;
+            }
+            else if ($single_photo->getCategory() == 'footer') {
+                $photosFooter[] = $single_photo;
+            }
+        }
         
         return $this->render('BridgesMainBundle:Main:indexMain.html.twig', array(
             'pages' => $pages,
             'stories' => $stories,
-            'photos' => $photos
+            'photos' => $photos,
+            'photosHome' => $photosHome,
+            'photosAboutUs' => $photosAboutUs,
+            'photosStories' => $photosStories,
+            'photosWork' => $photosWork,
+            'photosVolunteer' => $photosVolunteer,
+            'photosDonate' => $photosDonate,
+            'photosFooter' => $photosFooter
             ));
     }
 

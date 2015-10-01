@@ -77,59 +77,66 @@
 			{% endif %}
 
 			<script>
-		        jssor_slider_starter = function (containerId) {
-		        	var _SlideshowTransitions = [
-		            //Fade
-		            { $Duration: 1400, $Opacity: 2 }
-		            ];
+		 //        jssor_slider_starter = function (containerId) {
+		 //        	var _SlideshowTransitions = [
+		 //            //Fade
+		 //            { $Duration: 1400, $Opacity: 2 }
+		 //            ];
 
-		            var options = {
-		                $FillMode: 2,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
-		                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
-		                $AutoPlayInterval: 3000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
-		                $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
-		                $SlideDuration: 3000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
-		                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
-		                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+		 //            var options = {
+		 //                $FillMode: 2,                                       //[Optional] The way to fill image in slide, 0 stretch, 1 contain (keep aspect ratio and put all inside slide), 2 cover (keep aspect ratio and cover whole slide), 4 actual size, 5 contain for large image, actual size for small image, default value is 0
+		 //                $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+		 //                $AutoPlayInterval: 3000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+		 //                $PauseOnHover: 1,                                   //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, 4 freeze for desktop, 8 freeze for touch device, 12 freeze for desktop and touch device, default value is 1
+		 //                $SlideDuration: 3000,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+		 //                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+		 //                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
 
-		                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
-		                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
-		                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
-		                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
-		                }
-		            };
+		 //                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
+		 //                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
+		 //                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
+		 //                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
+		 //                }
+		 //            };
 
-		            var jssor_slider = new $JssorSlider$(containerId, options);
+		 //            var jssor_slider = new $JssorSlider$(containerId, options);
 
-		            //responsive code begin
-		            //you can remove responsive code if you don't want the slider scales while window resizes
-		            function ScaleSlider() {
-		                var bodyWidth = document.body.clientWidth;
-		                if (bodyWidth)
-		                    jssor_slider.$ScaleWidth(Math.min(bodyWidth, 1920));
-		                else
-		                    $Jssor$.$Delay(ScaleSlider, 30);
-		            }
+		 //            //responsive code begin
+		 //            //you can remove responsive code if you don't want the slider scales while window resizes
+		 //            function ScaleSlider() {
+		 //                var bodyWidth = document.body.clientWidth;
+		 //                if (bodyWidth)
+		 //                    jssor_slider.$ScaleWidth(Math.min(bodyWidth, 1920));
+		 //                else
+		 //                    $Jssor$.$Delay(ScaleSlider, 30);
+		 //            }
 
-		            ScaleSlider();
-		            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+		 //            ScaleSlider();
+		 //            $Jssor$.$AddEvent(window, "load", ScaleSlider);
 
-		            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
-		            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-		        };
+		 //            $Jssor$.$AddEvent(window, "resize", $Jssor$.$WindowResizeFilter(window, ScaleSlider));
+		 //            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+		 //        };
 		    </script>
 
 
 			<!-- Accueil -->
-			<div class="section section_content" id="home" >
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/2.jpg") }}'); background-size: cover; background-position: 50%;">
+			<div class="section section_content" id="home">
+				{% set photo_section_home = '' %}
+				{% if photosHome|length > 0 %}
+					{% set photo_section_home = random(photosHome) %}
+					{% set photo_section_home = photo_section_home.webPath %}
+				{% else %}
+					{% set photo_section_home = "img/bg/2.jpg" %}
+				{% endif %}
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset(photo_section_home) }}'); background-size: cover; background-position: 50%;">
 				    <!-- Jssor Slider Begin -->
 				    <!-- You can move inline styles to css file or css block. -->
-				    <div id="slider_container_home" class="slider_container_bg">
 				        <!-- Slides Container -->
+				    <!-- <div id="slider_container_home" class="slider_container_bg">
 				        <div u="slides" id="slider_inner_home" class="slider_inner_bg">
 				        	
-							{% if photos|length > 0 %}
+							{# if photos|length > 0 %}
 								{% for single_photo in photos %}
 									{% if single_photo.category == 'home' %}
 										<div>
@@ -137,14 +144,20 @@
 										</div>
 									{% endif %}
 								{% endfor %}
-							{% endif %}
+							{% endif #}
 				        </div>
-				    </div>
+				    </div> -->
 				    <!-- Trigger -->
 				    <script>
-				        jssor_slider_starter('slider_container_home');
+				        // jssor_slider_starter('slider_container_home');
 				    </script>
 				    <!-- Jssor Slider End -->
+				    <div class="row">
+						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
+							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+						</div>
+					</div>
+				    <div class="fb-album-container center"></div>
 				</div>
 				
 				<div class="inner-section row">
@@ -152,11 +165,7 @@
 					<div class="div_logo_welcome hidden-xs">
 						<img src="{{ asset('img/system/logo/logo.jpg') }}" alt="Logo" id="logo_welcome"/>
 					</div>
-					<div class="row">
-						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
-						</div>
-					</div>
+					
 
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_home">
@@ -178,15 +187,22 @@
 			</div>
 
 
-			<div class="section section_content" id="aboutUs" >
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/3.jpg") }}'); background-size: cover; background-position: 50%;">
+			<div class="section section_content" id="aboutUs">
+				{% set photo_section_aboutUs = '' %}
+				{% if photosAboutUs|length > 0 %}
+					{% set photo_section_aboutUs = random(photosAboutUs) %}
+					{% set photo_section_aboutUs = photo_section_aboutUs.webPath %}
+				{% else %}
+					{% set photo_section_aboutUs = "img/bg/3.jpg" %}
+				{% endif %}
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset(photo_section_aboutUs) }}'); background-size: cover; background-position: 50%;">
 					<!-- Jssor Slider Begin -->
 				    <!-- You can move inline styles to css file or css block. -->
-				    <div id="slider_container_aboutUs" class="slider_container_bg">
 				        <!-- Slides Container -->
+				    <!-- <div id="slider_container_aboutUs" class="slider_container_bg">
 				        <div u="slides" id="slider_inner_aboutUs" class="slider_inner_bg">
 				        	
-							{% if photos|length > 0 %}
+							{# if photos|length > 0 %}
 								{% for single_photo in photos %}
 									{% if single_photo.category == 'aboutUs' %}
 										<div>
@@ -194,14 +210,19 @@
 										</div>
 									{% endif %}
 								{% endfor %}
-							{% endif %}
+							{% endif #}
 				        </div>
-				    </div>
+				    </div> -->
 				    <!-- Trigger -->
 				    <script>
-				        jssor_slider_starter('slider_container_aboutUs');
+				        // jssor_slider_starter('slider_container_aboutUs');
 				    </script>
 				    <!-- Jssor Slider End -->
+					<div class="row">
+						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
+							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+						</div>
+					</div>
 				</div>
 
 				{% set photoSectionAboutUs = '' %}
@@ -214,11 +235,6 @@
 				{% endif %}
 
 				<div class="inner-section row">
-					<div class="row">
-						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
-						</div>
-					</div>
 
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_aboutUs">
@@ -258,14 +274,21 @@
 			
 
 			<div class="section section_content" id="stories">
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/1.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photo_section_stories = '' %}
+				{% if photosStories|length > 0 %}
+					{% set photo_section_stories = random(photosStories) %}
+					{% set photo_section_stories = photo_section_stories.webPath %}
+				{% else %}
+					{% set photo_section_stories = "img/bg/1.jpg" %}
+				{% endif %}
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset(photo_section_stories) }}'); background-size: cover; background-position: 50%;">
 					<!-- Jssor Slider Begin -->
 				    <!-- You can move inline styles to css file or css block. -->
-				    <div id="slider_container_stories" class="slider_container_bg">
 				        <!-- Slides Container -->
+				    <!-- <div id="slider_container_stories" class="slider_container_bg">
 				        <div u="slides" id="slider_inner_stories" class="slider_inner_bg">
 				        	
-							{% if photos|length > 0 %}
+							{# if photos|length > 0 %}
 								{% for single_photo in photos %}
 									{% if single_photo.category == 'stories' %}
 										<div>
@@ -273,14 +296,19 @@
 										</div>
 									{% endif %}
 								{% endfor %}
-							{% endif %}
+							{% endif #}
 				        </div>
-				    </div>
+				    </div> -->
 				    <!-- Trigger -->
 				    <script>
-				        jssor_slider_starter('slider_container_stories');
+				        // jssor_slider_starter('slider_container_stories');
 				    </script>
 				    <!-- Jssor Slider End -->
+					<div class="row">
+						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
+							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+						</div>
+					</div>
 				</div>
 				{% set photoSectionStories = '' %}
 				{% if pages|length > 0 %}
@@ -291,11 +319,6 @@
 					{% endfor %}
 				{% endif %}
 				<div class="inner-section row">
-					<div class="row">
-						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
-						</div>
-					</div>
 
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_stories">
@@ -465,14 +488,21 @@
 
 
 			<div class="section section_content" id="work">
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/4.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photo_section_work = '' %}
+				{% if photosWork|length > 0 %}
+					{% set photo_section_work = random(photosWork) %}
+					{% set photo_section_work = photo_section_work.webPath %}
+				{% else %}
+					{% set photo_section_work = "img/bg/4.jpg" %}
+				{% endif %}
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset(photo_section_work) }}'); background-size: cover; background-position: 50%;">
 					<!-- Jssor Slider Begin -->
 				    <!-- You can move inline styles to css file or css block. -->
-				    <div id="slider_container_work" class="slider_container_bg">
 				        <!-- Slides Container -->
+				    <!-- <div id="slider_container_work" class="slider_container_bg">
 				        <div u="slides" id="slider_inner_work" class="slider_inner_bg">
 				        	
-							{% if photos|length > 0 %}
+							{# if photos|length > 0 %}
 								{% for single_photo in photos %}
 									{% if single_photo.category == 'work' %}
 										<div>
@@ -480,14 +510,19 @@
 										</div>
 									{% endif %}
 								{% endfor %}
-							{% endif %}
+							{% endif #}
 				        </div>
-				    </div>
+				    </div> -->
 				    <!-- Trigger -->
 				    <script>
-				        jssor_slider_starter('slider_container_work');
+				        // jssor_slider_starter('slider_container_work');
 				    </script>
 				    <!-- Jssor Slider End -->
+					<div class="row">
+						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
+							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+						</div>
+					</div>
 				</div>
 
 				{% set photoSectionTheWork = '' %}
@@ -500,11 +535,6 @@
 				{% endif %}
 
 				<div class="inner-section row">
-					<div class="row">
-						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
-						</div>
-					</div>
 
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_work">
@@ -564,14 +594,21 @@
 
 
 			<div class="section section_content" id="volunteer">
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/5.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photo_section_volunteer = '' %}
+				{% if photosVolunteer|length > 0 %}
+					{% set photo_section_volunteer = random(photosVolunteer) %}
+					{% set photo_section_volunteer = photo_section_volunteer.webPath %}
+				{% else %}
+					{% set photo_section_volunteer = "img/bg/5.jpg" %}
+				{% endif %}
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset(photo_section_volunteer) }}'); background-size: cover; background-position: 50%;">
 					<!-- Jssor Slider Begin -->
 				    <!-- You can move inline styles to css file or css block. -->
-				    <div id="slider_container_volunteer" class="slider_container_bg">
 				        <!-- Slides Container -->
+				    <!-- <div id="slider_container_volunteer" class="slider_container_bg">
 				        <div u="slides" id="slider_inner_volunteer" class="slider_inner_bg">
 				        	
-							{% if photos|length > 0 %}
+							{# if photos|length > 0 %}
 								{% for single_photo in photos %}
 									{% if single_photo.category == 'volunteer' %}
 										<div>
@@ -579,14 +616,19 @@
 										</div>
 									{% endif %}
 								{% endfor %}
-							{% endif %}
+							{% endif #}
 				        </div>
-				    </div>
+				    </div> -->
 				    <!-- Trigger -->
 				    <script>
-				        jssor_slider_starter('slider_container_volunteer');
+				        // jssor_slider_starter('slider_container_volunteer');
 				    </script>
 				    <!-- Jssor Slider End -->
+					<div class="row">
+						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
+							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+						</div>
+					</div>
 				</div>
 
 				{% set photoSectionVolunteer = '' %}
@@ -599,11 +641,6 @@
 				{% endif %}
 
 				<div class="inner-section row">
-					<div class="row">
-						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
-						</div>
-					</div>
 
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_volunteer">
@@ -666,14 +703,21 @@
 			</div>
 
 			<div class="section section_content" id="donate">
-				<div class="section bg_photo_changing" style="background-image: url('{{ asset("img/bg/6.jpg") }}'); background-size: cover; background-position: 50%;">
+				{% set photo_section_donate = '' %}
+				{% if photosDonate|length > 0 %}
+					{% set photo_section_donate = random(photosDonate) %}
+					{% set photo_section_donate = photo_section_donate.webPath %}
+				{% else %}
+					{% set photo_section_donate = "img/bg/6.jpg" %}
+				{% endif %}
+				<div class="section bg_photo_changing" style="background-image: url('{{ asset(photo_section_donate) }}'); background-size: cover; background-position: 50%;">
 					<!-- Jssor Slider Begin -->
 				    <!-- You can move inline styles to css file or css block. -->
-				    <div id="slider_container_donate" class="slider_container_bg">
 				        <!-- Slides Container -->
+				    <!-- <div id="slider_container_donate" class="slider_container_bg">
 				        <div u="slides" id="slider_inner_donate" class="slider_inner_bg">
 				        	
-							{% if photos|length > 0 %}
+							{# if photos|length > 0 %}
 								{% for single_photo in photos %}
 									{% if single_photo.category == 'donate' %}
 										<div>
@@ -681,14 +725,19 @@
 										</div>
 									{% endif %}
 								{% endfor %}
-							{% endif %}
+							{% endif #}
 				        </div>
-				    </div>
+				    </div> -->
 				    <!-- Trigger -->
 				    <script>
-				        jssor_slider_starter('slider_container_donate');
+				        // jssor_slider_starter('slider_container_donate');
 				    </script>
 				    <!-- Jssor Slider End -->
+					<div class="row">
+						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
+							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+						</div>
+					</div>
 				</div>
 
 				{% set photoSectionDonate = '' %}
@@ -701,11 +750,6 @@
 				{% endif %}
 
 				<div class="inner-section row">
-					<div class="row">
-						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
-						</div>
-					</div>
 
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_donate">

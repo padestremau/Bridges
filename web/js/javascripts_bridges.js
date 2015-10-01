@@ -152,6 +152,27 @@
         }
         break;
 
+      //backspace
+      case 8:
+        $(".fb-album-heading").click();
+        break;
+
+      //left
+      case 37:
+        $("img.fb-preview-img-prev").click();
+        break;
+
+      //right
+      case 13:
+      case 39:
+        $("img.fb-preview-img-next").click();
+        break;
+
+      // ESC -- to quit DIAPO
+      case 27:
+        showFrame(true);
+        break;
+
       default:
         return; // exit this handler for other keys
     }
@@ -179,7 +200,8 @@
 
     // Position the header middle-left
     var header_height = $("#header").height();
-    var new_position_header = ( window_height - header_height) * 0.2;
+    var socialMedia_height = $("#social_media").height();
+    var new_position_header = ( window_height - header_height - socialMedia_height) * 0.2;
     $("#header").css({'top':new_position_header+'px'});
 
     $('.header_li').hover(function(){
@@ -197,6 +219,38 @@
     $('.slider_container_bg').css({'width':photoSlider_width+'px', 'height':photoSlider_height_current+'px'});
     $('.slider_inner_bg').css({'width':photoSlider_width_inner+'px', 'height':photoSlider_height_current_inner+'px'});
 
+    $(".fb-album-container").FacebookAlbumBrowser({
+      account: "140667802651315",
+      accessToken: "571488403008997|dGFyCTUqAlHpjfd9IYBEboEadUc",
+      showComments: false,
+      showAccountInfo: false,
+      showImageCount: true,
+      showImageText: true,
+      shareButton: false,
+      albumsPageSize: 0,
+      photosPageSize: 0,
+      lightbox: true,
+      photosCheckbox: false,
+      pluginImagesPath: "../../css/",
+      likeButton: true,
+      shareButton: true,
+      photoChecked: function(photo){
+          console.log("PHOTO CHECKED: " + photo.id + " - " + photo.url + " - " + photo.thumb);
+          console.log("CHECKED PHOTOS COUNT: " + this.checkedPhotos.length);
+      },
+      photoUnchecked: function (photo) {
+          console.log("PHOTO UNCHECKED: " + photo.id + " - " + photo.url + " - " + photo.thumb);
+          console.log("CHECKED PHOTOS COUNT: " + this.checkedPhotos.length);
+      },
+      albumSelected: function (photo) {
+          console.log("ALBUM CLICK: " + photo.id + " - " + photo.url + " - " + photo.thumb);
+      },
+      photoSelected: function (photo) {
+          console.log("PHOTO CLICK: " + photo.id + " - " + photo.url + " - " + photo.thumb);
+      }
+    });
+
+
     $('.li_mobile a').on('click', function(){
       $('.btn-navbar').click(); //bootstrap 2.x
       $('.navbar-toggle').click() //bootstrap 3.x by Richard
@@ -210,14 +264,14 @@
     var widthImg = $('.project_case').width();
     $('.project_case').css({'height':widthImg+'px'});
     changeCSSsheet('.project_case', 'height', widthImg+'px');
-    var widthImg = $('.project_case_inner').width();
+    var widthImg = $('.project_case').width();
     $('.project_case_inner').css({'height':widthImg+'px'});
     changeCSSsheet('.project_case_inner', 'height', widthImg+'px');
     $(window).resize(function() {
       var widthImg = $('.project_case').width();
       $('.project_case').css({'height':widthImg+'px'});
       changeCSSsheet('.project_case', 'height', widthImg+'px');
-      var widthImg = $('.project_case_inner').width();
+      var widthImg = $('.project_case').width();
       $('.project_case_inner').css({'height':widthImg+'px'});
       changeCSSsheet('.project_case_inner', 'height', widthImg+'px');
     });
@@ -225,6 +279,12 @@
     (function($) {
       $.fn.juizScrollTo = function( speed ) { 
         if ( !speed ) var speed = 'slow';  
+
+        // Position the header middle-left
+        var header_height = $("#header").height();
+        var socialMedia_height = $("#social_media").height();
+        var new_position_header = ( window_height - header_height - socialMedia_height) * 0.2;
+        $("#header").css({'top':new_position_header+'px'});
         
         // coeur du plugin
         return this.each( function() {  
@@ -344,6 +404,8 @@ function areYouSureDeleteOrder(path) {
 // Show and hide frames to see bg photos
 function showFrame(toDo) {
   if (toDo == true) {
+    $(".fb-album-heading").click();
+    $('.fb-album-count').fadeOut('fast');
     $(".bg_frame").css({'left':'0px'});
     $(".bg_frame_footer").css({'left':'0px'});
     $(".inner-section-footer").css({'background-color':'rgba(9,85,143,0.88)'});
@@ -351,9 +413,11 @@ function showFrame(toDo) {
     $(".footer_copyright").fadeIn();
     $("#header").fadeIn('slow');
     $("#social_media").fadeIn('slow');
+    changeCSSsheet('.bg_photo_changing', 'z-index', '-1 !important');
     $(".unshow_photo_bg").css({'opacity':'0'});
   }
   else {
+    $('.fb-album-count').fadeIn('fast');
     var window_width = window.innerWidth;
     $(".bg_frame").css({'position':'relative', 'left':window_width+'px'});
     $(".bg_frame_footer").css({'position':'relative', 'left':window_width+'px'});
@@ -362,6 +426,7 @@ function showFrame(toDo) {
     $(".footer_copyright").fadeOut();
     $("#header").fadeOut('slow');
     $("#social_media").fadeOut('slow');
+    changeCSSsheet('.bg_photo_changing', 'z-index', '0 !important');
     $(".unshow_photo_bg").css({'opacity':'1'});
   }
   return false;
