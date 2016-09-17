@@ -154,7 +154,7 @@
 				    <!-- Jssor Slider End -->
 				    <div class="row">
 						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+							<span> <span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}</span>
 						</div>
 					</div>
 				    <div class="fb-album-container center"></div>
@@ -170,7 +170,7 @@
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_home">
 						<div class="show_photo_bg float-right" onClick="showFrame(false);">
-							{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span>
+							<span>{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span> </span>
 						</div>
 						<div class="bg_frame_content">
 							<h1>
@@ -220,7 +220,7 @@
 				    <!-- Jssor Slider End -->
 					<div class="row">
 						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+							<span> <span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}</span>
 						</div>
 					</div>
 				</div>
@@ -239,7 +239,7 @@
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_aboutUs">
 						<div class="show_photo_bg float-right" onClick="showFrame(false);">
-							{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span>
+							<span>{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span> </span>
 						</div>
 						<div class="bg_frame_content">
 							<h1>
@@ -248,7 +248,7 @@
 							<div class="left">
 								{% if current_language %}
 									{% if current_language == 'es' and photoSectionAboutUs.contentEsp|length > 0 %}
-										{{ photoSectionAboutUs.contentEsp }} 
+										{{ photoSectionAboutUs.contentEsp|raw }} 
 									{% else %}
 										{% if photoSectionAboutUs.contentEng|length > 0 %}
 											{{ photoSectionAboutUs.contentEng|raw }}
@@ -306,7 +306,7 @@
 				    <!-- Jssor Slider End -->
 					<div class="row">
 						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+							<span> <span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}</span>
 						</div>
 					</div>
 				</div>
@@ -323,7 +323,7 @@
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_stories">
 						<div class="show_photo_bg float-right" onClick="showFrame(false);">
-							{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span>
+							<span>{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span> </span>
 						</div>
 						<div class="bg_frame_content">
 							<div class="row">
@@ -333,7 +333,7 @@
 								<h3>
 									{% if current_language %}
 										{% if current_language == 'es' and photoSectionStories.headerEsp|length > 0 %}
-											{{ photoSectionStories.headerEsp }} 
+											{{ photoSectionStories.headerEsp|raw }} 
 										{% else %}
 											{% if photoSectionStories.headerEng|length > 0 %}
 												{{ photoSectionStories.headerEng|raw }}
@@ -353,7 +353,7 @@
 							<div class="row">
 								{% if current_language %}
 									{% if current_language == 'es' and photoSectionStories.contentEsp|length > 0 %}
-										{{ photoSectionStories.contentEsp }} 
+										{{ photoSectionStories.contentEsp|raw }} 
 									{% else %}
 										{% if photoSectionStories.contentEng|length > 0 %}
 											{{ photoSectionStories.contentEng|raw }}
@@ -461,7 +461,7 @@
 						                <p>
 						                	{% if current_language %}
 												{% if current_language == 'es' and single_story.contentEsp|length > 0 %}
-													{{ single_story.contentEsp }} 
+													{{ single_story.contentEsp|raw }} 
 												{% else %}
 													{% if single_story.contentEng|length > 0 %}
 														{{ single_story.contentEng|raw }}
@@ -520,7 +520,7 @@
 				    <!-- Jssor Slider End -->
 					<div class="row">
 						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+							<span> <span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}</span>
 						</div>
 					</div>
 				</div>
@@ -539,7 +539,7 @@
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_work">
 						<div class="show_photo_bg float-right" onClick="showFrame(false);">
-							{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span>
+							<span>{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span> </span>
 						</div>
 						<div class="bg_frame_content">
 							<h1>
@@ -548,7 +548,7 @@
 							<h3>
 								{% if current_language %}
 									{% if current_language == 'es' and photoSectionTheWork.headerEsp|length > 0 %}
-										{{ photoSectionTheWork.headerEsp }} 
+										{{ photoSectionTheWork.headerEsp|raw }} 
 									{% else %}
 										{% if photoSectionTheWork.headerEng|length > 0 %}
 											{{ photoSectionTheWork.headerEng|raw }}
@@ -567,7 +567,7 @@
 							<div class="left">
 								{% if current_language %}
 									{% if current_language == 'es' and photoSectionTheWork.contentEsp|length > 0 %}
-										{{ photoSectionTheWork.contentEsp }} 
+										{{ photoSectionTheWork.contentEsp|raw }} 
 									{% else %}
 										{% if photoSectionTheWork.contentEng|length > 0 %}
 											{{ photoSectionTheWork.contentEng|raw }}
@@ -626,7 +626,7 @@
 				    <!-- Jssor Slider End -->
 					<div class="row">
 						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+							<span> <span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}</span>
 						</div>
 					</div>
 				</div>
@@ -645,7 +645,7 @@
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_volunteer">
 						<div class="show_photo_bg float-right" onClick="showFrame(false);">
-							{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span>
+							<span>{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span> </span>
 						</div>
 						<div class="bg_frame_content">
 							<h1>
@@ -654,7 +654,7 @@
 							<h3>
 								{% if current_language %}
 									{% if current_language == 'es' and photoSectionVolunteer.headerEsp|length > 0 %}
-										{{ photoSectionVolunteer.headerEsp }} 
+										{{ photoSectionVolunteer.headerEsp|raw }} 
 									{% else %}
 										{% if photoSectionVolunteer.headerEng|length > 0 %}
 											{{ photoSectionVolunteer.headerEng|raw }}
@@ -673,7 +673,7 @@
 							<p>
 								{% if current_language %}
 									{% if current_language == 'es' and photoSectionVolunteer.contentEsp|length > 0 %}
-										{{ photoSectionVolunteer.contentEsp }} 
+										{{ photoSectionVolunteer.contentEsp|raw }} 
 									{% else %}
 										{% if photoSectionVolunteer.contentEng|length > 0 %}
 											{{ photoSectionVolunteer.contentEng|raw }}
@@ -735,7 +735,7 @@
 				    <!-- Jssor Slider End -->
 					<div class="row">
 						<div class="unshow_photo_bg float-right" onClick="showFrame(true);">
-							<span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}
+							<span> <span class="glyphicon glyphicon-chevron-left"></span> {{ 'main.actions.show' | trans }}</span>
 						</div>
 					</div>
 				</div>
@@ -754,7 +754,7 @@
 					<div class="col-lg-5 col-md-4 col-sm-2 hidden-xs"></div>
 					<div class="col-lg-7 col-md-8 col-sm-10 col-xs-12 bg_frame" id="bg_frame_donate">
 						<div class="show_photo_bg float-right" onClick="showFrame(false);">
-							{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span>
+							<span>{{ 'main.actions.hide' | trans }} <span class="glyphicon glyphicon-chevron-right"></span> </span>
 						</div>
 						<div class="bg_frame_content">
 							
@@ -764,7 +764,7 @@
 							<h3>
 								{% if current_language %}
 									{% if current_language == 'es' and photoSectionDonate.headerEsp|length > 0 %}
-										{{ photoSectionDonate.headerEsp }} 
+										{{ photoSectionDonate.headerEsp|raw }} 
 									{% else %}
 										{% if photoSectionDonate.headerEng|length > 0 %}
 											{{ photoSectionDonate.headerEng|raw }}
@@ -782,7 +782,7 @@
 							</h3>
 							{% if current_language %}
 								{% if current_language == 'es' and photoSectionDonate.contentEsp|length > 0 %}
-									{{ photoSectionDonate.contentEsp }} 
+									{{ photoSectionDonate.contentEsp|raw }} 
 								{% else %}
 									{% if photoSectionDonate.contentEng|length > 0 %}
 										{{ photoSectionDonate.contentEng|raw }}

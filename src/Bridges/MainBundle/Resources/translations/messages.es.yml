@@ -12,15 +12,15 @@ header:
         aboutUs:                A propuesto
         stories:                Historias
         work:                   El trabajo
-        volunteer:              Voluntario
-        donate:                 Donacion
+        volunteer:              Voluntariado
+        donate:                 Dona
         contact:                Contacto
 
 # Home
 home:
     titles:
         h1:                     "Bienvenidos a Bridges"
-        h3:                     "Amor espera y soporta todo"
+        h3:                     "Reconciliando la Sociedad por la Caridad"
     actions:
         join:                   "Participar"
     warning:

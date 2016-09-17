@@ -1088,7 +1088,7 @@ hr {
     50%  {	transform: translateX(5px);	}
     to   {	transform: translateX(0px);	}
 }
-.show_photo_bg span {
+.show_photo_bg  {
 	-webkit-animation: mov_right 1s ease infinite;
 	-moz-animation: mov_right 1s ease infinite;
 	-ms-animation: mov_right 1s ease infinite;
@@ -1162,6 +1162,7 @@ hr {
 }
 
 .unshow_photo_bg {
+	font-size: 1.2em;
 	opacity: 0;
 	z-index: 11 !important;
 	color: rgba(50,50,50,0.68) !important;
@@ -1169,7 +1170,7 @@ hr {
 	box-shadow: none;
 	cursor: pointer;
 	text-align: center;
-	padding: 7px;
+	padding: 12px;
 	position: absolute;
 	top: 20px;
 	right: 20px;
@@ -1188,16 +1189,20 @@ hr {
 }
 .unshow_photo_bg:hover {
 	cursor: pointer;
-	background-color: rgba(250,250,250,0.88);
+	background-color: rgba(250,250,250,1) !important;
 	color: rgba(50,50,50,0.88);
 }
 .show_photo_bg{
+	font-size: 1.2em;
 	cursor: pointer;
 	color: rgba(50,50,50,0.68);
+	background-color: rgba(250,250,250,0.88);
+	padding: 10px;
 }
 .show_photo_bg:hover {
 	cursor: pointer;
 	color: rgba(50,50,50,0.88);
+	background-color: rgba(250,250,250,1) !important;
 }
 
 .project_case_parent {

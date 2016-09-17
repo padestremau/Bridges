@@ -88,7 +88,7 @@
 													{% if current_language %}
 														{% if current_language == 'es' and pageAsked.headerEsp|length > 0 %}
 															<h3>
-																{{ pageAsked.headerEsp }} 
+																{{ pageAsked.headerEsp|raw }} 
 															</h3>
 														{% else %}
 															{% if pageAsked.headerEng|length > 0 %}
@@ -123,7 +123,7 @@
 												<div class="row80">
 													{% if current_language %}
 														{% if current_language == 'es' and pageAsked.contentEsp|length > 0 %}
-															{{ pageAsked.contentEsp }} 
+															{{ pageAsked.contentEsp|raw }} 
 														{% else %}
 															{% if pageAsked.contentEng|length > 0 %}
 																{{ pageAsked.contentEng|raw }}
